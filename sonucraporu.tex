@@ -3,7 +3,7 @@
 \usepackage{eurosym}
 \usepackage[all]{xy}
 \pagestyle{empty}
-\usepackage[turkish]{babel}
+%\usepackage[turkish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \setlength\voffset{-1in}
@@ -22,7 +22,7 @@
 \usepackage{epstopdf}
 \usepackage{relsize}
 \usepackage{pgf, float}
-\usepackage{hyperref}
+\usepackage{url}
 \newcommand{\gal}{Gal({\mathbb Q})}
 \newcommand{\N}{\mathbb N}
 \newcommand{\F}{\mathcal F}
@@ -46,7 +46,7 @@
 \begin{document}
 \pagestyle{fancy}
    \lhead{}\rhead{}
-   \lfoot{\textcolor{light-gray}{\small Gal-Act Proje Sonuç Raporu}}
+   \lfoot{\textcolor{light-gray}{\small Proje Sonuç Raporu}}
         \rfoot{\textcolor{light-gray}{\small Sayfa {\thepage}}}
         \cfoot{}
   \renewcommand{\headrulewidth}{0pt}
@@ -55,7 +55,9 @@
 
 \label{coverpage}
 
-
+\renewcommand{\figurename}{Şekil}
+\renewcommand{\contentsname}{İçindekiler}
+\renewcommand{\refname}{Referanslar}
 
 \newpage
 \phantom{22}
@@ -221,9 +223,16 @@ yapmıştır.
 \noindent
 Özet
 Yeni nesil dizileme (YND) teknolojilerinin uygulanmasi genomiks alanını kökten değiştirmektedir. Farklı türlerin genomlarini incelemede ve gerek normal gerekse hastalığa yol açan insanlardaki genetik farklılıkların incelenmesinde önceden beklenmeyen derecede çözünürlük sağlamaktadır. Her ne kadar YND verilerinin analizi için çok önemli gelişmeler olmuşsa da, halen YND yöntemlerinin tüm gücünden faydalanılmasının önünde engeller vardır.
+
 Önceden hayal dahil edilemeyecek hızda verileri günümüzde üretebiliyor olmamıza rağmen, bu verilerin analizleri çok daha yavaş hızda olmaktadır. Çünkü 1) emsalsiz miktarlardaki veriler bilişimsel altyapılarda hem verilerin saklanması hem de işlenmesi açısından sorunlar doğurmaktadır; 2) YND platformları tarafından üretilen dizi parçaları genelde yüksek oranda hata içermektedir ve bu parçalar çok kısadır; 3) hem halihazırda kullanılmakta olan algoritmalar hem de YND platformları genomun bazı farklı yapıdaki bölgelerinde düşük performanslı çalışmaktadırlar. İşte bu nedenlerden ötürü dizileme verilerinde var olan bilgiler tamamen kullanılamamaktadır. Bu çok miktardaki verilerin daha iyi işlenmesi ve YND yöntemlerinin gerçek gücünün ortaya çıkarılması için bilgisayar bilimleri ve genomiks arasında bir işbirliğinin kurulması gerekmektedir.
+
 Genom dizileme maliyetinin büyük ölçüde düşmesi sayesinde farklı organizmalar arasındaki genomik çeşitliliğin, organizmal biyolojinin ve genom evriminin daha iyi anlaşılması için binlerce farklı türün genomlarının dizilenmesine yönelik büyük bir ilgi vardır. Son bir kaç yılda bir çok genom, örneğin pirinç, üzüm, buğday, patates, mısır ve salatalık gibi bitkiler; panda, hindi, goril, orangutan, bonobo, keseli sıçan (opossum) ve fil gibi hayvanların genomlari dizilenmistir. Yakın zamanda Genome 10K gibi çok iddialı projeler başlamış ve 10.000 omurgalı hayvanın tüm genom dizilenmesinin yapılması amaçlanmıştır. Ancak YDS platformlarıyla üretilen verilerin yukarıda bahsedilen sınırları farklı türlerin referans genomlarının ortaya çıkarılmasını amaçlayan yeni dizileme çalışmalarını da (de novo sequencing) olumsuz etkilemektedir. Bunun başlıca nedenleri çoğu türün genomlarında aynı ya da benzer DNA dizilerinin genomun farklı yerlerinde tekrarlanması, YND verilerindeki dizi parçacıklarının (sequence read) kısa olması ve yüksek oranda hataların bulunmasıdır. Bu nedenle tüm genom dizilerinin çıkarılması sırasındaki genom birleştirmenin (genome assembly) doğruluğunun arttırılması için halen çözülmesi gereken problemler bulunmaktadır. Dizilenmiş genomların doğruluğu yetersiz derecede olursa, bu genomların incelenmesinden çıkarılacak biyolojik sonuçlar da hatalı olacaktır.
-Bu projede birden fazla veri türünü birlikte kullanabilecek algoritmaların tasarlanmasını ve uygulanmasını öneriyoruz. Farklı şekillerde üretilmiş genom dizileme verilerinin gösterdiği farklı özellikleri aynı anda kullanarak ortaya çıkarılacak referans genomlarının kalitesi arttırılacaktır. Böylece bu proje dahilinde üreteceğimiz gelişmiş algoritmalar yeni dizilenmiş genomları daha iyi birleştirmemizi sağlayacak ve genom biyolojilerini daha iyi anlamamıza yardımcı olacaktır.
+
+Bu projede birden fazla veri türünü birlikte kullanabilecek algoritmaların tasarlanmasını ve uygulanmasını hedefledik. Farklı şekillerde üretilmiş genom dizileme verilerinin gösterdiği farklı özellikleri aynı anda kullanarak ortaya çıkarılacak referans genomlarının kalitesinin arttırılması için çeşitli yöntemler üzerinde çalıştık. Böylece bu proje dahilinde üretmeye başladığımız gelişmiş algoritmalar yeni dizilenmiş genomları daha iyi birleştirmemizi sağlayacak ve genom biyolojilerini daha iyi anlamamıza yardımcı olacaktır. 
+
+Bu proje dahilinde üç ana amaç üzerinde çalıştık. Birincisi Illumina platformunda ortaya çıkan G+C oranlarının yüksek ve düşük olduğu bölgelerdeki dizileme derinliğindeki sapmaların düzeltilmesi ve özellikle ekzom dizilemedeki hataların giderilmesi, böylece ekzom birleştirmelerinin iyileştirilmesidir (Fatma Balcı, Yüksek Lisans Tezi). İkincisi, önceden geliştirilmiş olan iskeleleme algoritmalarının birden fazla veri tipi ve havuzlanmış klon dizileme verileri kullanıldığında genom birleştirmelerine faydalı etkisinin incelenmesiydi (Elif Dal, Yüksek Lisans Tezi). Son olarak Illumina verileri kullanılarak PacBo verilerindeki hataların düzeltilmesi (Can Fırtına, Yüksek Lisans Tezi -- sürüyor) ve düzeltilmiş PacBio verileri ile Illumina verilerinin eşzamanlı olarak bir hiperçizge üzerinde ifadesi ile genom birleştirmesi yapılmasıdır (Shatlyk Ashyralyyev. doktora tezi -- sürüyor).
+
+{\bf Anahtar kelimeler:} genomiks, yeni nesil dizileme, genom birleştirme, algoritmalar, çizge kuramı
 
 \newpage
 \phantom{ss}
@@ -236,11 +245,17 @@ Bu projede birden fazla veri türünü birlikte kullanabilecek algoritmaların t
 \addcontentsline{toc}{section}{ABSTRACT}
 \noindent
 The application of high throughput sequencing (HTS) technologies are revolutionizing the field of genomics, providing unprecedented resolution to study genomes of different species, and normal and disease causing human genetic variation. Although significant advances have been made to analyze HTS data, there are still several hurdles in fully utilizing the power of HTS. 
-Although we can now generate data at a rate previously unimaginable, the analysis of the data is proceeding at a slower pace because: 1) unprecedented amounts of data introduce challenges in computational infrastructure in terms of both storage and processing power; 2) reads are often associated with high sequence errors and shorter read length; and 3) currently available algorithms to analyze HTS data and the HTS data themselves show different biases against different regions of the genome. Due to these problems, the information available in the sequencing datasets is not completely mined. There is a need to forge an alliance between computer science and genomics to devise better methods to use the massive amount of sequence data to unleash the full power of HTS methodologies.
-Thanks to the substantially reduced cost of genome sequencing, there is now great interest in sequencing the genomes of thousands of species to better understand the genomic diversity across different organisms, organismal biology and genome evolution. In the last few years many genomes are sequenced: plants such as rice, grape, wheat, potato, corn, cucumber; and animals such as the giant panda, turkey, gorilla, orangutan, bonobo, opossum, elephant, etc. Recently more ambitious projects like the Genome 10K Consortium are started to sequence the genomes of 10.000 vertebrate species. However, the aforementioned limitations of the HTS technologies also affected de novo sequencing studies that aim to construct the reference genomes of various species. This is mainly due to the repetitive structure of the genomes of most species, the short sequence reads generated by current platforms, and the increased error rate. Thus there are still problems to solve to increase the accuracy of the assembled genomes; otherwise any biological conclusions derived from non-accurate genome assemblies would be incorrect.
-Reasoning from the previous observations and empirical evidence that all current HTS platforms show different strengths and biases, we propose to devise novel genome assembly algorithms that use data from multiple sources, including, when available, data derived from laboratory experiments to better assemble the genomes of new species. We will test our algorithms with 1) a set of bacterial artificial chromosomes (BACs) generated from a hydatidiform mole resource that were sequenced using both the Illumina and Pacific Biosciences platforms, and test the assembly accuracy by comparing with high quality assemblies of the same resource using capillary sequence data; 2) whole genome shotgun sequence libraries generated from a haploid genome (hydatidiform mole) and sequenced using 454/Roche and Illumina platforms, several BAC end sequences from the same library sequenced using capillary sequencing, and physical fingerprinting data. The basepair calling accuracy of the Illumina platform coupled with longer matepairs from the 454/Roche, long sequences from Pacific Biosciences, long “jumps” from BAC end sequencing, and the physical ordering of the BACs from the fingerprint data will be used in harmony to improve the genome assembly. In long term, we will also incorporate methodologies that utilize data from upcoming nanotechnology-based sequencing platforms such as the Oxford Nanopore Technologies. Enhanced algorithms that can better assemble genomes will improve our understanding of the biology of genomes.
 
-\vspace{-.5cm}
+Although we can now generate data at a rate previously unimaginable, the analysis of the data is proceeding at a slower pace because: 1) unprecedented amounts of data introduce challenges in computational infrastructure in terms of both storage and processing power; 2) reads are often associated with high sequence errors and shorter read length; and 3) currently available algorithms to analyze HTS data and the HTS data themselves show different biases against different regions of the genome. Due to these problems, the information available in the sequencing datasets is not completely mined. There is a need to forge an alliance between computer science and genomics to devise better methods to use the massive amount of sequence data to unleash the full power of HTS methodologies.
+
+Thanks to the substantially reduced cost of genome sequencing, there is now great interest in sequencing the genomes of thousands of species to better understand the genomic diversity across different organisms, organismal biology and genome evolution. In the last few years many genomes are sequenced: plants such as rice, grape, wheat, potato, corn, cucumber; and animals such as the giant panda, turkey, gorilla, orangutan, bonobo, opossum, elephant, etc. Recently more ambitious projects like the Genome 10K Consortium are started to sequence the genomes of 10.000 vertebrate species. However, the aforementioned limitations of the HTS technologies also affected de novo sequencing studies that aim to construct the reference genomes of various species. This is mainly due to the repetitive structure of the genomes of most species, the short sequence reads generated by current platforms, and the increased error rate. Thus there are still problems to solve to increase the accuracy of the assembled genomes; otherwise any biological conclusions derived from non-accurate genome assemblies would be incorrect.
+
+Reasoning from the previous observations and empirical evidence that all current HTS platforms show different strengths and biases, we proposed to devise novel genome assembly algorithms that use data from multiple sources, including, when available, data derived from laboratory experiments to better assemble the genomes of new species. We aimed to test our algorithms with 1) a set of bacterial artificial chromosomes (BACs) generated from a hydatidiform mole resource that were sequenced using both the Illumina and Pacific Biosciences platforms, and test the assembly accuracy by comparing with high quality assemblies of the same resource using capillary sequence data; 2) whole genome shotgun sequence libraries generated from a haploid genome (hydatidiform mole) and sequenced using 454/Roche and Illumina platforms, several BAC end sequences from the same library sequenced using capillary sequencing, and physical fingerprinting data. The basepair calling accuracy of the Illumina platform coupled with longer matepairs from the 454/Roche, long sequences from Pacific Biosciences, long ``jumps'' from BAC end sequencing are being used in harmony to improve the genome assembly. In long the term, during a future project, we will also incorporate methodologies that utilize data from upcoming nanotechnology-based sequencing platforms such as the Oxford Nanopore Technologies. Enhanced algorithms that can better assemble genomes will improve our understanding of the biology of genomes.
+
+In this project, we worked on three main aims. First, we developed methods to correct for G+C bias associated with the Illumina platform together with biases due to exome capture efficiency to help fix errors in exome assemblies (Fatma Balcı, M.Sc. thesis). Next, we investigated the efficacy  of current scaffolding algorithms when data from multiple sequencing platforms are used together with pooled clone sequencing data (Elif Dal, M.Sc. thesis). Finally, we are continuing to work on Illumina-based error correction for Pacific Biosciences reads (Can Fırtına, M.Sc. thesis -- in progress), and a novel genome assembly algorithm by simultaneously representing Illumina and Pacific Biosciences reads on a hypergraph (Shatlyk Ashyralyyev, Ph.D. thesis -- in progress).
+
+{\bf Keywords:} Genomics, high throughput sequencing, genome assembly, algorithms, graph theory
+
 
 \newpage
 \begin{center}
@@ -259,6 +274,51 @@ Reasoning from the previous observations and empirical evidence that all current
 {\bf \Large 2. LİTERATÜR ÖZETİ}: 
 \end{center}
 \addcontentsline{toc}{section}{2. LİTERATÜR ÖZETİ}
+
+Birkaç yıl önce piyasaya çıkan yeni nesil dizileme (YND) platformları sayesinde genom dizileme fiyatı milyonlarca kez ucuzlamış, ve genom bilimleri alanında yeni bir çığır açılmıştır~\cite{Mardis2008}. 15 yıl süren insan genom projesi 3-10 milyar Amerikan dolarına mal olmuşken, hem dizileme teknolojileri hem de genel dizileme yöntemlerinin (hiyerarşik dizileme yerine tüm genom dizileme) değişmesi ile bu miktar 2007 yılında 10 milyon dolar seviyesine, 2008'de 2 milyon dolara ve bugün 10 bin dolar altına düşmüştür (Şekil~\ref{fig:cost})
+
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[scale=0.75]{cost.png}
+\end{center}
+\caption{Yıllara göre genom dizileme maliyetindeki değişimler. http://www.genome.gov/SequencingCosts/ adresinden alınmıştır.}
+\label{fig:cost}
+\end{figure}
+
+
+Şu anda kullanılmakta olan birçok farklı ikinci ve üçüncü nesil YND platformu vardır. Bunların başlıcaları olarak 454 Life Sciences şirketinin ürettiği GS FLX sistemi, Illumina şirketinin ürettiği HiSeq2000/HiSeq2500/HiSeq3000/HiSeq4000, Ion Torrent'in PGM ve Proton, Pacific Biosciences'in SMRT teknolojisi ve PacBio RS platformu, Applied Biosystems'in SOLiD cihazı olarak listelenebilir. Çok daha yeni olarak nanoteknoloji temelli ``dördüncü nesil'' platformları (örn. Oxford Nanopore) piyasaya çıkmaya başlamıştır~\cite{Metzker2010,Loman2015}. Her ne kadar dizileme maliyeti çok düşmüşse de YND teknolojilerinin ürettiği verilerin bazı eksik yönleri vardır. Okunan ortalama dizi parçacığı uzunluğu çok kısa (örn. Illumina için 150 baz çifti), kullanılan DNA molekülleri çok küçük (örn. Illumina için 200-700 baz çifti), ve baz okuma hata oranı çok yüksek ve değişkendir (Illumina için \%0.1, Pacific Biosciences için \%15).
+
+
+YND teknolojilerindeki baş döndürücü ilerleme, bu verilerin işlenmesine olan ihtiyaç nedeniyle bilgisayar bilimleri alanında da artan bir faaliyete neden olmuştur~\cite{Pop2008}. Elde edilen verilerin referans genomuyla karşılaştırılması ile değişik bireyler arasındaki genomik farklılıkların bulunması önemli bir araştırma alanıdır~\cite{Alkan2011,DePristo2011}. Bu nedenle 2.500 insan genomunun ayrıntılı incelenmesini amaçlayan 1000 Genom Projesi halen devam etmektedir~\cite{1000GP,1000GP2012}. Normal farklılıkların dışında genetik hastalıkların nedenlerinin bulunması için de YND platformları eşsiz bir güç sunmaktadır~\cite{Bamshad2011}. Ayrıca YND yöntemleri hücrelerdeki tüm RNA moleküllerinin tamamı anlamına gelen transkriptom dizilenmesi~\cite{Wang2009} ve genlerin aktivasyonlarini ölçmek~\cite{Park2009} için de kullanılabilir. 
+
+Yukarıda belirtilenlerin dışında YND teknolojilerinin yoğunlukla uygulandığı bir alan da tüm genom dizileme birleştirmesi (de novo genome assembly) yoluyla farklı organizmaların referans genomlarının çıkarılmasıdır~\cite{Schatz2010}. Bugüne kadar geliştirilmiş olan genom birleştirme algoritmalarının hepsi çizge kuramı (graph theory) temellerine dayalı algoritmalardır. Başlıca iki tür genom birleştirme yöntemi vardır. Bunlardan ilki olan örtüşme çizgesi (overlap graph) yönteminde dizi parçaları çizgede uç olarak ifade edilir ve arasında başlangıç/sonuç ilişkisi olan dizi parçaları arasına kenar eklenir ve oluşan çizge üzerinde Hamilton turu (Hamiltonian path) aranır. Bu yöntemin örnekleri arasında eski nesil dizileme teknolojileri için kullanılan Celera Assembler~\cite{Myers2002}, Phusion~\cite{Mullikin2003} ve ARACHNE~\cite{Batzoglou2002} bulunur. İkinci ana yöntem genelde YND birleştirmelerinde kullanılan de Bruijn çizgesidir. Bu yöntemde YND dizi parçaları daha küçük ve aynı uzunlukta parçalara bölünür (k-mer), bu k-mer'ler çizgede uç olarak ifade edilip aynı dizi parçasından gelen k-mer'ler arasına kenar konulur. Bu şekilde oluşturulan çizgede Euler turu (Eulerian path) aranır. Bu yöntemi uygulayan başlıca birleştiriciler ise EULER~\cite{Chaisson2009}, ABySS~\cite{Simpson2009}, Velvet~\cite{Zerbino2008} ve SOAPdenovo'dur~\cite{Li2010b}. Yukarıda bahsedilen algoritmaların hepsi bir seferde sadece tek bir veri tipi kullanabilir, ve farklı verilerden ayrı ayrı oluşturulan farklı birleştirmeler daha sonra birbirlerine eklenir (iskeleleme/scaffolding).
+
+Her ne kadar dizilemedeki ucuzlama nedeni ile arka arkaya bir çok hayvan ve bitki için referans genomu çıkarılıyorsa da bu referansların tamamlılık oranı ve kalitesi İnsan Genom Projesi~\cite{IHGSC2001} ile oluşturulan referans genomunun kalitesinin çok gerisinde kalmıştır~\cite{Schatz2010,Alkan2011c}. Yakın zamanda sadece YND kullanılarak oluşturulan yeni insan genomu birleştirme projelerindeki~\cite{Li2010b,Gnerre2011} hatalar ve eksiklikler genom birleştirme yöntemlerinin önünde alınması gereken çok yol olduğunu ortaya koymuştur~\cite{Alkan2011c}. En önemli eksiklikler birleştirilen genomların devamlı parça (contig) sayısının çok yüksek oluşu, tekrarlı ve duplike bölgelerin yanlış ya da eksik birleştirilmiş oluşudur~\cite{Alkan2011c}. Bir genom birleştirme projesinin en büyük amacı gen dizilerinin belirlenmesi iken, yukarıda bahsedilen sorunlar nedeniyle, bilinen genlerin YND kullanılarak yapılan birleştirmelerde bir çok parçaya ayrıldığı görülmüştür (Şekil~\ref{fig:shatter}). Bu nedenlerden dolayı, güvenilir ve doğru yeni genom birleştirme algoritmalarına ihtiyaç vardır.
+
+
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[scale=0.45]{shatter.png}
+\end{center}
+\caption{Sadece Illumina platformu kullanılarak yapılan bir tüm genom birleştirmesi~\cite{Li2010b} sonucunda ortaya çıkan referanstaki DUSP22 geninin onlarca parçaya ayrıldığı görülmüştür~\cite{Alkan2011c}}
+\label{fig:shatter}
+\end{figure}
+
+
+
+Bunlara rağmen her YND teknolojisinin diğerlerine göre bazı avantajları vardır. Örneğin Illumina platformu en çok veriyi en ucuza üretebilir (10 günde 600 milyar baz çiftinden fazla) ve baz okuma hata oranı en azdır (\%0.1). 454 cihazı diğerlerine göre daha büyük molekülleri eşli dizileyebilir (yaklaşık 20.000 baz çifti). Pacific Biosciences ise şu anki teknolojiler arasında ürettiği ortalama dizi uzunluğu en fazla olan platformdur (1.4 kb) ve ``grup dizileme'' (strobe sequencing) teknolojisi ile eşli dizilemeye (paired-end sequencing) göre bir molekülden daha fazla bilgi çıkarabilir (Şekil~\ref{fig:strobe}). Bu nedenledir ki, aynı anda birden fazla teknoloji ile elde edilmiş verileri kullanmak, her bir teknolojinin diğerlerine üstün yanlarından faydalanıp, sahip olduğu dezavantajları da diğer teknolojilerin avantajları ile gidermek en uygunu olacaktır. Örneğin Illumina'nın sağladığı yüksek kalitedeki baz okuma doğruluğu ile Pacific Biosciences'ın \%15'lik hata oranını düzelterek, aynı zamanda Pacific Biosciences'in gruplu ve uzun dizileme özelliği sayesinde Illumina'nin kısa dizilerinin birleştirilmesini geliştirip tekrarlı alanlardaki yapısal birleştirme hatalarını en aza indirgemek mümkün olacaktır.
+
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[scale=0.75]{strobe.png}
+\end{center}
+\caption{Eşli dizileme (paired-end sequencing) ve gruplu dizileme (strobe sequencing). Illumina, Ion Torrent, 454, Complete Genomics ve SOLiD cihazları ile eşli dizileme yapilabilinirken, Pacific Biosciences gruplu dizilemeyi desteklemektedir.}
+\label{fig:strobe}
+\end{figure}
+
+
+
+ 
 
 
 \begin{center}
@@ -284,15 +344,10 @@ Yürürlükte olduğu üç sene boyunca, **** projesinin ele aldığı soruları
 \addcontentsline{toc}{section}{4.1. Öneriler}
 
 {\small 
-%BBBBBBBBBBBBBBBBBBBB
-\begin{thebibliography}{99}\label{biblio}
-%*************************
-
-%\setcounter{enumiv}{22}
-
+\bibliographystyle{plain}
+\bibliography{calkan}
 
 }
-\end{thebibliography}
 
 
 
