@@ -84,6 +84,7 @@
   Number                   = {12},
   Pages                    = {2041--2049},
   Volume                   = {24},
+
   Abstract                 = {We describe a method that exploits contiguity preserving transposase sequencing (CPT-seq) to facilitate the scaffolding of de novo genome assemblies. CPT-seq is an entirely in vitro means of generating libraries comprised of 9216 indexed pools, each of which contains thousands of sparsely sequenced long fragments ranging from 5 kilobases to > 1 megabase. These pools are "subhaploid," in that the lengths of fragments contained in each pool sums to ∼5\% to 10\% of the full genome. The scaffolding approach described here, termed fragScaff, leverages coincidences between the content of different pools as a source of contiguity information. Specifically, CPT-seq data is mapped to a de novo genome assembly, followed by the identification of pairs of contigs or scaffolds whose ends disproportionately co-occur in the same indexed pools, consistent with true adjacency in the genome. Such candidate "joins" are used to construct a graph, which is then resolved by a minimum spanning tree. As a proof-of-concept, we apply CPT-seq and fragScaff to substantially boost the contiguity of de novo assemblies of the human, mouse, and fly genomes, increasing the scaffold N50 of de novo assemblies by eight- to 57-fold with high accuracy. We also demonstrate that fragScaff is complementary to Hi-C-based contact probability maps, providing midrange contiguity to support robust, accurate chromosome-scale de novo genome assemblies without the need for laborious in vivo cloning steps. Finally, we demonstrate CPT-seq as a means of anchoring unplaced novel human contigs to the reference genome as well as for detecting misassembled sequences.},
   Doi                      = {10.1101/gr.178319.114},
   File                     = {main paper:Adey2014.pdf:PDF},
@@ -586,6 +587,7 @@
   Number                   = {12},
   Pages                    = {1343--1349},
   Volume                   = {46},
+
   Abstract                 = {Haplotype-resolved genome sequencing enables the accurate interpretation of medically relevant genetic variation, deep inferences regarding population history and non-invasive prediction of fetal genomes. We describe an approach for genome-wide haplotyping based on contiguity-preserving transposition (CPT-seq) and combinatorial indexing. Tn5 transposition is used to modify DNA with adaptor and index sequences while preserving contiguity. After DNA dilution and compartmentalization, the transposase is removed, resolving the DNA into individually indexed libraries. The libraries in each compartment, enriched for neighboring genomic elements, are further indexed via PCR. Combinatorial 96-plex indexing at both the transposition and PCR stage enables the construction of phased synthetic reads from each of the nearly 10,000 'virtual compartments'. We demonstrate the feasibility of this method by assembling >95\% of the heterozygous variants in a human genome into long, accurate haplotype blocks (N50 = 1.4-2.3 Mb). The rapid, scalable and cost-effective workflow could enable haplotype resolution to become routine in human genome sequencing.},
   Doi                      = {10.1038/ng.3119},
   File                     = {main paper:Amini2014.pdf:PDF},
@@ -881,6 +883,7 @@
   Number                   = {11},
   Pages                    = {745--755},
   Volume                   = {12},
+
   Abstract                 = {Exome sequencing - the targeted sequencing of the subset of the human genome that is protein coding - is a powerful and cost-effective new tool for dissecting the genetic basis of diseases and traits that have proved to be intractable to conventional gene-discovery strategies. Over the past 2 years, experimental and analytical approaches relating to exome sequencing have established a rich framework for discovering the genes underlying unsolved Mendelian disorders. Additionally, exome sequencing is being adapted to explore the extent to which rare alleles explain the heritability of complex diseases and health-related traits. These advances also set the stage for applying exome and whole-genome sequencing to facilitate clinical diagnosis and personalized disease-risk profiling.},
   Doi                      = {10.1038/nrg3031},
   Institution              = {Department of Pediatrics, University of Washington, Health Sciences Building RR349, 1959 NE Pacific Street, Seattle, Washington 98195-6320, USA. mbamshad@u.washington.edu},
@@ -3344,6 +3347,18 @@
   Url                      = {http://dx.doi.org/10.1038/ng.237}
 }
 
+@Article{Krumm2012,
+  Title                    = {Copy number variation detection and genotyping from exome sequence data},
+  Author                   = {Krumm, Niklas and Sudmant, Peter H and Ko, Arthur and O'Roak, Brian J and Malig, Maika and Coe, Bradley P and Quinlan, Aaron R and Nickerson, Deborah A and Eichler, Evan E and NHLBI Exome Sequencing Project and others},
+  Journal                  = {Genome Res},
+  Year                     = {2012},
+  Number                   = {8},
+  Pages                    = {1525--1532},
+  Volume                   = {22},
+
+  Publisher                = {Cold Spring Harbor Lab}
+}
+
 @Article{Kuleshov2014,
   Title                    = {Whole-genome haplotyping using long reads and statistical methods.},
   Author                   = {Kuleshov, Volodymyr and Xie, Dan and Chen, Rui and Pushkarev, Dmitry and Ma, Zhihai and Blauwkamp, Tim and Kertesz, Michael and Snyder, Michael},
@@ -3769,6 +3784,7 @@
   Number                   = {2},
   Pages                    = {265--272},
   Volume                   = {20},
+
   Abstract                 = {Next-generation massively parallel DNA sequencing technologies provide ultrahigh throughput at a substantially lower unit data cost; however, the data are very short read length sequences, making de novo assembly extremely challenging. Here, we describe a novel method for de novo assembly of large genomes from short read sequences. We successfully assembled both the Asian and African human genome sequences, achieving an N50 contig size of 7.4 and 5.9 kilobases (kb) and scaffold of 446.3 and 61.9 kb, respectively. The development of this de novo short read assembly method creates new opportunities for building reference sequences and carrying out accurate analyses of unexplored genomes in a cost-effective way.},
   Doi                      = {10.1101/gr.097261.109},
   Institution              = {Beijing Genomics Institute at Shenzhen, Shenzhen 518083, China.},
@@ -3907,6 +3923,7 @@
   Number                   = {8},
   Pages                    = {733--735},
   Volume                   = {12},
+
   Abstract                 = {We have assembled de novo the Escherichia coli K-12 MG1655 chromosome in a single 4.6-Mb contig using only nanopore data. Our method has three stages: (i) overlaps are detected between reads and then corrected by a multiple-alignment process; (ii) corrected reads are assembled using the Celera Assembler; and (iii) the assembly is polished using a probabilistic model of the signal-level data. The assembly reconstructs gene order and has 99.5\% nucleotide identity.},
   Doi                      = {10.1038/nmeth.3444},
   Institution              = { Department of Computer Science, University of Toronto, Toronto, Ontario, Canada.},
@@ -4456,6 +4473,7 @@
   Number                   = {7},
   Pages                    = {4145--4146},
   Volume                   = {99},
+
   Doi                      = {10.1073/pnas.092136699},
   Institution              = {Celera Genomics, 45 W. Gude Drive, Rockville, MD 20850, USA. MyersGW@celera.com},
   Keywords                 = {Genome, Human; Genomics, methods; Humans; Sequence Analysis, DNA},
@@ -4623,6 +4641,7 @@
   Number                   = {10},
   Pages                    = {669--680},
   Volume                   = {10},
+
   Abstract                 = {Chromatin immunoprecipitation followed by sequencing (ChIP-seq) is a technique for genome-wide profiling of DNA-binding proteins, histone modifications or nucleosomes. Owing to the tremendous progress in next-generation sequencing technology, ChIP-seq offers higher resolution, less noise and greater coverage than its array-based predecessor ChIP-chip. With the decreasing cost of sequencing, ChIP-seq has become an indispensable tool for studying gene regulation and epigenetic mechanisms. In this Review, I describe the benefits and challenges in harnessing this technique with an emphasis on issues related to experimental design and data analysis. ChIP-seq experiments generate large quantities of data, and effective computational analysis will be crucial for uncovering biological mechanisms.},
   Doi                      = {10.1038/nrg2641},
   Institution              = {Harvard Medical School, 10 Shattuck Street, Boston, MA 02115, USA. peter_park@harvard.edu},
@@ -5145,6 +5164,7 @@
   Number                   = {9},
   Pages                    = {1165--1173},
   Volume                   = {20},
+
   Abstract                 = {Second-generation sequencing technology can now be used to sequence an entire human genome in a matter of days and at low cost. Sequence read lengths, initially very short, have rapidly increased since the technology first appeared, and we now are seeing a growing number of efforts to sequence large genomes de novo from these short reads. In this Perspective, we describe the issues associated with short-read assembly, the different types of data produced by second-gen sequencers, and the latest assembly algorithms designed for these data. We also review the genomes that have been assembled recently from short reads and make recommendations for sequencing strategies that will yield a high-quality assembly.},
   Doi                      = {10.1101/gr.101360.109},
   Institution              = {Center for Bioinformatics and Computational Biology, University of Maryland, College Park, Maryland 20742, USA.},
@@ -5896,6 +5916,7 @@
   Number                   = {1},
   Pages                    = {57--63},
   Volume                   = {10},
+
   Abstract                 = {RNA-Seq is a recently developed approach to transcriptome profiling that uses deep-sequencing technologies. Studies using this method have already altered our view of the extent and complexity of eukaryotic transcriptomes. RNA-Seq also provides a far more precise measurement of levels of transcripts and their isoforms than other methods. This article describes the RNA-Seq approach, the challenges associated with its application, and the advances made so far in characterizing several eukaryote transcriptomes.},
   Doi                      = {10.1038/nrg2484},
   Institution              = {Department of Molecular, Cellular and Developmental Biology, Yale University, 219 Prospect Street, New Haven, Connecticut 06520, USA.},
