@@ -10,6 +10,8 @@ all: $(TEX) $(FIGS)
 	bibtex $(PAPER)
 	pdflatex $(PAPER)
 	pdflatex $(PAPER)
+bibtex:
+	cp /home/calkan/Dropbox/bibliography/calkan.bib ./
 clean:
 	rm -rf *.dvi *.log *.aux *.bbl *.blg *.pdf
 

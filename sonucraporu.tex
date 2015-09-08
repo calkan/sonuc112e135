@@ -330,9 +330,65 @@ Bunlara rağmen her YND teknolojisinin diğerlerine göre bazı avantajları var
 \addcontentsline{toc}{section}{3. GEREÇ VE YÖNTEM}
 \noindent
 
-\noindent
-{\bf \large 3.1. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
-\addcontentsline{toc}{subsection}{3.1 Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
+{\bf \large 3.1. Havuzlanmış klon dizileme ile genom iskeleleme}
+\addcontentsline{toc}{subsection}{3.1 Havuzlanmış klon dizileme ile genom iskeleleme}
+
+
+Günümüzde yeni nesil dizileme (YND) teknolojilerinin yaygınlaşması ve dolayısıyla verilerin düşük maliyetlerde elde edilebilmesi, de novo (referans genom olmadan) 
+genom dizilemeye olan ilgiyi artırdı.
+Bu durum, kısa okumalardan (short reads) güvenilir ve yüksek kalitede taslak genoma olan ihtiyacı ortaya çıkardı. YND teknolojileriyle elde edilen milyonlarca okumalar ilk olarak bitişikler (contig) adı verilen DNA dizilerinin bulunmasında kullanıldı. Daha sonra bu bitişikler, iskeleleme algoritmalarıyla (scaffolding) birbirlerine olan uzaklıkları ve sıralamaları bulunarak iskeleler haline getirilebilir.
+
+Prof. Evan Eichler ve Prof. Jay Shendure'den alınan ve NA12878 kodlu insan genom örneğinden elde edilen ``havuzlanmış'' (pooled) Bakteri Yapay Kromozomlarını~\cite{Kitzman2011} kullandık. 
+(BYK; İngilizce Bacterial Artificial Chromosome). 
+Amacımız tüm genomu kapsayacak sayıda üretilip Illumina ile dizilenmiş BYK klonlarını kullanarak bir insan tüm genom dizisinin düzeltilmesi ve geliştirilmesidir.
+	
+Bu BYK’ların uzunluğu yaklaşık 150.000 – 200.000 baz çiftidir. İlk olarak bu BYK'lardan rastgele seçilen 288 bakteri yapay kromozomu havuzu oluşturuldu. Her havuzda genomun yaklaşık \%3'ünün 
+kapsanması hedeflendi. Buradaki amaç rastgeleliği arttırarak, duplikasyonlardan kaynaklanan olası yanlış eşleşmelerin mümkün olduğu kadar önüne geçebilmektir. 
+Duplikasyonlar \%90 oranında benzeyen dizi parçalarıdır. 
+
+BYK’lar haricinde aynı insanın tüm genomundan elde edilmiş DNA dizileri (WGS) daha önce Broad Enstitüsü’ndeki araştırmacılar tarafından ALLPATHS~\cite{Gnerre2011} programı kullanılarak birleştirilmiş, ve bu birleştirme sonuçları tüm araştırmacıların kullanımına açılmıştır. Ancak bu projenin başvuru amaçlarında da belirtildiği üzere, bu birleştirme sonucunda edilen bitişiklerde gerek gen ve ekzonların temsili, gerekse tekrarlı DNA dizileri nedeniyle parçalanmalar ve yanlış birleştirmeler bulunmaktadır~\cite{Alkan2011c}. Gene projenin başvuru amaclarinda belirtildiği üzere, tüm genom dizileme ve birleştirme verilerini diğer şekillerde elde edilmiş veriler ile birlikte kullanmayı amaçladığımızdan bu veriyi de NCBI internet sayfasından indirdik.
+
+ABySS~\cite{Simpson2009}, ALLPATHS~\cite{Simpson2009}, ya da diğer genom birleştirme algoritmalarının oluşturduğu iskeleler tam olarak optimize edilmemiştir. Dahası, elimizdeki BYK tabanlı veriler de tüm genom dizilemeden farklı olduğu için, bu veriler doğrudan genom birleştirme araçlarına yüklenemez. Bundaki sebep, tüm genom dizilemelerinin tamamen rastgele olarak üretilmiş olması, havuzlanmış BYK verilerinin ise daha hiyerarşik bir yapıda oluşturulmuş olmasıdır. Bu nedenle ilk aşama olarak literatürde tanımlanmış iskeleleme algoritmalarinin bir tetkikini yaptık. Buradaki amaçlarımız, bu araçların elimizdeki veriler ile uyumluluğunu test etmek, ve aynı zamanda eksikliklerini sınıflandırmaktır.
+
+İskelelerin bulunması (Şekil~\ref{fig:scaffold} NP-zor (NP-hard) bir problem olduğu için geliştirilen iskeleleme (scaffolding) araçları keşifsel (heuristic) yöntemlerle yaklaşık sonuçlar üretebilmektedir. Bu dönem yaptığımız çalışmalarda geliştirilmiş iskeleleme araçlarından elimizdeki veri türlerine uygun olan 5 aracı çalıştırmayı hedefledik. Diğer kromozomlara kıyasla boyu daha kısa olan kromozom 20'nin iskelelerini bulmaya çalıştık. Kod adı NA12878 olarak bildiğimiz bireyin kromozom 20 verisinin, hem tüm genom (whole genome shotgun (WGS)) yöntemi hem de bakteri yapay kromozomları (BAC) dizileme yöntemiyle elde edilmiş verileri bulunmaktaydı. Öncelikle ALLPATHS~\cite{Gnerre2011} birleştirme programı kullanılarak WGS okumaları (read) bitişikler haline getirildi. Kromozom 20 datasından ALLPATHS kullanılarak hesaplanan 250 bitişik elde edildi. Bu bitişiklerleri elimizdeki 288 BAC ve 96 fozmid havuzları ile iskeleler haline getirmek için farklı iskeleleme araçları kullandık ve performans, elde edilen iskelelemelerin kalitesi, elde edilen iskelelemelerin N50 değerleri (bitişik uzunlukları azalan bir şekilde eklendiği zaman genom büyüklüğünün yarısına erişildiğinde en son eklenen bitişiğin uzunluğu), bulunan en uzun iskelenin boyu ve iskeleleme sayılarına bakarak en iyi iskeleleme aracını bulmaya çalıştık. 
+
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[scale=0.75]{scaffold.png}
+\end{center}
+\caption{Dizi parçalarından bitişiklerin ve iskelelerin elde edilmesi}
+\label{fig:scaffold}
+\end{figure}
+
+
+Çalıştırdığımız iskeleleme araçları kısaca şunlardır:
+
+\begin{enumerate}
+
+\item Phrap~\cite{phrap}: Önce WGS verileriyle ALLPATHS~\cite{Gnerre2011} kullanarak elde edilen bitişikleri ABySS~\cite{Simpson2009} programı kullanılarak birleştirilmiş BYK'lar ile geliştirip iskeleleri bulmaya çalıştık. Ancak tek bir havuzdan gelen verileri birleştirmek bile  3 günden daha uzun sürdüğünden ve toplam 288 + 96 havuz düşünüldüğünde, bu yaklaşımın etkin bir çözüm olmayacağına karar verip bu iskeleleme aracından vazgeçtik.
+  
+\item ALLPATHS~\cite{Gnerre2011} programı ile birleştirilip contig haline gelen verilerimiz, SCARPA~\cite{Donmez2013}, OPERA~\cite{Gao2011}, SSPACE~\cite{Boetzer2011}, ve BESST~\cite{Sahlin2014} iskeleleme araçlarıyla çalıştırılarak iskelelemeler haline getirilip sonuçlar alındı. (Bulgular). 
+  
+  \begin{enumerate}
+    \item
+      SSPACE: Geliştirilmiş ilk iskeleleme programlarından biridir~\cite{Boetzer2011}. Fırsatçı (greedy) bir algoritma ile, ilk olarak en optimal bitişikleri birleştirir ve bu iskeleleri sonraki okumalar ile genişleterek ilerler. Buradaki en büyük dezavantaj, iskeleleme sırasında en olası görünen birleştirmenin, daha sonraki aşamalarda yanlış iskelelemelere sebep olmasıdır. İşletim anında en uygun görünen birleştirme yanlış sonuçlara sebep olabildiği için çizge tabanlı algoritmaların doğruluk oranının daha yüksek olduğu düşünülmüştür. 
+
+    \item OPERA: İskeleleme probleminin NP-zor bir problem olduğu gösterildikten sonra bu problemi optimal çözebilmek için belirli  kısıtlayıcı parametreler ile çözmeye çalışmıştır~\cite{Gao2011}. İskeleleme işleminin her bir aşaması için alt ve üst sınırlar belirler ve bir sınır içerisinde problemi çözer. İskeleleme işleminden önce veriyi ön işleme ile yanlış Iskeleleme işlemine sebep olacak  tutarsız verilerden temizler.
+      
+    \item SCARPA: Lineer programlama ile optimal iskeleleri bulmayı amaçlar~\cite{Donmez2013}. Aracın yazarları diğer iskeleleme programlarındaki kayıp birleştirmeleri farkedip bu probleme özel algoritma geliştirdiklerini iddia etseler de, sonuçta yine kayıp birleştirmeler olmuştur.
+      
+\item BESST: Diğer iskeleleme programlarının bitişikler arası boşluk uzunluğunu yanlış bulduklarını gösterip, buna özel algoritma geliştirmişlerdir~\cite{Sahlin2014}. Diğer üç program ile karşılaştırıldığında, en çok bitişiği en az iskeleye indirebilmiştir. Ancak veri kaybı oldukça fazladır.
+  \end{enumerate}
+
+\end{enumerate}
+
+Bu programların en önemli dezavantajı veri kaybının olmasıdır. İskeleleme işlemi sonucunda, bitişiklerin yön ve sıralamasının bulunması, aralarındaki uzaklıkların ``N'' 
+karakterleriyle doldurulması sonucu uzunluklarının artması beklenirken, dört programda da sonuç uzunluk azalması olmuştur. Bunun başlıca sebebi, birleştirilemeyen veya oryantasyonu bulunamayan bitişiklerin çalıştırılan programlar tarafından elenmesidir.
+
+Sonuç olarak, farklı iskeleleme programları, parametreleri, hizalama yöntemleri ve ürettikleri iskeleler test edilip farklılıklar tespit edilmiştir ve yeni tasarlanılacak iskeleleme programının geliştirilmesi için gereklilikler ve oluşabilecek hatalar not edilmiştir.
+
+{\bf \large 3.3. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
+\addcontentsline{toc}{subsection}{3.3 Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
 
 DNA'nın sadece belirli bölgelerinde yaşanan dizi değişimlerine bakmak için tüm genom birleştirme yöntemini kullanmak yerine hedefleyici birleştirme yöntemini kullanmak daha etkin sonuçlar vermektedir. Hedefleyici birleştirme yönteminin alt sınıflarından birisi de yalnızca protein kodlayan bölgeleri hedefleyen ekzom birleştirme yöntemidir. Ancak ekzom birleştirme metodunu kullanabilmek için ekzon verilerindeki GC-içeriği ve ekzon yakalama etkinliği gibi bazı sapmaları düzeltmek gerekmektedir (Şekil~\ref{fig:exomedepth}). Bu sapmalardan GC-içeriğini düzeltmek için yapılmış birçok çalışma olmasına rağmen~\cite{Krumm2012,Fromer2012} ekzon yakalama etkinliğiyle alakalı bilinen bir çalışma bulunmamaktadır. Bu alandaki açığı kapatarak ekzom birleştirme yöntemini de kullanabilmek için bir çalışma yaptık. Prob yakalama etkinliğinde varolan sapmaları düzeltmek için yaptığımız bu çalışma sonucunda bu etkiyi büyük ölçüde düzelttik. 
 
@@ -347,8 +403,8 @@ DNA'nın sadece belirli bölgelerinde yaşanan dizi değişimlerine bakmak için
 
  Prob yakalama etkinliği, genomun her yerinde o bölgede kullanılan probun özelliklerine göre değişmektedir. Her bölgenin bu sapmadan ne kadar etkilendiğini görmek ve bu sapmaları düzeltebilmek için, dizileme teknolojileri kullanılarak elde edilen DNA parçacıklarını ekzon koordinatlarına göre eşleştirdik. Daha sonra her bir bölgeye ait prob sayısı ve dizi derinliğine bakılarak, yakalama etkinliklerini tespit ettik. 
 
-{\bf 3.1.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
-\addcontentsline{toc}{subsubsection}{3.1.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
+{\bf 3.3.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
+\addcontentsline{toc}{subsubsection}{3.3.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
 
 Ekzom dizilemesi verilerinin üzerinde çalışırken, örneklere ait verilerin okuma derinlikleriyle kopya sayısı varyantlarını kıyaslayabilmek için pencere büyüklüklerini (window size) eşitlememiz gerekmektedir. Bunu yapabilmek için her bir ekzona map edilmiş olan okuma sayısının ortalaması (exome mean read count)(EMRC) hesaplanmalıdır. EMRC aşağıdaki gibi formülize edilmiştir:
 
@@ -356,33 +412,33 @@ Ekzom dizilemesi verilerinin üzerinde çalışırken, örneklere ait verilerin 
 
 Burada $RC_E$ hedeflenen e genomik bölgesine eşleştirilen okuma sayısını, $L_e$ ise aynı genomik bölgenin büyüklüğünü ifade etmektedir. EMRC genomun edeflenen her bir bölgesi için hesaplanıp, belirli bölgelere eşleştirilen okuma yoğunluğunun bir ölçüsünü vermektedir. 
 
-{\bf 3.1.2. GC İçeriği Yanlılığı}
-\addcontentsline{toc}{subsubsection}{3.1.2 GC İçeriği Yanlılığı}
+{\bf 3.3.2. GC İçeriği Yanlılığı}
+\addcontentsline{toc}{subsubsection}{3.3.2 GC İçeriği Yanlılığı}
 
 GC içeriği yanlılığı, okuma kapsamı (read coverage) ile dizileme verisinde bulunan GC içeriğinin arasındaki ilişkiyi ifade etmektedir. Bu yanlılık, DNA dizilemesinde varolan kopya sayısı tahmininde de olabileceği gibi, genomdaki parça (fragment) bolluğunu ölçmeye odaklı analizlerdeki sinyalleri domine edebilmektedir. Ayrıca örnekler arasında tutarlılık gösteren bir yanlılık olmayıp, tek bir örnekteki yanlılığı ortadan kaldırabilecek en iyi yöntem diye bir şeyden de söz edilememektedir.
 
-{\bf 3.1.3. Batch Etkisi}
-\addcontentsline{toc}{subsubsection}{3.1.3 Batch Etkisi}
+{\bf 3.3.3. Batch Etkisi}
+\addcontentsline{toc}{subsubsection}{3.3.3 Batch Etkisi}
 
 Genetik varyantlar, gen ve protein ifadelerinde ve epigenetik modifikasyonlar için geniş ölçekte kullanılan  YND teknolojileri, gözden kaçırılabilecek batch etkisine sık sık maruz kalabilmektedir. Batch yanlılığı laboratuvar şartlarından ve personel değişimleri gibi durumlardan meydana gelebilmektedir. Bu etki,  verdiği doğru olmayan sonuçlara bağlı olarak çok önemli bir problem haline gelmiştir.
 
 
-{\bf 3.1.4. Temel İçerik Analizi (Principal Component Analysis)(PCA)}
-\addcontentsline{toc}{subsubsection}{3.1.4 Temel İçerik Analizi (Principal Component Analysis)(PCA)}
+{\bf 3.3.4. Temel İçerik Analizi (Principal Component Analysis)(PCA)}
+\addcontentsline{toc}{subsubsection}{3.3.4 Temel İçerik Analizi (Principal Component Analysis)(PCA)}
 
 Temel içerik analizi, modern veri analizinin dayanak  noktası haline gelmiştir. Bunun yanı sıra uygulamalı lineer cebirin en değerli sonucu olarak da kabul edilmektedir. PCA olarak da bilinen bu yöntem çok yaygın bir şekilde ancak çok iyi anlaşılmadan kullanılmaktadır. Bu da yanlış sonuçlar doğurmaktadır. Yürütmekte olduğumuz çalışmada PCA yönteminin olası yanlış kullanımlarını düzelterek, daha doğru veriler de elde etmeyi hedeflemekteyiz. Karmakarışık bir veri kümesinden, en alakalı kısmı alabilen parametrik olmayan bir metot olduğu için nöroloji biliminden bilgisayar grafiği alanına kadar geniş bir yelpazede kullanılmaktadır. Minimal düzeyde ek bir çaba ile PCA, kompleks bir veri kümesinden kümeyi ifade edebilen küçük bir data setini elde edebilmeyi, zaman zaman ise gizli kalmış altta yatan basit dinamiklerin ortaya çıkarılmasını sağlamaktadır. PCA'nın amacı,  pürüzlü (noisy) veri kümesini en anlamlı ve daha basit bir şekilde yeniden ifade edebilmeyi sağlamaktır.
 
 
-{\bf 3.1.5. Değişken Bayes Çıkarımı}
-\addcontentsline{toc}{subsubsection}{3.1.5. Değişken Bayes Çıkarımı}
+{\bf 3.3.5. Değişken Bayes Çıkarımı}
+\addcontentsline{toc}{subsubsection}{3.3.5. Değişken Bayes Çıkarımı}
 
 
 Tekil değer ayrışımı (SVD), bir matrisin optimal bir şekilde düşük rank ayrımını (karesel hata anlamında), döndüren bir matris  ayrıştırma algoritmasıdır. SVD'nin; çıktısı, verinin kompakt ve bilgilendirici bir gösterimi olarak yorumlanabilecek makine öğrenimi uygulamalarında geniş bir kullanımı vardır. Maalesef bunun yanında, aşırı aralıklı matrisler için veriye gereğinden fazla uyumlu grafikler ortaya çıkararak, yeni verinin grafikte doğru bir şekilde yer bulmasını engelleyebilmektedir. Bu nedenle çok dikkatli bir şekilde ele alınmalıdır. Kopya sayısı varyantı tespiti algoritmalarında da  oldukça fazla kullanılmaktadır.
 
 Elimizde var olan (kopya sayısı) $\times$ (örnekler) matrisinin  ekzom datasına bağlı olarak gelişen aralıklı yapısından dolayı SVD bazen yeterli olamamaktadır. Burada oluşabilecek verinin fazla uyumlu grafikler ortaya çıkarabilmesi durumunu engelleyebilmek için her biri veri kümesinin yapısına uygun parametreler ve yapılar ortaya çıkaran değişken bayes çıkarımını kullanmayı planlamaktayız. Elimizdeki veri kümesine oldukça benzeyen daha önce internet sitelerinde yer alan sinema tavsiyeleri için makine öğrenmesi uygulamasında da kullanılmış ve buradaki sonuçları iyileştirmiştir.
 
-{\bf 3.1.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
-\addcontentsline{toc}{subsubsection}{3.1.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
+{\bf 3.3.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
+\addcontentsline{toc}{subsubsection}{3.3.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
 
 Elimizdeki veriyi matris benzeri bir yapı olarak düşünebiliriz. Bunlardan ilki; (okuma derinliği) $\times$ (örnek), ikincisi; (kopya sayısı varyantı) $\times$ (örnekler) matrisidir  diyebiliriz. Okuma derinliği verisini içeren ilk matrisimizde eksik veri bulunmamaktadır. Amacımız ilk matristeki verileri kullanarak, fazla sayıda eksik veri içeren ikinci matrisimizdeki kopya sayısı varyantlarını tespit edebilmektir. Elimizde varolan veriler tüm genom dizilemesi verileridir. Biz bu verileri daha önceden elde edilmiş insan ekzom verisiyle eşleştirdik(mapping). Böylece kopya sayısı varyantı tespitinde daha avantajlı DNA'nın sadece ekzom kısmıyla ilgilenebiliyoruz. Eşleştirdikten sonra matrislerin üzerinde işlem yapabilmemiz için farklı örneklerden  geliyor olmasından kaynaklanan pencere büyüklüğü sorununu çözebilmek için daha önce bahsetmiş olduğumuz ``Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması'' kısmındaki EMRC formülünü kullanarak uniform matrisler elde etmekteyiz.
 
@@ -431,13 +487,92 @@ Burada $g$, bağımsız değişkenler arasındaki düzlük katsayısını ifade 
 \addcontentsline{toc}{section}{4. BULGULAR}
 \noindent
 
+{\bf \large 4.1. Havuzlanmış klon dizileme ile genom iskeleleme}
+\addcontentsline{toc}{subsection}{4.1 Havuzlanmış klon dizileme ile genom iskeleleme}
+
+Bu projede kullandığımız programları hem en uzun (kromozom 1), hem de en kısa (kromozom 20) verileri üzerinde test ettik. Her iki kromozom için ikişer farklı strateji uyguladık. Önce havuzlanmış BYK verilerinin tümünü kullanarak iskeleleme yaptık (Tablo~\ref{tab:chr1w}, \ref{tab:chr20w}), daha sonra havuzları sırayla teker teker ekleyerek iskeleleme deneyi 
+yaptık (Tablo~\ref{tab:chr1h}, \ref{tab:chr20h}). Sonuç olarak
+tüm genom verileri için geliştirilen iskeleleme algoritmalarının, BYK ve fosmid verisi kullanıldığında genom birleştirme kalitesine bir fayda sağlamadığını gözlemledik.
+
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|r|r}
+\hline 
+{\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
+\hline
+SSPACE & 9,891 & 121,405,472 & 121,404,200 & 41.57 & 1,272 & 28,279 & 5,757\\
+SCARPA &  \textit{NA}  &  \textit{NA}     &     \textit{NA}  &   \textit{NA}   &  \textit{NA}    &  \textit{NA}    &  \textit{NA}   \\
+OPERA  & 9,408     & 121,412,030      & 121,400,964     & 41.57  &  11,066   & 28,159    & 5,757   \\
+BESST  & 7,028	& 99,697,046	& 99,595,402	& 42.12 &	101,644 &	32,938 &	6,708 \\ 
+\hline
+\end{tabular}
+\end{center}
+\caption{Kromozom 1 verileri üzerinde tüm BYK verilerini birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr1w}
+\end{table}
+
+
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|r|r}
+\hline 
+{\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
+\hline
+SSPACE & 249	& 10,019,741	& 10,019,735	&  44.75	& 6	& 49,769	& 22,871 \\
+SCARPA & 248	& 10,019,787	& 10,019,735	& 44.75	& 52	& 50,183	& 22,871  \\
+OPERA  & 248	& 10,019,760	& 10,019,686	& 44.75	& 74	& 50,183	& 23,331 \\
+BESST  & 115	& 4,683,891	& 4,683,167	& 45.44	& 724	 & 48,117  	& 23,589 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Kromozom 20 verileri üzerinde tüm BYK verilerini birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr20w}
+\end{table}
+
+
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|r|r}
+\hline 
+{\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
+\hline
+SSPACE & 9,569       & 121,501,965        & 121,491,831 & 41.57 & 10,134 & 29,121 & 5,936 \\
+SCARPA &  \textit{NA}  &  \textit{NA}     &     \textit{NA}  &   \textit{NA}   &  \textit{NA}    &  \textit{NA}    &  \textit{NA}   \\
+OPERA  & 9,897       & 121,406,580        & 121,403,836 & 41.57 & 2,744  & 28,531 & 5757 \\
+BESST  & 513 & 1,564,335          & 1,564,334   & 50.66 & 1     & 4,520  & 1,319 \\ 
+\hline
+\end{tabular}
+\end{center}
+\caption{Kromozom 1 verileri üzerinde BYK havuzlarını sırayla birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr1h}
+\end{table}
+
+
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|r|r}
+\hline 
+{\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
+\hline
+SSPACE &  \textit{NA}  &  \textit{NA}     &     \textit{NA}  &   \textit{NA}   &  \textit{NA}    &  \textit{NA}    &  \textit{NA}   \\
+SCARPA &   247	& 10,019,775 &	10,019,735	& 44.75	& 40	& 5,018 &	23,331\\
+OPERA  &  250	& 10,019,740	& 10,019,735	& 44.75	& 5	& 49,272	& 22,521 \\
+BESST  &  17    & 308,948 & 308,948  & 47.81 & 0  & 22,521 & 10,538 \\ \hline
+\end{tabular}
+\end{center}
+\caption{Kromozom 20 verileri üzerinde BYK havuzlarını sırayla birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr20h}
+\end{table}
+
+
+\clearpage
 \noindent
-{\bf \large 4.1. }
-\addcontentsline{toc}{subsection}{4.1 Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
+{\bf \large 4.3. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
+\addcontentsline{toc}{subsection}{4.3 Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
 
 \paragraph{Korelasyon değerleri} 
 
- Şekil \ref{fig:captureeff}'de 1000 Genom Projesi'ne~\cite{1000GP2012} ait rastgele seçilmiş 7 örneğe ait her bir ekzon bölgesindeki prob etkinliği ve dizi derinliği grafikte gösterilmektedir. Ayrıca korelasyon katsayıları da Tablo~\ref{tab:correlation}'da verilmiştir. Bu verilerdeki gürültüleri azaltabilmek için 1000 genom projesi kapsamındaki örneklerin her birinde ortak olarak bulunan delesyon, insersiyon ve düşük kapsama bölgeleri çıkarıldı. 
+Şekil \ref{fig:captureeff}'da 1000 Genom Projesi'ne~\cite{1000GP2012} ait rastgele seçilmiş 7 örneğe ait her bir ekzon bölgesindeki prob etkinliği ve dizi derinliği grafikte gösterilmektedir. Ayrıca korelasyon katsayıları da Tablo~\ref{tab:correlation}'da verilmiştir. Bu verilerdeki gürültüleri azaltabilmek için 1000 genom projesi kapsamındaki örneklerin her birinde ortak olarak bulunan delesyon, insersiyon ve düşük kapsama bölgeleri çıkarıldı. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -486,7 +621,7 @@ NA20766 & 0.6509 & 0.6768\\
   \includegraphics[scale=0.65]{captureeff-loess.png}
 \end{center}
 \caption{LOESS yöntemi kullanılarak düzeltilen veriler.}
-\label{fig:captureeffgeneloess}
+\label{fig:captureeffloess}
 \end{figure}
 
 LOESS metoduyla düzeltilen data kullanılarak, ekzom birleştirme yöntemini daha doğru bir şekilde yapmak mümkün olacaktır.
