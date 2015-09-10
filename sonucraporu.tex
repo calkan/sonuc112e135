@@ -336,6 +336,49 @@ Bunlara rağmen her YND teknolojisinin diğerlerine göre bazı avantajları var
 
 % SHATLYK: Buraya hybrid assembly ve MHAP uzerine ozet gelebilir
 
+Bu projenin başvurusunda da kaba taslağını verdiğimiz aynı anda kısa ve uzun dizilerin kullanımına olanak sağlayacak birleştirme algoritmasının çalışmalarına başladık. Projenin bu aşamasında
+ kısa diziler için Illumina ve uzun diziler için Pacific Biosciences (PacBio) verileri kullanacağız. Bu algoritmayı geliştirmek ve test etmek için 8 farklı BYK'den elde edilmiş 
+hem Illumina hem de PacBio verilerini University of Washington'daki Evan Eichler'dan temin ettik. Bu verilerin içeriği ve Quiver 
+programi kullanılarak birleştirilme sonuçları Şubat 2014’te Genome Research dergisinde yayınlanmıştır~\cite{Huddleston2014}. 
+
+Tek veri tipini kullanan genom birleştirme algoritmaları teorik olarak her ne kadar iyi çalışsa da, gerçek verilerdeki karışıklıklar bu algoritmaları pratikte daha güçsüz kılmaktadır. Dolayısıyla, tasarlanan genom birleştirme algoritmalarının gerçek verilerinin getirdiği komplikasyonlara karşı dirençli (robust) olmaları gerekmektedir. Gerçek verilerin getirdiği komplikasyonlardan en önemlilerinden üç tanesi:
+
+\begin{enumerate}
+\item
+  Yapısı gereği genom dizisi kendi içinde tekrarlanan diziler (repeat) içermektedir. Özellikle, bu tür tekrarlanan diziler kısa dizilerden daha uzun olduklarında, tekrar bölgelerine denk gelen kısa dizilerin aslında tekrar bölgelerinin hangisine denk geldiğini anlamak zor bir problem olmaktadır. İşleri daha da zorlaştıran başka bir nokta ise, ters çevrilmiş tekrarlanan diziler (inverted repeat), hatalı tekrarlanan diziler (inexact repeat), ve tekrarlanan dizilerin içinde başka tekrarlanan dizilerin yer alabiliyor olmasıdır. Tekrarlanan dizilerin çizge üzerinde bulunup oluşturdukları genom birleştirme sorunlarının çözülmesine ``tekrarların çözülmesi'' (repeat resolution) adı verilir, ve esasen genom birleştirme probleminin en zor aşamasını oluşturmaktadır.
+
+\item
+  Tekrarların çözülmesini daha da zorlaştıran bir başka nokta ise dizileme hatalarıdır (sequencing errors). Geliştirilen algoritmaların dizileme hatalarına toleranslı davranmaları bazen gerçekleşmemesi gereken birleşmelerin gerçekleşmelerini sağlayabilmektedir.
+
+\item
+  Üçüncü bir neden genomdaki ploitlik ve heterozigositedir. Farklı haplotiplerden gelen az miktarda farklılaşmış diziler genom birleştirme çizgesi üzerinde hatalı tekrar dizilere benzerlik gösterebilir.
+
+\item
+  Son olarak, genomun her kısmının aynı miktarda kısa dizilerle kapsanmadığını da işin içine dahil etmemiz gerekmektedir. Bu probleme ``eşit dağılmayan kapsama'' (non-uniform coverage) ismi verilir.
+
+\end{enumerate}
+
+Proje başvurusunda, Illumina cihazının 0.01\% hata payıyla ürettiği 100 baz çifti uzunluğundaki dizileri kullanarak, PacBio cihazının 10\%-15\% hata payıyla ürettiği 4000-5000 baz çifti uzunluğundaki dizilerin hata oranını düşürmeyi önermiştik. Bu probleme çözüm olarak farklı bir yöntemi geliştirmeye başladık. Problemi tekrarlayalım: 
+
+{\bf Problem:}
+
+İki farklı veri kaynağından elde edilen genom dizileri bulunmaktadır. PacBio'dan elde edilen dizi kümesini $P$, Illumina'dan elde edilen dizi kümesini ise $I$ diye adlandıralım. $P$ kümesi uzunlukları $n$ olan $N$ adet uzun diziden oluşmaktadır. $I$ kümesi ise uzunlukları $m$ olan $M$ adet kısa diziden oluşmaktadır. $I$ kümesindeki her dizi $P$ kümesinden sabit sayıda dizi ile hizalanacaktır (yani, Levenshtein mesafesi önceden belirlenen eşiğin altında olacaktır). Problem, $I$ kümesindeki her dizi için $P$ kümesindeki hizalanabilecek ``potansiyel'' dizileri hızlı ve verimli biçimde bulmaktır.
+
+{\bf {\underline{Çözüm:}}}
+%burasi Can Firtina'nin kismi
+
+İki dizinin bir-birlerine benzeyip benzemediklerini ve dolayısıyla hizalanıp hizalanamayacaklarını belirlemek için bu iki dizi arasındaki Levenshtein mesafesine~\cite{Levenshtein1966} bakmak yeterlidir. Eğer Levenshtein mesafesi belirli bir eşiğin altındaysa iki dizi birbirlerine benziyorlar, veya eşiğin üstündeyse ise birbirlerinden farklılar denebilir. Ancak uzunlukları $m$ ve $n$ olan iki dizinin arasındaki Levenshtein mesafesini hesaplamak $O(nm)$ zaman karmaşıklığı gerektirmektedir. Locality-sensitive hashing (LSH) gibi olasılıklı yöntemler bizim problemimizde çalışmamaktadır,  çünkü PacBio'daki hatalar baz çiftlerinin eklenmesine veya silinmesine neden olmaktadır (indel) ve dolayısıyla LSH'in rastgele seçeceği baz çiftlerin sıraları değişmektedir.
+
+
+LSH yönteminin Levenshtein uzaklığı için kullanılamaması sebebiyle, hizalanabilecek ``potansiyel'' dizi çiftlerinin arasındaki uzaklık için farklı bir metrik kullanmayı öneriyoruz. Bu metrik aynı zamanda LSH'in de uygulanabilmesini sağlaması gerekiyor. Literatürde LSH'in kullanılabilmesini sağlayan uzaklık metriklerine ``LSHable'' adı verilir. Bu özelliği sağlayan en kolay ve kullanışlı metrikleriden biri Jaccard benzerlik metriğidir. A ve B kümeleri arasındaki Jaccard metriği, iki kümenin kesişiminin boyutu ile iki kümenin birleşmesinin boyutu arasındaki orantıyı ölçmektedir.
+
+
+Jaccard metriği için LSH'i literatürde var olan bir yöntemi \cite{Broder1998} kullanarak uygulayabiliriz. Burada, her diziyi temsil eden k-mer kümeleri oluşturulacaktır. Eğer iki dizinin k-mer kümeleri arasındaki Jaccard değeri yüksekse yüksek ihtimalle bu iki dizi birbirine hizalanacaktır diyebiliriz.
+
+Anlattığımız yöntemin prototipini küçük veriler üzerinde deneyerek çalıştığını gözlemledik. Bundan sonraki adımda, Jaccard benzerliği üzerinden LSH kullanarak her kısa dizinin uzun diziler kümesindeki ``yaklaşık en yakın komşularını'' parallel hesaplayan algortima geliştirmeye başladık. Bu algoritma, insan genomunun PacBio dizilerindeki hataları Illumina dizilerini kullanarak kabul edilebilir bir zamanda düzeltecektir.
+
+
+
 \clearpage
 
 
@@ -409,6 +452,7 @@ Sonuç olarak, farklı iskeleleme programları, parametreleri, hizalama yönteml
 
 {\bf \large 3.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
 \addcontentsline{toc}{subsection}{3.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
+
 
 {\bf 3.3.1. Hızlı Illumina-PacBio hizalanması için filtreleme}
 \addcontentsline{toc}{subsubsection}{3.3.1. Hızlı Illumina-PacBio hizalanması için filtreleme}
