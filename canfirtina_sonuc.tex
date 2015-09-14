@@ -1,0 +1,107 @@
+İkinci filtre uygulanmadan önce hangi parametrelerin seçilmesi gerektiğini yorumlamak adına öncelikle ilk filtrede elde edilen sonuçları sunacağız. Parametreleri belirlerken doğru yapılan eleme oranıyla yanlış yapılan eleme oranı arasında bir denge belirlemekteyiz. Her iki filtreyi uygularken de elenmemesi gereken eşlerin mümkün olduğunca en az sayıda eleniyor olduğunu kontrol ediyor olacağız. Bu sebeple, ilk filtre elenmesi gerekenlerin büyük çoğunu elemiyor olsa bile, eğer \%90 veya daha fazla oranda elenmemesi gereken eşler de bu filtreden geçebiliyorsa bizim için hala ilk filtrede kullanılan paramatreler uygulanabilir olacaktır. İkinci filtre daha hassas bir eleme yapacağından dolayı, SW metodunda hizalanmayacak olan eşlerin, ikinci filtreyi de geçemeyeceği varsayımı öngörülebilir bir varsayımdır. Çeşitli parametrelerin seçimiyle oluşan sonuçlar tablolarda verilmiştir. Sayfa \pageref{table:results1} Tablo \ref{table:results1} ne kadar doğru ve yanlış elemelerin birinci filtrede yapıldığını göstermektedir. Tablo \ref{table:results1}, yanlış eleme yüzdesini (YE) elenmemesi gerekip ancak ilk filtrede elenenler olarak tanımlamaktadır. Aynı tabloda doğru eleme yüzdesi (DE) ise elenmesi gerekip ilk filtrede elenen eşlerin oranını göstermektedir. \textit{K1} birinci filtrede belirlediğimiz k-mer uzunluğunu belirtmektedir. \textit{H} değeri ise kaç farklı besleme değeriyle fingerprint fonksiyonunu çağırdığımızı belirtiyor. \textit{It.} değeri parçaların bölümlerini hangi aralıklarla yarattığımızı karakter sayısı olarak belirtmektedir. Jaccard benzerliği için belirlenen eşik değeri tabloda belirlenmedi çünkü bütün testler için eşik değerini aynı tuttuk (0.001). YE ve DE değerlerinin anlamları Tablo \ref{table:results2} için de aynı anlama gelmektedir. \ref{table:results2} için \textit{T2} değeri ikinci filtreyi geçebilmek için belirlenen eşik değerini belirtmektedir. İkinci filtrede farklı eşik değerlerini de denediğimiz için onları da tabloda göstermekteyiz \textit{K2} değeri ikinci filtre uygulanırken belirlenen k-mer uzunluğudur. İşlemlerin ne kadar sürede tamamlandığı tablolarda her sıranın en son sütununda saniye cinsinden gösterilmektedir.
+
+Elimizde bulunan veride 200 adet kısa parça ve 113 adet uzun parça bulunmaktadır. Kısa parçaların uzun parçalar üzerinde hangi pozisyonlara hizalandığı bilgisine sahibiz. Filtrelerin hassaslığını, elenmemesi gerekip elenen kısa-uzun eşlerin sayısı üzerinden hesaplıyoruz. Algoritmayı bir çok k-mer uzunluğu, \textit{H}, bölme aralığı değerlerini değiştirerek deniyoruz. Berling ve ark \cite{berlin} birinci filtre için k-mer uzunluğunun 16 olması gerektiğini belirtiyor. Biz 16, 12 ve 10 k-mer uzunluklarını seçerek k-mer uzunlukları arasında hassaslığın ne kadar değiştiğini de gözlemleyebiliyoruz. \textit{H} için seçilen değer işlemlerin yapılacağı bilgisayara göre değişmektedir. Bilgisayarın yeterince bellek kapasitesine sahip olduğunu düşünürsek, \textit{H} için değerlerimiz 10 ile 1250 arasındadır. Uzun parçaları bölümlere ayırmak için bölme aralığımızı kısa parçaların toplam uzunluğunun yarısı şeklinde belirliyoruz. Elimizde bulunan veride kısa parçaların uzunluğu 76 olduğu için bölme aralığını 38 seçtik. Böylece uzun parçalarda bölmeler, bir önceki bölümün tam ortasından başlayarak 76 uzunlukta bölümler şeklinde yaratılmaktadır.
+
+Bölme aralığını kısalttıkça filtrenin daha hassas sonuçlar vereceğini beklemek oldukça makuldür çünkü böylece kısa parçaları eşleştirebilecek daha çok bölme yaratmış olur ve muhtemelen kaçırılabilecek bölme şansını aza indirmiş oluruz. Yaptığımız testlerde ilk gözlemimiz bu varsayımın tamamen doğru olmadığı yönündedir. \textit{It.} için 3, 5, veya 38 değerlerini seçsek de diğer paramatrelerin sabit tutulduğu durumlarda hassaslık değerleri birbirlerine çok yakın olmaktadır. Her ne kadar DE ve YE değerleri farklı \textit{It.} değerleri seçildiğinde çok farklılık göstermese de, işlemleri tamamlamak için gereken süre tam tersine çok büyük farklılıklar göstermektedir. Örneğin, \textit{It. = 38} seçildiği zaman birinci filtre işlemini tamamlayabilmek için gereken süre diğer bütün \textit{It.} değerlerinden en az 4 katı kadar daha kısa olmaktadır. Bundan dolayı, ikinci filtreyi uygulamaya başladığımızda \textit{It. = 38} olarak seçiyoruz. Tablo \ref{table:results1} üzerinde ikinci gözlemimiz ise \textit{H} için seçilen değerin önemi üzerinedir. \textit{H} için seçilen değer arttıkça, hassaslık da artmaktadır çünkü daha düşük \textit{H} değerleri için kısa-uzun parça eşleri filtreyi geçmek için yeterli şansı bulamamışsa, bu değer yükseldikçe birinci filtreyi geçme şansı bulabilmektedir. Ancak \textit{H} değeri 512'nin üzerine çıktıkça hassaslık değeri için çok fazla değişiklik olmamaya başlarken, işlemleri tamamlamak için gereken zaman doğal olarak artmaya devam etmektedir. Hassaslık oranında büyük değişiklik göstermediğini bildiğimizden dolayı, bundan sonraki gözlemlerimizde \textit{H} değeri 512 değerinin üzerinde olduğu durumları incelemiyor olacağız. Tablo \ref{table:results1} üzerindeki son gözlemimiz ise \textit{K1} için seçilen değerler ile ilgilidir. Çok açıkça görülmektedir ki k-mer uzunluğu arttıkça kısa-uzun parça eşlerinin ortak minmer değerleri bulması zorlaşmaktadır. Bu durumun sebebi ise k-mer sayısı arttıkça belirlenen k-mer uzunluğu için toplam kombinasyon sayısı da artacağından dolayı eşleşen k-merleri de bulmak zorlaşacaktır. Örneğin 16 karakter uzunluğunda iki aynı k-meri bulmak 10 karakter uzunluğunda iki aynı k-meri bulmaktan daha zordur. Bu gözlemleri bir araya getirdiğimizde \textit{H = 50, 100, or 512}, \textit{K1 = 10} ve \textit{It. = 38} ikinci filtre için değerlerini almak makül görünmektedir. Bu değerler sabit alındığında birinci filtre için \textit{DE} yüzdeleri \%75.06 ile \%59.34 ve \textit{YE} yüzdeleri \%6.35 ile \%2.47 arasında değişmektedir.
+
+İkinci filtreyi çalıştırdığımız aşamada, \textit{K1 = 10} ve \textit{It. = 38} değerleri sabit tutulmuştur. \textit{It = 3 and 5} değerleri için de bazı testler uygulasak da bunlar ancak karşılaştırma amaçlı yapılan testlerdir. Tablo \ref{table:results2} içinde görülebileceği gibi, \textit{K2} değeri düştükçe \textit{T2} değerini arttırmaktayız. Bunun sebebi ise, daha önceden de belirttiğimiz gibi k-mer uzunluğu kısaldıkça toplam kombinasyon sayısı da azalacağından dolayı benzer eşler bulmamız kolaylaşacaktır. Alakasız eşlerin geçişini engellemek için ise eşik değeri olan \textit{T2} değerini arttırmaktayız. Eşik değerini doğru ayarlayamama, birinci filtreyi geçen bütün eşlerin ikinci filtreyi de geçmesine sebep olabilir. Her k-mer değeri için üç farklı eşik değeri kullanmaktayız. Bunlardan iki tanesi bizim belirlediğimiz yeni eşik değerleri olurken, diğer kalan bir tanesi bir önceki seçilen k-merin eşik değeri olmaktadır. Bunun sebebi ise eşik değerini iki k-mer uzunluğunu değişiyorken sabit tutarak iki k-mer uzunluğu arasında karşılaştırma yapabilmemiz içindir. İkinci filtreyi uyguladıktan sonraki gözlemimiz, birinci filtrenin eleyemediği ancak elenmesi gereken bütün eşlerin ikinci filtre tarafından da elenememesi olmaktadır. Bunun sebebi ise kısa ve uzun parçalar arasında her ne kadar benzer k-merler bulunuyor ise benzer iki k-merin pozisyonsal olarak eşler arasındaki yerleşimi SW yöntemine göre hizalandırılması mümkün olmayan yerlerde konumlanmasından kaynaklanıyor olabilir. Her ne kadar şu anki implementasyon k-mer benzerliğine göre eşleri elemeyi (ya da elememeyi) amaçlasa da, pozisyonsal benzerliğe göre de hizalandırma seçenekleri gelecekteki implementasyon amaçlarından birisi olabilir. Tablo \ref{table:results1} üzerinde de benzer sonucu gördüğümüz üzere \textit{H} ve \textit{DE ve YE} arasında doğru orantılı bir ilişki olduğu \ref{table:results2} üzerinde de görülmektedir. Üzerinde durmadığımız tek veri \textit{T} değerleri kaldı. Açıkça görülmektedir ki \textit{H=512} iken en istenen hassaslıkta sonuçları almaktayız. Örneğin elenmesi gerekenlerin \%79.19'u elenirken, elenmemesi gerekenlerin sadece \%4.61'i elenmektedir, eğer \textit{K2 = 4} ve \textit{T2 = 0.40} değerlerini de sabit tutarsak. Ancak değerler bu şekildeyken aynı durumda sadece \textit{H=100} değerini farklı aldığımız duruma kıyasla çalışma süresi dört katı kadar uzun sürmektedir. Bundan dolayı \textit{H=100} alındığı zaman hem çalışma süresi hem hassaslık konusunda ideal sonuçları aldığımız görülmektedir. Böylece yöntemimiz, belirlenen paramatrelerle birlikte elenmesi gereken eşlerin \%80.07'sini ve elenmemiş olsaydı SW metoduyla hizalandırılacak olan eşlerin \%5.33'ünü elemektedir. PacBio'nun ortalama hata oranı \%14 civarında olduğu için \cite{pacbioerr}, bizim yöntemimizde sonuçlanan hata oranını hala kabul edilebilir seviyede görebiliriz. Bundan dolayı, SW metodunda yapılması gereken toplam karşılaştırma sayısının büyük oranda düşürülmesi ile birlikte, O(\textit{N}\textsuperscript{2}\textit{L}\textsuperscript{2}) yerine daha düşük bir hesapsal karmaşıklık ile küçük parçaları büyük parçalar üzerinde hizalandırarak büyük parçaları ortalama \%5 oranında bir hata oranını sağlayabiliriz.
+\begin{table}
+\parbox{.50\linewidth}{
+\centering
+\scriptsize
+\begin{tabular}{ |l|l|l|l|l|l| }
+\hline
+\multicolumn{6}{ |c|}{Birinci filtre parametreleri ve sonuçları} \\ \hline
+K1 & H & It. & DE (\%) & YE (\%) & T(sec)\\ \hline
+16 & 10 & 5 & 99.48 & 76.47 & 13.45 \\ \hline
+16 & 50 & 5 & 99.04 & 59.18 & 59.36 \\ \hline
+16 & 100 & 5 & 98.77 & 54.66 & 142.80 \\ \hline
+16 & 512 & 5 & 98.65 & 52.66 & 716.03 \\ \hline
+16 & 1250 & 5 & 98.65 & 52.57 & 1658.12 \\ \hline
+12 & 10 & 3 & 97.63 & 53.57 & 17.51 \\ \hline
+12 & 50 & 3 & 93.71 & 24.79 & 73.62 \\ \hline
+12 & 100 & 3 & 92.15 & 19.81 & 177.73 \\ \hline
+12 & 512 & 3 & 90.91 & 16.83 & 697.55 \\ \hline
+12 & 780 & 3 & 90.88 & 16.83 & 1229.83 \\ \hline
+12 & 10 & 5 & 97.63 & 54.20 & 12.81 \\ \hline
+12 & 50 & 5 & 93.75 & 24.88 & 61.18 \\ \hline
+12 & 100 & 5 & 92.18 & 19.90 & 115.06 \\ \hline
+12 & 512 & 5 & 90.91 & 16.83 & 470.66 \\ \hline
+12 & 780 & 5 & 90.88 & 16.83 & 733.42 \\ \hline
+12 & 10 & 38 & 97.95 & 59.00 & 5.82 \\ \hline
+12 & 50 & 38 & 94.28 & 27.60 & 27.27 \\ \hline
+12 & 100 & 38 & 92.61 & 21.53 & 48.81 \\ \hline
+12 & 512 & 38 & 90.96 & 16.83 & 228.83 \\ \hline
+12 & 780 & 38 & 90.91 & 16.83 & 348.52 \\ \hline
+10 & 10 & 3 & 90.272 & 28.59 & 21.50 \\ \hline
+10 & 50 & 3 & 74.35 & 6.15 & 99.15 \\ \hline
+10 & 100 & 3 & 66.97 & 3.98 & 180.44 \\ \hline
+10 & 512 & 3 & 60.78 & 2.80 & 746.42 \\ \hline
+10 & 780 & 3 & 60.70 & 2.80 & 1193.57 \\ \hline
+10 & 10 & 5 & 90.35 & 29.23 & 13.73 \\ \hline
+10 & 50 & 5 & 74.48 & 6.24 & 67.04 \\ \hline
+10 & 100 & 5 & 67.09 & 3.98 & 111.22 \\ \hline
+10 & 512 & 5 & 60.80 & 2.80 & 486.63 \\ \hline
+10 & 780 & 3 & 60.72 & 2.80 & 685.25 \\ \hline
+10 & 10 & 38 & 91.92 & 34.66 & 6.62 \\ \hline
+10 & 50 & 38 & 76.95 & 8.05 & 28.60 \\ \hline
+10 & 100 & 38 & 69.29 & 4.43 & 56.87 \\ \hline
+10 & 512 & 38 & 60.95 & 2.89 & 203.35 \\ \hline
+10 & 780 & 38 & 60.76 & 2.80 & 311.15 \\ \hline
+\end{tabular}
+\caption{Birinci filtre sonuçları}
+\label{table:results1}
+}
+\hfill
+\parbox{.50\linewidth}{
+\centering
+\scriptsize
+\begin{tabular}{ | c | c | c | c | c | c | c |}
+\hline
+\multicolumn{7}{ |c|}{İkinci filtre paramatreleri ve sonuçları} \\ \hline
+K2 & H & It. & T2 & DE (\%) & YE (\%) & T(sec) \\ \hline
+8 & 30 & 3 & 0.05 & 86.06 & 12.94 & 59.34 \\ \hline
+8 & 50 & 3 & 0.05 & 82.87 & 8.23 & 100.25 \\ \hline
+8 & 100 & 3 & 0.05 & 79.19 & 5.33 & 171.95 \\ \hline
+8 & 30 & 5 & 0.05 & 86.15 & 13.12 & 41.54 \\ \hline
+8 & 50 & 5 & 0.05 & 83.00 & 8.41 & 66.11 \\ \hline
+8 & 100 & 5 & 0.05 & 79.27 & 5.42 & 119.12 \\ \hline
+8 & 50 & 38 & 0.05 & 84.67 & 10.85 & 28.06 \\ \hline
+8 & 100 & 38 & 0.05 & 80.78 & 6.69 & 50.86 \\ \hline
+8 & 512 & 38 & 0.05 & 77.40 & 4.25 & 204.06 \\ \hline
+8 & 50 & 38 & 0.07 & 90.02 & 13.66 & 29.53 \\ \hline
+8 & 100 & 38 & 0.07 & 88.08 & 9.59 & 51.81 \\ \hline
+8 & 512 & 38 & 0.07 & 86.37 & 7.42 & 202.60 \\ \hline
+6 & 50 & 38 & 0.07 & 76.95 & 8.05 & 27.88 \\ \hline
+6 & 50 & 38 & 0.10 & 84.55 & 9.50 & 29.64 \\ \hline
+6 & 100 & 38 & 0.10 & 80.07 & 5.33 & 52.08 \\ \hline
+6 & 512 & 38 & 0.10 & 75.04 & 3.43 & 198.24 \\ \hline
+6 & 50 & 38 & 0.15 & 91.93 & 13.03 & 28.50 \\ \hline
+6 & 100 & 38 & 0.15 & 89.98 & 9.04 & 51.11 \\ \hline
+6 & 512 & 38 & 0.15 & 87.97 & 6.60 & 197.85 \\ \hline
+5 & 50 & 38 & 0.15 & 80.08 & 8.59 & 28.49 \\ \hline
+5 & 50 & 38 & 0.20 & 86.97 & 10.67 & 28.91 \\ \hline
+5 & 100 & 38 & 0.20 & 83.20 & 6.60 & 51.72 \\ \hline
+5 & 512 & 38 & 0.20 & 78.86 & 4.25 & 198.72 \\ \hline
+5 & 50 & 38 & 0.25 & 92.04 & 13.30 & 28.97 \\ \hline
+5 & 100 & 38 & 0.25 & 89.87 & 8.86 & 51.46 \\ \hline
+5 & 512 & 38 & 0.25 & 87.40 & 6.69 & 203.21 \\ \hline
+4 & 50 & 38 & 0.25 & 77.89 & 8.23 & 27.08 \\ \hline
+4 & 50 & 38 & 0.35 & 82.77 & 9.32 & 27.95 \\ \hline
+4 & 100 & 38 & 0.35 & 77.19 & 5.70 & 48.68 \\ \hline
+4 & 512 & 38 & 0.35 & 70.71 & 3.61 & 196.21 \\ \hline
+4 & 50 & 38 & 0.40 & 87.71 & 11.40 & 29.43 \\ \hline
+4 & 100 & 38 & 0.40 & 83.79 & 7.14 & 51.11 \\ \hline
+4 & 512 & 38 & 0.40 & 79.19 & 4.61 & 206.00 \\ \hline
+3 & 50 & 38 & 0.40 & 77.08 & 8.05 & 29.18 \\ \hline
+3 & 50 & 38 & 0.70 & 82.20 & 9.14 & 29.40 \\ \hline
+3 & 100 & 38 & 0.70 & 75.95 & 5.70 & 50.47 \\ \hline
+3 & 512 & 38 & 0.70 & 68.80 & 3.61 & 209.11 \\ \hline
+3 & 50 & 38 & 0.75 & 86.28 & 11.40 & 31.08 \\ \hline
+3 & 100 & 38 & 0.75 & 81.39 & 7.42 & 52.39 \\ \hline
+3 & 512 & 38 & 0.75 & 75.45 & 4.97 & 202.36 \\ \hline
+\end{tabular}
+\caption{İkinci filtre sonuçları}
+\label{table:results2}
+}
+\end{table}
