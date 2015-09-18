@@ -1,1 +1,117 @@
 % pinar -- methods
+\documentclass[12pt,a4paper]{cibb}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage{ctable}
+\usepackage{multirow}
+\usepackage{hhline}
+%\usepackage[utf8]{inputenc}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{setspace} 
+%\usepackage{fullpage}
+%\usepackage[top=1.5in, bottom=1.5in, left=1in, right=1in]{geometry}
+\epstopdfsetup{outdir=./}
+\usepackage{subfigure,graphicx}
+\usepackage{pdflscape}
+\usepackage{amsmath,amsfonts,latexsym,amssymb,euscript,xr}
+\usepackage[LY1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\section{\bf Malzemeler ve Yöntemler}
+\label{methods_pinar}
+Daha önceki bir çalışma için insan genomuna ait 13. kromozom bir BAC'ın (Bacterial Artificial Chromosome) içine halihazırda klonlanmıştı. 
+Bu BAC klonunu Illumina, Roche/454 ve Ion-Torrent platformlarında ayrı ayrı diziledik (Tablo \ref{tab:dataprop}).
+Mira~\cite{mira} birleştiricisiyle (assembler) şablona dayalı birleştirme yöntemi kullanarak Roche/454 okumalarıyla (read), ``altın standart'' bir referans dizisi elde ettik. Bu ``altın standart'' referans dizisini Illumina okumalarıyla düzelttik.
+Roche/454 ve Ion-Torrent platformları benzer dizileme sapmalarına (Örn. problemli homopolimerler) sahip olduklarından, bu çalışmayı iki ayrı gruba böldük: Illumina \& Roche/454 and Illumina \& Ion-Torrent. Böylelikle Roche/454 ve Ion-Torrent verisini kontrol etme imkanı bulmuş olduk.
+
+\ctable[
+      cap     = {},
+      % 
+      caption = {Veri özellikleri},
+      % 
+      label   = {tab:dataprop},
+      doinside = \normalsize,
+      width = 0.95\textwidth,
+      %
+      %
+      pos = h!tb,
+      star
+]      {>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}
+X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}}
+{
+      \tnote[]{\textbf{Teknoloji}: Okumaları elde etmek için kullanılan dizileme teknolojisinin adı.
+      \textbf{Uzunluk aralığı}: Oluşturulan okumaların minimum ve maksimum uzunlukları.
+      \textbf{Ortalama uzunluk}: Tüm okumaların ortalama uzunluğu.The mean length among all reads.
+      \textbf{Ortalama baz kalitesi}: Tüm okumaların ortalama phred skoru. Ortalama phred skoru her read'deki tüm bazların phred skorları toplamının tüm read'lerin toplam uzunluğuna bölünmesiyle elde edildi.
+      \textbf{Tür}: Dizilemenin eşli mi yoksa tekli mi olduğunu gösteriyor.}
+}
+{ \FL
+Teknoloji & Uzunluk aralığı & Ortalama uzunluk & Ortalama baz kalitesi (phred) & Tür \\ \ML
+Illumina & 101bp \footnotesize{(tüm okumalar eşit uzunlukta)} & 101bp & 38 & eşli \\
+\addlinespace[1mm]
+Roche/454 & 40bp-1027bp & 650bp & 28 & tekli \\
+\addlinespace[1mm]
+Ion-Torrent & 5bp-201bp & 127bp & 24 & tekli \\
+\LL
+}
+\subsection{Ön işleme} 
+Öncelikle düşük ortalama kaliteye (phred skor 17, veya $\geq$2\% hata oranı) sahip okumaları eledik. Daha sonra yüksek `N' yoğunluğuna (okumanın içerdiği N oranı \%$>$10) sahip okumaları çıkardık. Üçüncü olarak bazı bölgelerinde (genellikle başlangıç ve bitiş) düzensiz (non-uniform) baz dağılımı gösteren okumaların bu bölgelerini kırptık. Son olarak, birleştiricinin (assembler) ön işleme yöntemlerini kaçınılmaz olarak uyguladık.
+
+\subsection{Birleştirme} Birden fazla birleştirme aracı kullandık: kısa okumaları birleştirmek için de Bruijn çizge tabanlı bir birleştirici: Velvet~\cite{velvetZerbino:2008}; ve uzun okumalardan oluşan veri guruplarını (Roche/454 ve Ion-Torrent) ayrı ayrı birleştirmek için iki farklı ``overlap-layout-consensus'' (OLC) birleştirici: Celera~\cite{celera:2000}, ve SGA~\cite{sga:2012}. Ek olarak, uzun okumalar üzerinde bir de Bruijn çizge tabanlı birleştirici de kullanıldı, SPAdes~\cite{spadesBankevich:2012}. Daha sonra klonlama işleminden kaynaklı kontaminasyonları belirlemek ve onlardan kurtulmak için tüm taslak birleştirmeler BLAST~\cite{blast} ile E.coli referans genomuna hizalandı. En sonunda $1$ kısa $3$ de uzun okuma birleştirmesi elde ettik.
+ 
+\subsection{Doğrulama} 
+Kısa okumalardan elde edilen birleştirmeleri uzun okumaların birleştirilmesiyle elde edilen dizilere hizalamak için BLAST~\cite{blast} kullandık.
+BLAST tekrarlardan dolayı birden fazla hizlama lokasyonu raporladığından, sadece ``en iyi'' eşleşme lokasyonları kabul edildi.
+Kısa okumalar daha az dizileme hatası içerdiğinden, aralarında anlaşmazlık görüldüğünde kısa okumalara dayanan birleştirmenin raporladığı diziyi uzun okumalardan elde edilen birleştirmenin raporladığına tercih ettik.
+Bunu yaparak, daha ``az parçalı'' uzun birleştirmeler elde ettik. Figür \ref{correction} uzun okumaların birleştirmelerinin hangi stratejiyle düzeltildiğinin görsel anlatımını temsil ediyor. 
+Uyguladığımız strateji şu şekilde işliyor: Eğer kısa okuma birleştirmesiyle uzun okuma birleştirmesi arasında bir eşleşme varsa ve eşleşme uzun okuma birleştirmesinin başından başlamıyorsa, uzun okuma birleştirmesinin baş kısmını ekliyoruz.
+Aynı zamanda eğer eşleşme kısa okuma birleştirmesinin başından başlamıyorsa (çok nadir bir durum) kısa okuma birleştirmesinin baş kısmını da küçük harflerle ekliyoruz. 
+Kısa okuma birleştirmesinin ve uzun okuma birleştirmesinin eşleştiği bölgelerde kısa okuma birleştirmesini tercih ediyoruz. 
+Eğer eşleşme kısa okuma birleştirmesinin sonunda bitmiyorsa (nadir), kısa okuma birleştirmesinin eşleşmeyen son kısmını küçük harflerle ekliyoruz.
+Sonuç birleştirmesinin sürekliliğinin bozulacağı söylenebilir, ama bu tarz durumlarla çok seyrek karşılaşıyoruz.
+Küçük harfler kullanmamızın sebebi o bölgede kısa okuma birleştirmeleriyle uzun okuma birleştirmeleri arasında bir anlaşmazlık olduğunu takip etmek istememiz, böylece bu bölgede baz kalitesi dizinin diğer bölgelerine göre daha düşük olacaktır.
+Son olarak, uzun okuma birleştirmesinin eşleşmeyen son kısmını da ekleyip doğrulanmış birleştirme dizisini elde ediyoruz.  
+
+\subsection{Değerlendirme}
+Her doğrulanmış birleştirmeyi ``altın standart'' referans dizisine (bknz. Bölüm \ref{methods_pinar} ilk paragraf) hizaladık, karşılaştırmaya dayalı değişik istatistikler hesapladık ve birleştirme kalitelerini değerlendirdik.
+Aynı zamanda Illumina \& 454 ve Illumina \& Ion-Torrent verisiyle birlikte iki hibrid birleştirici, Celera-CABOG~\cite{cabogMiller:2008} ve Masurca \cite{masurcaZimin:2013}, çalıştırdık ve bizim doğrulama metodlarımızdan elde ettiğimiz sonuçlarla bu hibrid birleştiricilerden elde ettiğimiz sonuçları karşılaştırdık.
+
+\begin{figure*}[htbp]
+\centerline{\includegraphics[width=12cm, height=5cm]{BACAlgorithm1.png}}
+\caption{Doğrulama metodu: Uzun okuma birleştirmelerini kısa okuma birleştirmelerinin hizalama bilgilerine göre doğrula.}
+\label{correction}
+\end{figure*}
+
+\bibliographystyle{apalike}
+{\fontsize{10}{10}\selectfont
+\begin{thebibliography}{99}
+\setlength{\parskip}{0pt}
+
+\bibitem{celera:2000} E.W.Myers \textit{et~al} (2000) A Whole-Genome Assembly of Drosophila, \textit{Science}, {287(no:5461)}:2196-2204, doi:10.1126/science.287.5461.2196.
+\bibitem{sga:2012} J.Simpson \textit{et~al} (2012) Efficient \textit{de novo} Assembly of Large Genomes Using Compressed Data Structures, \textit{Genome Research}, {22}:549-556, doi:10.1101/gr.126953.111.
+\bibitem{velvetZerbino:2008} D.Zerbino, E.Birney (2000) Velvet: Algorithms for \textit{de novo} Short Read Assembly Using de Bruijn Graphs, \textit{Genome Research}, {18(5)}:821-829, doi: 10.1101/gr.074492.107.
+\bibitem{spadesBankevich:2012} A.Bankevich {\it et~al} (2012) SPAdes: A New Genome Assembly Algorithm and Its Applications to Single-Cell Sequencing, \textit{Journal of Computational Biology}, {19(5)}:455-477, doi:10.1089/cmb.2012.0021.
+\bibitem{allpaths:2008} J.Butler \textit{et~al} (2008) ALLPATHS: \textit{De novo} Assembly of Whole-Genome Shotgun Microreads, {\it Genome Research}, {18(5)}:810-820, doi:10.1101/gr.7337908.
+\bibitem{cabogMiller:2008} J.R.Miller \textit{et~al} (2008) Aggressive Assembly of Pyrosequencing Reads with Mates, \textit{Bioinformatics}, {24(24)}:2818-2824, doi:10.1093/bioinformatics/btn548.
+\bibitem{masurcaZimin:2013} A.Zimin \textit{et~al} (2013) The MaSuRCA Genome Assembler, \textit{Bioinformatics}, {29(21)}:2669-2677, doi:10.1093/bioinformatics/btt476.
+\bibitem{mira} B.Chevreux {\it et~al} (1999) Genome Sequence Assembly Using Trace Signals and Additional Sequence Information, \textit{Computer Science and Biology:Proceedings of the German Conference on Bioinformatics (GCB)}, {99}:45-56.
+\bibitem{wang:2012} Y.Wang {\it et~al} (2012) Optimizing Hybrid Assembly of Next-Generation Sequence Data from Enterococcus Faecium: a Microbe with Highly Divergent Genome, \textit{BMC Systems Biology}, {6(Suppl 3)}:S21, doi:10.1186/1752-0509-6-S3-S21. 
+\bibitem{blast} S.Altschul {\it et~al} (1990) Basic Local Alignment Search Tool, \textit{Journal of Molecular Biology}, {215(3)}:403-410.
+
+\end{thebibliography}
+}
+\end{document}
+
+
+
+
+
+
+
+
+
+
