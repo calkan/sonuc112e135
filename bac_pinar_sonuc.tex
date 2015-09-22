@@ -1,25 +1,3 @@
-% pinar -- sonuclar
-\documentclass[12pt,a4paper]{cibb}
-\usepackage{graphicx}
-\usepackage{epstopdf}
-\usepackage{caption}
-\usepackage{ctable}
-\usepackage{multirow}
-\usepackage{hhline}
-%\usepackage[utf8]{inputenc}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{setspace} 
-%\usepackage{fullpage}
-%\usepackage[top=1.5in, bottom=1.5in, left=1in, right=1in]{geometry}
-\epstopdfsetup{outdir=./}
-\usepackage{subfigure,graphicx}
-\usepackage{pdflscape}
-\usepackage{amsmath,amsfonts,latexsym,amssymb,euscript,xr}
-\usepackage[LY1]{fontenc}
-\usepackage[utf8]{inputenc}
-
-\begin{document}
 
 \section{\bf Sonuçlar}
 \label{bac_pinar_sonuc}
@@ -35,104 +13,67 @@ Tüm birleştiricilerin sonuçları için uzun okumalardan elde edilen birleşti
 Yalnız, düzeltilmiş SGA birleştirmesi içlerinde en iyi kapsama oranına sahip.
 Ayrıca, kısa ve uzun okumaları ayrı ayrı de Bruijn ve OLC çizge tabanlı birleştiricilerle birleştirmek ve sonrasında onları birbirleriyle düzeltmek, tüm okumaları birlikte tek seferde Masurca veya Celera-CABOG gibi bir hibrid birleştirici ile birleştirmekten daha iyi sonuç veriyor. Masurca en iyi ortalama benzerliğe Illumina-Ion-Torrent verisinde sahip gibi görünüyor fakat kapsama oranı sadece \%1. 
 Celera-CABOG aslında Illumina-454 verisi üzerinde gayet iyi çalışıyor, ama Illumina ve 454 okumaları kullanarak doğrulanmış SGA veya doğrulanmış Celera kadar iyi değil. 
-Celera-CAGOB Illumina-Ion-Torrent verisi ile çalıştırıldığında referans ile eşleşen hiç dizi elde edilemiyor, tüm diziler kontaminasyon eleme aşamasında eleniyor.
+Celera-CAGOB Illumina-Ion-Torrent verisi ile çalıştırıldığında referans ile eşleşen hiç bitişik elde edilemiyor, tüm bitişikler kontaminasyon eleme aşamasında eleniyor.
 
 Sonuç olarak farklı NGS teknolojilerinden elde edilen değişik veri türlerinin özelliklerinden (uzun/kısa okumalar, yüksek/düşük kaliteli okumalar) yararlanmak için yeni metodların geliştirilmesi ihtiyacı devam ediyor. 
-Bu bakımdan gelecek iş olarak, doğrulama algoritmamızı kısa eşli okumalardan yararlanarak doğrulama aşamasından sonra doğrulanmış dizilerin arasındaki boşlukları doldurmak için kullanıp birleştirmeyi daha da iyileştirebiliriz.
+Bu bakımdan gelecek iş olarak, doğrulama algoritmamızı kısa eşli okumalardan yararlanarak doğrulama aşamasından sonra doğrulanmış bitişiklerin arasındaki boşlukları doldurmak için kullanıp birleştirmeyi daha da iyileştirebiliriz.
+ 
 
-\ctable[star
-	    center
-      cap     = {},
-      % 
-      caption = {BAC verisi üzerinde birleştirme doğrulama yöntemine ait sonuçlar.},
-      % 
-      label   = {tab:resultsTable},
-      doinside = \scriptsize,
-      width = \textwidth,
-      %maxwidth=19cm,
-      %
-      %
-       pos = htb      
-       ]
-       {c>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}
-         X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}
-         X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}}
-       {         
-        \tnote[]{{\tiny İsim: Birleştirmeyi oluşturan veri grubunun adı; Uzunluk: Toplam birleştirme uzunluğu \#(Dizi): Sonuçta elde edilen birleşmeye ait dizi sayısı; \#(Eşleşen dizi): Başarılı bir şekilde referans diziye eşleşen dizi sayısı; \#(Kaps. baz):  Birleştirme tarafından referans üzerinde kapsanan baz sayısı; Kapsam: Kapsanan referans yüzdesi; Ort. özdeşlik: Doğru bir şekilde tahmin edilmiş referans baz sayısı; \#(Boşluk): Referans genom üzerinde kapsanamamış boşluk sayısı; Boşluk boyutu: Boşluklar üzerindeki toplam baz sayısı.}}
-         \tnote[*]{{\tiny ``2'' ikinci doğrulama devrini temsil ediyor, ``3'' üçüncü devri temsil ediyor.}}
-       }
-       {
-         \FL
-         İsim & Uzunluk & \#(Dizi) & \#(Eşleşen dizi) & \#(Kaps. baz)& Kapsam & Ort. özdeşlik & \#(Boşluk) & Boşluk boyutu\ML
-		 \textbf{\textit{Referans}} & \textit{176.843} & & & & & & & \ML
-		 \addlinespace
-		 \textbf{Velvet} & & & & & & & \NN
-         Ill. Velvet & 197,040 & 455 & 437 & 175,172 & 0.99055 & 0.97523 & 39 & 1,671 \ML
-         \textbf{Celera} & & & & & & & \NN       
-         454 Celera & 908,008 & 735 & 735 & 172,563 & 0.97580 & 0.92599 & 18 & 4,280 \NN
-         Ion Celera & 39,347 & 27 & 27 & 47,638 & 0.26938 & 0.96932 & 47 & 129,205 \ML
-         \addlinespace
-         \textbf{Corrected Celera} & & & & & & & \NN
-         Ill-454 Celera & 4,945,785 & 895 & 270 & 176,368 & 0.99731 & 0.94370 & 5 & 475 \NN
-         Ill-454 Celera^2\tmark[*] & 5,078,059 & 890 & 265 & 176,640 & 0.998852 & 0.944527 & 4 & 203 \ML
-%         Ill-454 Celera^3 & 5,086,627 & 890 & 265 & 176,640 & 0.998852 & 0.944560 & 4 & 203 \NN
-         Ill-Ion Celera & 93,909 & 30 & 28 & 81,819 & 0.46267 & 0.96327 & 36 & 95,024 \NN
-         Ill-Ion Celera^2 & 145,262 & 30 & 28 & 91,962 & 0.52002 & 0.97412 & 33 & 84,881 \NN
-         Ill-Ion Celera^3 & 216,167 & 30 & 28 & 99,645 & 0.56347 & 0.98066 & 34 & 77,198 \ML
-         \textbf{SGA} & & & & & & & \NN
-         454 SGA & 62,909,254 & 108,095 & 101,514 & 176,546 & 0.99832 & 0.97439 & 1 & 297 \NN
-         Ion SGA & 842,997 & 6,417 & 6,122 & 153,092 & 0.86569 & 0.99124 & 197 & 23.751 \ML	
-         \addlinespace
-         \textbf{Corrected SGA} & & & & & & & \NN
-         Ill-454 SGA & 295,009 & 335 & 335 & 176,757 & 0.99951 & 0.96823 & 5 & 86 \NN
-         Ill-454 SGA^2 & 279,034 & 305 & 305 & 176,757 & 0.99951 & 0.96769 & 5 & 86 \NN
-         Ill-Ion SGA & 197,509 & 291 & 291 & 175,052 & 0.98987 & 0.97501 & 45 & 1,791 \NN
-         Ill-Ion SGA^2 & 203,064 & 291 & 291 & 175,676 & 0.99340 & 0.97413 & 34 & 1,167 \ML
-%         Ill-Ion SGA^3 & 204,524 & 291 & 291 & 175,677 & 0.99341 & 0.97405 & 34 & 1,166 \ML
-         \textbf{SPADES} & & & & & & & \NN
-         454 SPADES & 12,307,761 & 49,824 & 49,691 & 176,843 & 1.0 & 0.98053 & 0 & 0 \NN
-         Ion SPADES & 176,561 & 110 & 107 & 167,890 & 0.94937 & 0.92909 & 9 & 8,953 \ML	
-         \addlinespace
-         \textbf{Corrected SPADES} & & & & & & & \NN
-         Ill-454 SPADES & 290,702 & 298 & 298 & 176,454 & 0.99780 & 0.96538 & 5 & 389 \NN
-%         Ill-454 SPADES^2 & 290,917 & 297 & 297 & 176,454 & 0.99780 & 0.96530 & 5 & 389 \NN
-%         Ill-454 SPADES^3 & 291.653 & 297 & 297 & 176.454 & 0.99780 & 0.96527 & 5 & 389 \NN
-         Ill-Ion SPADES & 198,665 & 52 & 52 & 171,977 & 0.97248 & 0.94215 & 4 & 4,866 \NN
-         Ill-Ion SPADES^2 & 200,307 & 52 & 52 & 172,101 & 0.97319 & 0.94230 & 2 & 4,742 \ML
-         \textbf{Masurca} & & & & & & & \NN
-         Ill-454 Masurca & 380 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \NN
-         Ill-Ion Masurca & 2,640 & 8 & 8 & 1,952 & 0.01104 & 0.98223 & 9 & 174,891 \ML
- 		\textbf{Celera-CABOG} & & & & & & & \NN
-         Ill-454 Celera & 1,101,716 & 891 & 891 & 174,330 & 0.98579 & 0.92452 & 12 & 2,513 \NN
-         Ill-Ion Celera & 0 & 0 & 0 & 0 & 0.0 & 0.0 & 0 & 0.0 \ML
-         \LL
-       }
-\vspace*{-0.3cm}
-
-
-
-
-
-
-
-
-
-\bibliographystyle{apalike}
-{\fontsize{10}{10}\selectfont
-\begin{thebibliography}{99}
-\setlength{\parskip}{0pt}
-
-\bibitem{celera:2000} E.W.Myers \textit{et~al} (2000) A Whole-Genome Assembly of Drosophila, \textit{Science}, {287(no:5461)}:2196-2204, doi:10.1126/science.287.5461.2196.
-\bibitem{sga:2012} J.Simpson \textit{et~al} (2012) Efficient \textit{de novo} Assembly of Large Genomes Using Compressed Data Structures, \textit{Genome Research}, {22}:549-556, doi:10.1101/gr.126953.111.
-\bibitem{velvetZerbino:2008} D.Zerbino, E.Birney (2000) Velvet: Algorithms for \textit{de novo} Short Read Assembly Using de Bruijn Graphs, \textit{Genome Research}, {18(5)}:821-829, doi: 10.1101/gr.074492.107.
-\bibitem{spadesBankevich:2012} A.Bankevich {\it et~al} (2012) SPAdes: A New Genome Assembly Algorithm and Its Applications to Single-Cell Sequencing, \textit{Journal of Computational Biology}, {19(5)}:455-477, doi:10.1089/cmb.2012.0021.
-\bibitem{allpaths:2008} J.Butler \textit{et~al} (2008) ALLPATHS: \textit{De novo} Assembly of Whole-Genome Shotgun Microreads, {\it Genome Research}, {18(5)}:810-820, doi:10.1101/gr.7337908.
-\bibitem{cabogMiller:2008} J.R.Miller \textit{et~al} (2008) Aggressive Assembly of Pyrosequencing Reads with Mates, \textit{Bioinformatics}, {24(24)}:2818-2824, doi:10.1093/bioinformatics/btn548.
-\bibitem{masurcaZimin:2013} A.Zimin \textit{et~al} (2013) The MaSuRCA Genome Assembler, \textit{Bioinformatics}, {29(21)}:2669-2677, doi:10.1093/bioinformatics/btt476.
-\bibitem{mira} B.Chevreux {\it et~al} (1999) Genome Sequence Assembly Using Trace Signals and Additional Sequence Information, \textit{Computer Science and Biology:Proceedings of the German Conference on Bioinformatics (GCB)}, {99}:45-56.
-\bibitem{wang:2012} Y.Wang {\it et~al} (2012) Optimizing Hybrid Assembly of Next-Generation Sequence Data from Enterococcus Faecium: a Microbe with Highly Divergent Genome, \textit{BMC Systems Biology}, {6(Suppl 3)}:S21, doi:10.1186/1752-0509-6-S3-S21. 
-\bibitem{blast} S.Altschul {\it et~al} (1990) Basic Local Alignment Search Tool, \textit{Journal of Molecular Biology}, {215(3)}:403-410.
-
-\end{thebibliography}
+\begin{table}[htb]
+\begin{center}
+{\footnotesize
+\begin{tabular}{l|l|l|l|l|l|l|l|l|}
+\hline
+         İsim & Uzunluk & \# (Bitişik) & \thead{\# (Eşleşen \\ bitişik)} & \thead{\# (Kaps.\\ baz)} & Kapsam & \thead{Ort. \\özdeşlik} & \# (Boşluk) & \thead{Boşluk \\ boyutu} \\
+\hline
+	 \textbf{\textit{Referans}} & \textit{176.843} & & & & & & & \\
+\hline	 
+	 \textbf{Velvet} & & & & & & & & \\
+         Ill. Velvet & 197,040 & 455 & 437 & 175,172 & 0.99055 & 0.97523 & 39 & 1,671 \\
+         \textbf{Celera} & & & & & & & & \\       
+         454 Celera & 908,008 & 735 & 735 & 172,563 & 0.97580 & 0.92599 & 18 & 4,280 \\
+         Ion Celera & 39,347 & 27 & 27 & 47,638 & 0.26938 & 0.96932 & 47 & 129,205 \\
+         \hline   
+         \textbf{Corrected Celera} & & & & & & & & \\
+         Ill-454 Celera & 4,945,785 & 895 & 270 & 176,368 & 0.99731 & 0.94370 & 5 & 475 \\
+         Ill-454 Celera$^{2*}$ & 5,078,059 & 890 & 265 & 176,640 & 0.998852 & 0.944527 & 4 & 203 \\
+         Ill-Ion Celera & 93,909 & 30 & 28 & 81,819 & 0.46267 & 0.96327 & 36 & 95,024 \\
+         Ill-Ion Celera$^2$ & 145,262 & 30 & 28 & 91,962 & 0.52002 & 0.97412 & 33 & 84,881 \\
+         Ill-Ion Celera$^3$ & 216,167 & 30 & 28 & 99,645 & 0.56347 & 0.98066 & 34 & 77,198 \\
+         \textbf{SGA} & & & & & & & & \\
+         454 SGA & 62,909,254 & 108,095 & 101,514 & 176,546 & 0.99832 & 0.97439 & 1 & 297 \\
+         Ion SGA & 842,997 & 6,417 & 6,122 & 153,092 & 0.86569 & 0.99124 & 197 & 23.751 \\	
+         \hline
+         \textbf{Corrected SGA} & & & & & & & & \\
+         Ill-454 SGA & 295,009 & 335 & 335 & 176,757 & 0.99951 & 0.96823 & 5 & 86 \\
+         Ill-454 SGA$^2$ & 279,034 & 305 & 305 & 176,757 & 0.99951 & 0.96769 & 5 & 86 \\
+         Ill-Ion SGA & 197,509 & 291 & 291 & 175,052 & 0.98987 & 0.97501 & 45 & 1,791 \\
+         Ill-Ion SGA$^2$ & 203,064 & 291 & 291 & 175,676 & 0.99340 & 0.97413 & 34 & 1,167 \\
+         \textbf{SPADES} & & & & & & & & \\
+         454 SPADES & 12,307,761 & 49,824 & 49,691 & 176,843 & 1.0 & 0.98053 & 0 & 0 \\
+         Ion SPADES & 176,561 & 110 & 107 & 167,890 & 0.94937 & 0.92909 & 9 & 8,953 \\	
+         \hline
+         \textbf{Corrected SPADES} & & & & & & & & \\
+         Ill-454 SPADES & 290,702 & 298 & 298 & 176,454 & 0.99780 & 0.96538 & 5 & 389 \\
+         Ill-Ion SPADES & 198,665 & 52 & 52 & 171,977 & 0.97248 & 0.94215 & 4 & 4,866 \\
+         Ill-Ion SPADES$^2$ & 200,307 & 52 & 52 & 172,101 & 0.97319 & 0.94230 & 2 & 4,742 \\
+         \textbf{Masurca} & & & & & & & & \\
+         Ill-454 Masurca & 380 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+         Ill-Ion Masurca & 2,640 & 8 & 8 & 1,952 & 0.01104 & 0.98223 & 9 & 174,891 \\
+ 		\textbf{Celera-CABOG} & & & & & & & & \\
+         Ill-454 Celera & 1,101,716 & 891 & 891 & 174,330 & 0.98579 & 0.92452 & 12 & 2,513 \\
+         Ill-Ion Celera & 0 & 0 & 0 & 0 & 0.0 & 0.0 & 0 & 0.0 \\
+\hline
+\end{tabular}
 }
-\end{document}
+\end{center}
+{\footnotesize İsim: Birleştirmeyi oluşturan veri grubunun adı; Uzunluk: Toplam birleştirme uzunluğu \#(Bitişik): Sonuçta elde edilen birleşmeye ait bitişik sayısı; \#(Eşleşen bitişik): Başarılı bir şekilde referansa eşleşen bitişik sayısı; \#(Kaps. baz):  Birleştirme tarafından referans üzerinde kapsanan baz sayısı; Kapsam: Kapsanan referans yüzdesi; Ort. özdeşlik: Doğru bir şekilde tahmin edilmiş referans baz sayısı; \#(Boşluk): Referans genom üzerinde kapsanamamış boşluk sayısı; Boşluk boyutu: Boşluklar üzerindeki toplam baz sayısı.
+  ``2'' ikinci doğrulama devrini temsil ediyor, ``3'' üçüncü devri temsil ediyor.}
+\caption{BAC verisi üzerinde birleştirme doğrulama yöntemine ait sonuçlar.}
+\label{tab:resultsTable}
+
+\end{table}
+
+
+
+

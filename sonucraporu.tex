@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 %\usepackage{helvet}
-\usepackage{lastpage, fancyhdr,color,amsmath,amssymb,amsfonts,amscd, graphicx,latexsym}
+\usepackage{lastpage, fancyhdr,color,amsmath,amssymb,amsfonts,amscd, graphicx,latexsym,multirow}
+\usepackage{makecell}
 \usepackage{eurosym}
 \usepackage[all]{xy}
 \pagestyle{empty}
@@ -62,6 +63,8 @@
 \renewcommand{\tablename}{\bf Tablo}
 \renewcommand{\contentsname}{İçindekiler}
 \renewcommand{\refname}{Referanslar}
+\renewcommand{\listfigurename}{Şekiller}
+\renewcommand{\listtablename}{Tablolar}
 %\renewcommand{\familydefault}{\sfdefault}
 
 \newpage
@@ -152,7 +155,7 @@ Elif Dal
 Pınar Kavak: Destekleyen kurum (TÜBİTAK İGBAM) çalışanı ve Boğaziçi Üniversitesi öğrencisi
 
 \noindent
-Can Fırtına: Bilkent Üniversitesi lisans öğrencisi (proje sırasında) ,
+Can Fırtına: Bilkent Üniversitesi lisans öğrencisi (proje sırasında)
 
 
 }
@@ -219,9 +222,8 @@ yapmıştır.
 \setlength{\parskip}{1mm} 
 
 \tableofcontents
-
-
- 
+\listoffigures
+\listoftables
 
 
 
@@ -404,7 +406,7 @@ Bu BYK’ların uzunluğu yaklaşık 150.000 – 200.000 baz çiftidir. İlk ola
 kapsanması hedeflendi. Buradaki amaç rastgeleliği arttırarak, duplikasyonlardan kaynaklanan olası yanlış eşleşmelerin mümkün olduğu kadar önüne geçebilmektir. 
 Duplikasyonlar \%90 oranında benzeyen dizi parçalarıdır. 
 
-BYK’lar haricinde aynı insanın tüm genomundan elde edilmiş DNA dizileri (WGS) daha önce Broad Enstitüsü’ndeki araştırmacılar tarafından ALLPATHS~\cite{Gnerre2011} programı kullanılarak birleştirilmiş, ve bu birleştirme sonuçları tüm araştırmacıların kullanımına açılmıştır. Ancak bu projenin başvuru amaçlarında da belirtildiği üzere, bu birleştirme sonucunda edilen bitişiklerde gerek gen ve ekzonların temsili, gerekse tekrarlı DNA dizileri nedeniyle parçalanmalar ve yanlış birleştirmeler bulunmaktadır~\cite{Alkan2011c}. Gene projenin başvuru amaclarinda belirtildiği üzere, tüm genom dizileme ve birleştirme verilerini diğer şekillerde elde edilmiş veriler ile birlikte kullanmayı amaçladığımızdan bu veriyi de NCBI internet sayfasından indirdik.
+BYK’lar haricinde aynı insanın tüm genomundan elde edilmiş DNA dizileri (WGS) daha önce Broad Enstitüsü’ndeki araştırmacılar tarafından ALLPATHS~\cite{Gnerre2011} programı kullanılarak birleştirilmiş, ve bu birleştirme sonuçları tüm araştırmacıların kullanımına açılmıştır. Ancak bu projenin başvuru amaçlarında da belirtildiği üzere, bu birleştirme sonucunda edilen bitişiklerde gerek gen ve ekzonların temsili, gerekse tekrarlı DNA dizileri nedeniyle parçalanmalar ve yanlış birleştirmeler bulunmaktadır~\cite{Alkan2011c}. Gene projenin başvuru amaçlarında belirtildiği üzere, tüm genom dizileme ve birleştirme verilerini diğer şekillerde elde edilmiş veriler ile birlikte kullanmayı amaçladığımızdan bu veriyi de NCBI internet sayfasından indirdik.
 
 ABySS~\cite{Simpson2009}, ALLPATHS~\cite{Simpson2009}, ya da diğer genom birleştirme algoritmalarının oluşturduğu iskeleler tam olarak optimize edilmemiştir. Dahası, elimizdeki BYK tabanlı veriler de tüm genom dizilemeden farklı olduğu için, bu veriler doğrudan genom birleştirme araçlarına yüklenemez. Bundaki sebep, tüm genom dizilemelerinin tamamen rastgele olarak üretilmiş olması, havuzlanmış BYK verilerinin ise daha hiyerarşik bir yapıda oluşturulmuş olmasıdır. Bu nedenle ilk aşama olarak literatürde tanımlanmış iskeleleme algoritmalarının bir tetkikini yaptık. Buradaki amaçlarımız, bu araçların elimizdeki veriler ile uyumluluğunu test etmek, ve aynı zamanda eksikliklerini sınıflandırmaktır.
 
@@ -423,7 +425,7 @@ ABySS~\cite{Simpson2009}, ALLPATHS~\cite{Simpson2009}, ya da diğer genom birle�
 
 \begin{enumerate}
 
-\item Phrap~\cite{phrap}: Önce WGS verileriyle ALLPATHS~\cite{Gnerre2011} kullanarak elde edilen bitişikleri ABySS~\cite{Simpson2009} programı kullanılarak birleştirilmiş BYK'lar ile geliştirip iskeleleri bulmaya çalıştık. Ancak tek bir havuzdan gelen verileri birleştirmek bile  3 günden daha uzun sürdüğünden ve toplam 288 + 96 havuz düşünüldüğünde, bu yaklaşımın etkin bir çözüm olmayacağına karar verip bu iskeleleme aracından vazgeçtik.
+\item Phrap~\cite{phrap}: Önce WGS verileriyle ALLPATHS~\cite{Gnerre2011} kullanarak elde edilen bitişikleri ABySS~\cite{Simpson2009} programı kullanılarak birleştirilmiş BYK'lar ile geliştirip iskeleleri bulmaya çalıştık. Ancak tek bir havuzdan gelen verileri birleştirmek bile  3 günden daha uzun sürdüğünden ve toplam $288 + 96$ havuz düşünüldüğünde, bu yaklaşımın etkin bir çözüm olmayacağına karar verip bu iskeleleme aracından vazgeçtik.
   
 \item ALLPATHS~\cite{Gnerre2011} programı ile birleştirilip contig haline gelen verilerimiz, SCARPA~\cite{Donmez2013}, OPERA~\cite{Gao2011}, SSPACE~\cite{Boetzer2011}, ve BESST~\cite{Sahlin2014} iskeleleme araçlarıyla çalıştırılarak iskelelemeler haline getirilip sonuçlar alındı. (Bulgular). 
   
@@ -445,10 +447,13 @@ karakterleriyle doldurulması sonucu uzunluklarının artması beklenirken, dör
 
 Sonuç olarak, farklı iskeleleme programları, parametreleri, hizalama yöntemleri ve ürettikleri iskeleler test edilip farklılıklar tespit edilmiştir ve yeni tasarlanılacak iskeleleme programının geliştirilmesi için gereklilikler ve oluşabilecek hatalar not edilmiştir.
 
+\clearpage
 {\bf \large 3.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 \addcontentsline{toc}{subsection}{3.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 
 \input{bac_pinar_methods.tex}
+
+\clearpage
 
 {\bf \large 3.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
 \addcontentsline{toc}{subsection}{3.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
@@ -464,6 +469,8 @@ Sonuç olarak, farklı iskeleleme programları, parametreleri, hizalama yönteml
 
 \input{shatlyk_methods.tex}
 
+
+\clearpage
 
 {\bf \large 3.4. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
 \addcontentsline{toc}{subsection}{3.4. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
@@ -559,6 +566,7 @@ Burada $g$, bağımsız değişkenler arasındaki düzlük katsayısını ifade 
 %\item
 %\end{enumerate}
 
+\clearpage
 \begin{center}
 {\bf \Large 4. BULGULAR}
 \end{center}
@@ -643,10 +651,14 @@ BESST  &  17    & 308,948 & 308,948  & 47.81 & 0  & 22,521 & 10,538 \\ \hline
 \label{tab:chr20h}
 \end{table}
 
+\clearpage
+
 {\bf \large 4.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 \addcontentsline{toc}{subsection}{4.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 
 \input{bac_pinar_sonuc.tex}
+
+\clearpage
 
 {\bf \large 4.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
 \addcontentsline{toc}{subsection}{4.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
@@ -661,6 +673,8 @@ BESST  &  17    & 308,948 & 308,948  & 47.81 & 0  & 22,521 & 10,538 \\ \hline
 
 \input{shatlyk_sonuc.tex}
 
+
+\clearpage
 
 \noindent
 {\bf \large 4.4. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
@@ -721,6 +735,8 @@ NA20766 & 0.6509 & 0.6768\\
 \end{figure}
 
 LOESS metoduyla düzeltilen data kullanılarak, ekzom birleştirme yöntemini daha doğru bir şekilde yapmak mümkün olacaktır.
+
+\clearpage
 
 \begin{center}
 {\bf \Large 5. TARTIŞMA/SONUÇ}
