@@ -415,9 +415,9 @@
 }
 
 @Article{Alkan2014,
-  Title                    = {Whole genome sequencing of Turkish genomes reveals functional private alleles and impact of genetic interactions with Europe, Asia and Africa.},
+  Title                    = {Whole genome sequencing of Turkish genomes reveals functional private alleles and impact of genetic interactions with {Europe}, {Asia} and {Africa}.},
   Author                   = {Alkan, Can and Kavak, Pinar and Somel, Mehmet and Gokcumen, Omer and Ugurlu, Serkan and Saygi, Ceren and Dal, Elif and Bugra, Kuyas and G{\"{u}}ng{\"{o}}r, Tunga and Sahinalp, S Cenk and Oz{\"{o}}ren, Nesrin and Bekpen, Cemalettin},
-  Journal                  = {BMC Genomics},
+  Journal                  = {{BMC Genomics}},
   Year                     = {2014},
   Number                   = {1},
   Pages                    = {963},
@@ -2709,6 +2709,7 @@
   Number                   = {3},
   Pages                    = {269--276},
   Volume                   = {43},
+
   Abstract                 = {Accurate and complete analysis of genome variation in large populations will be required to understand the role of genome variation in complex disease. We present an analytical framework for characterizing genome deletion polymorphism in populations using sequence data that are distributed across hundreds or thousands of genomes. Our approach uses population-level concepts to reinterpret the technical features of sequence data that often reflect structural variation. In the 1000 Genomes Project pilot, this approach identified deletion polymorphism across 168 genomes (sequenced at 4 × average coverage) with sensitivity and specificity unmatched by other algorithms. We also describe a way to determine the allelic state or genotype of each deletion polymorphism in each genome; the 1000 Genomes Project used this approach to type 13,826 deletion polymorphisms (48-995,664 bp) at high accuracy in populations. These methods offer a way to relate genome structural polymorphism to complex disease in populations.},
   Doi                      = {10.1038/ng.768},
   Institution              = {Department of Genetics, Harvard Medical School, Boston, Massachusetts, USA.},
@@ -2732,6 +2733,7 @@
   Number                   = {3},
   Pages                    = {296--303},
   Volume                   = {47},
+
   Abstract                 = {Thousands of genomic segments appear to be present in widely varying copy numbers in different human genomes. We developed ways to use increasingly abundant whole-genome sequence data to identify the copy numbers, alleles and haplotypes present at most large multiallelic CNVs (mCNVs). We analyzed 849 genomes sequenced by the 1000 Genomes Project to identify most large (>5-kb) mCNVs, including 3,878 duplications, of which 1,356 appear to have 3 or more segregating alleles. We find that mCNVs give rise to most human variation in gene dosage-seven times the combined contribution of deletions and biallelic duplications-and that this variation in gene dosage generates abundant variation in gene expression. We describe 'runaway duplication haplotypes' in which genes, including HPR and ORM1, have mutated to high copy number on specific haplotypes. We also describe partially successful initial strategies for analyzing mCNVs via imputation and provide an initial data resource to support such analyses.},
   Doi                      = {10.1038/ng.3200},
   Institution              = { Stanley Center for Psychiatric Research, Broad Institute of MIT and Harvard, Cambridge, Massachusetts, USA. [3] Department of Genetics, Harvard Medical School, Boston, Massachusetts, USA.},
@@ -3296,14 +3298,25 @@
 }
 
 @Article{Kavak2015,
-  Title                    = {Robustness of massively parallel sequencing platforms.},
-  Author                   = {Pinar Kavak and Bayram Yuksel and Soner Aksu and M. Oguzhan Kulekci and Tunga Gungor and Faraz Hach and S. Cenk Sahinalp and {Turkish Human Genome Project} and Can Alkan and M. Samil Sagiroglu},
-  Journal                  = {{PLoS ONE}},
+  Title                    = {Robustness of Massively Parallel Sequencing Platforms.},
+  Author                   = {Kavak, P{\i}nar and Y{\"{u}}ksel, Bayram and Aksu, Soner and Kulekci, M Oguzhan and G{\"{u}}ng{\"{o}}r, Tunga and Hach, Faraz and Şahinalp, S Cenk and , Turkish Human Genome Project and Alkan, Can and Sağ{\i}roğlu, Mahmut Şamil},
+  Journal                  = {{PLoS One}},
   Year                     = {2015},
-  Volume                   = {to appear},
+  Number                   = {9},
+  Pages                    = {e0138259},
+  Volume                   = {10},
 
+  __markedentry            = {[calkan:6]},
+  Abstract                 = {The improvements in high throughput sequencing technologies (HTS) made clinical sequencing projects such as ClinSeq and Genomics England feasible. Although there are significant improvements in accuracy and reproducibility of HTS based analyses, the usability of these types of data for diagnostic and prognostic applications necessitates a near perfect data generation. To assess the usability of a widely used HTS platform for accurate and reproducible clinical applications in terms of robustness, we generated whole genome shotgun (WGS) sequence data from the genomes of two human individuals in two different genome sequencing centers. After analyzing the data to characterize SNPs and indels using the same tools (BWA, SAMtools, and GATK), we observed significant number of discrepancies in the call sets. As expected, the most of the disagreements between the call sets were found within genomic regions containing common repeats and segmental duplications, albeit only a small fraction of the discordant variants were within the exons and other functionally relevant regions such as promoters. We conclude that although HTS platforms are sufficiently powerful for providing data for first-pass clinical tests, the variant predictions still need to be confirmed using orthogonal methods before using in clinical applications.},
+  Doi                      = {10.1371/journal.pone.0138259},
+  Institution              = {Advanced Genomics and Bioinformatics Research Group (İGBAM), BİLGEM, The Scientific and Technological Research Council of Turkey (TÜBİTAK), Gebze, Kocaeli, Turkey.},
+  Language                 = {eng},
+  Medline-pst              = {epublish},
   Owner                    = {calkan},
-  Timestamp                = {2015.09.10}
+  Pii                      = {PONE-D-15-23774},
+  Pmid                     = {26382624},
+  Timestamp                = {2015.09.22},
+  Url                      = {http://dx.doi.org/10.1371/journal.pone.0138259}
 }
 
 @Article{Kent2002a,
@@ -4681,6 +4694,7 @@
   Number                   = {24},
   Pages                    = {2818--2824},
   Volume                   = {24},
+
   Abstract                 = {DNA sequence reads from Sanger and pyrosequencing platforms differ in cost, accuracy, typical coverage, average read length and the variety of available paired-end protocols. Both read types can complement one another in a 'hybrid' approach to whole-genome shotgun sequencing projects, but assembly software must be modified to accommodate their different characteristics. This is true even of pyrosequencing mated and unmated read combinations. Without special modifications, assemblers tuned for homogeneous sequence data may perform poorly on hybrid data.Celera Assembler was modified for combinations of ABI 3730 and 454 FLX reads. The revised pipeline called CABOG (Celera Assembler with the Best Overlap Graph) is robust to homopolymer run length uncertainty, high read coverage and heterogeneous read lengths. In tests on four genomes, it generated the longest contigs among all assemblers tested. It exploited the mate constraints provided by paired-end reads from either platform to build larger contigs and scaffolds, which were validated by comparison to a finished reference sequence. A low rate of contig mis-assembly was detected in some CABOG assemblies, but this was reduced in the presence of sufficient mate pair data.The software is freely available as open-source from http://wgs-assembler.sf.net under the GNU Public License.},
   Doi                      = {10.1093/bioinformatics/btn548},
   Institution              = {The J. Craig Venter Institute, 9712 Medical Center Drive, Rockville MD 20850, USA. jmiller@jcvi.org},
@@ -4845,6 +4859,7 @@
   Number                   = {5461},
   Pages                    = {2196--2204},
   Volume                   = {287},
+
   Abstract                 = {We report on the quality of a whole-genome assembly of Drosophila melanogaster and the nature of the computer algorithms that accomplished it. Three independent external data sources essentially agree with and support the assembly's sequence and ordering of contigs across the euchromatic portion of the genome. In addition, there are isolated contigs that we believe represent nonrepetitive pockets within the heterochromatin of the centromeres. Comparison with a previously sequenced 2.9- megabase region indicates that sequencing accuracy within nonrepetitive segments is greater than 99. 99\% without manual curation. As such, this initial reconstruction of the Drosophila sequence should be of substantial value to the scientific community.},
   Institution              = {Celera Genomics, Inc., 45 West Gude Drive, Rockville, MD 20850, USA. Gene.Myers@celera.com},
   Keywords                 = {Algorithms; Animals; Chromatin, genetics; Computational Biology; Contig Mapping; Drosophila melanogaster, genetics; Euchromatin; Genes, Insect; Genome; Heterochromatin, genetics; Molecular Sequence Data; Physical Chromosome Mapping; Repetitive Sequences, Nucleic Acid; Sequence Analysis, DNA; Sequence Tagged Sites},
@@ -5926,6 +5941,7 @@
   Number                   = {3},
   Pages                    = {549--556},
   Volume                   = {22},
+
   Abstract                 = {De novo genome sequence assembly is important both to generate new sequence assemblies for previously uncharacterized genomes and to identify the genome sequence of individuals in a reference-unbiased way. We present memory efficient data structures and algorithms for assembly using the FM-index derived from the compressed Burrows-Wheeler transform, and a new assembler based on these called SGA (String Graph Assembler). We describe algorithms to error-correct, assemble, and scaffold large sets of sequence data. SGA uses the overlap-based string graph model of assembly, unlike most de novo assemblers that rely on de Bruijn graphs, and is simply parallelizable. We demonstrate the error correction and assembly performance of SGA on 1.2 billion sequence reads from a human genome, which we are able to assemble using 54 GB of memory. The resulting contigs are highly accurate and contiguous, while covering 95\% of the reference genome (excluding contigs <200 bp in length). Because of the low memory requirements and parallelization without requiring inter-process communication, SGA provides the first practical assembler to our knowledge for a mammalian-sized genome on a low-end computing cluster.},
   Doi                      = {10.1101/gr.126953.111},
   Institution              = {Wellcome Trust Sanger Institute, Wellcome Trust Genome Campus, Hinxton, Cambridge, United Kingdom.},
@@ -6178,6 +6194,7 @@
   Number                   = {7},
   Pages                    = {e1002195},
   Volume                   = {13},
+
   Abstract                 = {Genomics is a Big Data science and is going to get much bigger, very soon, but it is not known whether the needs of genomics will exceed other Big Data domains. Projecting to the year 2025, we compared genomics with three other major generators of Big Data: astronomy, YouTube, and Twitter. Our estimates show that genomics is a "four-headed beast"--it is either on par with or the most demanding of the domains analyzed here in terms of data acquisition, storage, distribution, and analysis. We discuss aspects of new technologies that will need to be developed to rise up and meet the computational challenges that genomics poses for the near future. Now is the time for concerted, community-wide planning for the "genomical" challenges of the next decade.},
   Doi                      = {10.1371/journal.pbio.1002195},
   File                     = {main:Stephens2015.pdf:PDF},
@@ -6529,7 +6546,7 @@
   Pages                    = {S21},
   Volume                   = {6 Suppl 3},
 
-  __markedentry            = {[calkan:6]},
+  __markedentry            = {[calkan:]},
   Abstract                 = {Sequencing of bacterial genomes became an essential approach to study pathogen virulence and the phylogenetic relationship among close related strains. Bacterium Enterococcus faecium emerged as an important nosocomial pathogen that were often associated with resistance to common antibiotics in hospitals. With highly divergent gene contents, it presented a challenge to the next generation sequencing (NGS) technologies featuring high-throughput and shorter read-length. This study was designed to investigate the properties and systematic biases of NGS technologies and evaluate critical parameters influencing the outcomes of hybrid assemblies using combinations of NGS data.A hospital strain of E. faecium was sequenced using three different NGS platforms: 454 GS-FLX, Illumina GAIIx, and ABI SOLiD4.0, to approximately 28-, 500-, and 400-fold coverage depth. We built a pipeline that merged contigs from each NGS data into hybrid assemblies. The results revealed that each single NGS assembly had a ceiling in continuity that could not be overcome by simply increasing data coverage depth. Each NGS technology displayed some intrinsic properties, i.e. base calling error, systematic bias, etc. The gaps and low coverage regions of each NGS assembly were associated with lower GC contents. In order to optimize the hybrid assembly approach, we tested with varying amount and different combination of NGS data, and obtained optimal conditions for assembly continuity. We also, for the first time, showed that SOLiD data could help make much improved assemblies of E. faecium genome using the hybrid approach when combined with other type of NGS data.The current study addressed the difficult issue of how to most effectively construct a complete microbial genome using today's state of the art sequencing technologies. We characterized the sequence data and genome assembly from each NGS technologies, tested conditions for hybrid assembly with combinations of NGS data, and obtained optimized parameters for achieving most cost-efficiency assembly. Our study helped form some guidelines to direct genomic work on other microorganisms, thus have important practical implications.},
   Doi                      = {10.1186/1752-0509-6-S3-S21},
   Institution              = {Shanghai Center for Systems Biomedicine, Shanghai Jiaotong University, Shanghai 200240, China.},
@@ -6873,7 +6890,6 @@
   Pages                    = {2669--2677},
   Volume                   = {29},
 
-  __markedentry            = {[calkan:]},
   Abstract                 = {Second-generation sequencing technologies produce high coverage of the genome by short reads at a low cost, which has prompted development of new assembly methods. In particular, multiple algorithms based on de Bruijn graphs have been shown to be effective for the assembly problem. In this article, we describe a new hybrid approach that has the computational efficiency of de Bruijn graph methods and the flexibility of overlap-based assembly strategies, and which allows variable read lengths while tolerating a significant level of sequencing error. Our method transforms large numbers of paired-end reads into a much smaller number of longer 'super-reads'. The use of super-reads allows us to assemble combinations of Illumina reads of differing lengths together with longer reads from 454 and Sanger sequencing technologies, making it one of the few assemblers capable of handling such mixtures. We call our system the Maryland Super-Read Celera Assembler (abbreviated MaSuRCA and pronounced 'mazurka').We evaluate the performance of MaSuRCA against two of the most widely used assemblers for Illumina data, Allpaths-LG and SOAPdenovo2, on two datasets from organisms for which high-quality assemblies are available: the bacterium Rhodobacter sphaeroides and chromosome 16 of the mouse genome. We show that MaSuRCA performs on par or better than Allpaths-LG and significantly better than SOAPdenovo on these data, when evaluated against the finished sequence. We then show that MaSuRCA can significantly improve its assemblies when the original data are augmented with long reads.MaSuRCA is available as open-source code at ftp://ftp.genome.umd.edu/pub/MaSuRCA/. Previous (pre-publication) releases have been publicly available for over a year.alekseyz@ipst.umd.edu.Supplementary data are available at Bioinformatics online.},
   Doi                      = {10.1093/bioinformatics/btt476},
   Institution              = {Institute for Physical Sciences and Technology, University of Maryland, College Park, MD 20742, USA, Center for Computational Biology, McKusick-Nathans Institute of Genetic Medicine, Johns Hopkins University School of Medicine, Baltimore, MD 21205, USA, Department of Mathematics and Department of Physics, University of Maryland, College Park, MD 20742, USA.},
@@ -6962,12 +6978,6 @@
 @Electronic{markoff,
   Title                    = {I.B.M. Joins Pursuit of \$1,000 Personal Genome},
   Url                      = {http://www.nytimes.com/2009/10/06/science/06dna.htm},
-  Year                     = {2015}
-}
-
-@Electronic{pacbioerr,
-  Title                    = {Pacific Biosciences},
-  Url                      = {http://allseq.com/knowledgebank/sequencing-platforms/pacific-biosciences},
   Year                     = {2015}
 }
 
