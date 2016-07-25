@@ -51,8 +51,8 @@
 \pagestyle{fancy}
    \lhead{}\rhead{}
    \lfoot{\textcolor{light-gray}{\small Proje Sonuç Raporu}}
-        \rfoot{\textcolor{light-gray}{\small Sayfa {\thepage}}}
-        \cfoot{}
+        \cfoot{{\thepage}}
+        \rfoot{}
   \renewcommand{\headrulewidth}{0pt}
 %  \renewcommand{\footrulewidth}{0.4pt}
 %\def\HG{{\bf HG-GalAct }}
@@ -169,7 +169,7 @@ Can Fırtına: Bilkent Üniversitesi lisans öğrencisi (proje sırasında)
 
 
 \begin{center}
-{\Large EYLÜL 2015
+{\Large NİSAN 2016
 
 \vspace{1mm}
 ANKARA}
@@ -181,6 +181,7 @@ ANKARA}
 \newpage\setlength{\parskip}{3mm} 
 \onehalfspacing
 \bigskip
+\pagenumbering{roman}
 \setcounter{page}{1}
 \begin{center}
 {\LARGE \bf ÖNSÖZ}
@@ -191,7 +192,7 @@ ANKARA}
 Proje süresince proje ekibinin şu yayınları hazırlanmıştır: 
 
 \begin{itemize}
-\item Early post-zygotic mutations contribute to de novo variation in a healthy monozygotic twin pair. G.M. Dal, B. Ergüner, M. S. Sağıroğlu, B. Yüksel, O. E. Onat, {\bf C. Alkan}, T. Özçelik. Joural of Medical Genetics, 51:455-459, 2014.
+\item Early post-zygotic mutations contribute to de novo variation in a healthy monozygotic twin pair. G.M. Dal, B. Ergüner, M. S. Sağıroğlu, B. Yüksel, O. E. Onat, {\bf C. Alkan}, T. Özçelik. Journal of Medical Genetics, 51:455-459, 2014.
 \item Whole genome sequencing of Turkish genomes reveals functional private alleles and impact of genetic interactions with Europe, Asia and Africa. {\bf C. Alkan}, P.  Kavak, M. Somel, O. Gokcumen, 
   S. Uğurlu, C. Saygı, {\bf E. Dal}, K. Buğra-Bilge,  T. Güngör, S. C. Sahinalp, N. Özören, C. Bekpen. BMC Genomics, 15(1):963, 2014.
 \end{itemize}
@@ -199,8 +200,11 @@ Proje süresince proje ekibinin şu yayınları hazırlanmıştır:
 Proje süresince proje ekibinin şu bildiriler sunulmuştur:
  
 \begin{itemize}
-\item A hypergraph model for hybrid genome assembly. {\bf S. Ashyralyyev}, C. Firtina, C. Aykanat, {\bf C. Alkan}. Bertinoro Computational Biology Meeting, 14-18 May 2015, Bertinoro, Italy.
-
+\item A hypergraph model for hybrid genome assembly. {\bf S. Ashyralyyev}, C. Firtina, C. Aykanat, {\bf C. Alkan}. Bertinoro Computational Biology Meeting, 14-18 May 2015, Bertinoro, Italy. (özet bildiri)
+\item Improving genome assemblies using multi-platform sequence data.
+{\bf P. Kavak}, B. Ergüner, D. Üstek, B. Yüksel, M.Ş. Sağıroğlu, T. Güngör, {\bf C. Alkan}.
+{\em Proceedings of the $12^{th}$ Computational Intelligence methods for Bioinformatics and Biostatistics (CIBB 2015)}, 
+ September 10-12, 2015, Naples, Italy. (tam bildiri)
 \end{itemize}
 
 Proje kapsamında desteklenen aşağıdaki bursiyerler,  lisansüstü eğitimlerini 
@@ -209,14 +213,14 @@ yapmıştır.
  
 \begin{itemize}
 \item Fatma Kahveci (Balcı), Bilkent Üniversitesi Bilgisayar Mühendisliği, Yüksek Lisans, Ağustos 2014.
-\item Elif Dal, Fatma Kahveci (Balcı), Bilkent Üniversitesi Bilgisayar Mühendisliği, Yüksek Lisans, Aralık 2014.
+\item Elif Dal, Bilkent Üniversitesi Bilgisayar Mühendisliği, Yüksek Lisans, Aralık 2014.
 \end{itemize}
 
 
 \bigskip
 \hfill Can Alkan
 
-\hfill Ankara, Eylül 2015
+\hfill Ankara, Nisan 2016
 \newpage
 
 \setlength{\parskip}{1mm} 
@@ -278,6 +282,9 @@ Third, we are continuing to work on Illumina-based error correction for Pacific 
 
 
 \newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
 \begin{center}
 {\bf \Large 1. GİRİŞ}
 \end{center}
@@ -285,17 +292,8 @@ Third, we are continuing to work on Illumina-based error correction for Pacific 
 
 \bigskip
 \noindent
-{\bf \large 1.1. }
-\addcontentsline{toc}{subsection}{1.1. }
 
-\noindent
-
-\begin{center}
-{\bf \Large 2. LİTERATÜR ÖZETİ}
-\end{center}
-\addcontentsline{toc}{section}{2. LİTERATÜR ÖZETİ}
-
-Birkaç yıl önce piyasaya çıkan yeni nesil dizileme (YND) platformları sayesinde genom dizileme fiyatı milyonlarca kez ucuzlamış, ve genom bilimleri alanında yeni bir çığır açılmıştır~\cite{Mardis2008}. 15 yıl süren insan genom projesi 3-10 milyar Amerikan dolarına mal olmuşken, hem dizileme teknolojileri hem de genel dizileme yöntemlerinin (hiyerarşik dizileme yerine tüm genom dizileme) değişmesi ile bu miktar 2007 yılında 10 milyon dolar seviyesine, 2008'de 2 milyon dolara ve bugün 10 bin dolar altına düşmüştür (Şekil~\ref{fig:cost})
+Birkaç yıl önce piyasaya çıkan yeni nesil dizileme (YND) platformları sayesinde genom dizileme fiyatı milyonlarca kez ucuzlamış, ve genom bilimleri alanında yeni bir çığır açılmıştır~\cite{Mardis2008}. 15 yıl süren insan genom projesi 3-10 milyar Amerikan dolarına mal olmuşken, hem dizileme teknolojileri hem de genel dizileme yöntemlerinin (hiyerarşik dizileme yerine tüm genom dizileme) değişmesi ile bu miktar 2007 yılında 10 milyon dolar seviyesine, 2008'de 2 milyon dolara ve bugün 1,000 dolar seviyesine düşmüştür (Şekil~\ref{fig:cost})
 
 \begin{figure}[htb]
 \begin{center}
@@ -320,7 +318,7 @@ Her ne kadar dizilemedeki ucuzlama nedeni ile arka arkaya bir çok hayvan ve bit
 \begin{center}
   \includegraphics[scale=0.45]{shatter.png}
 \end{center}
-\caption{Sadece Illumina platformu kullanılarak yapılan bir tüm genom birleştirmesi~\cite{Li2010b} sonucunda ortaya çıkan referanstaki DUSP22 geninin onlarca parçaya ayrıldığı görülmüştür~\cite{Alkan2011c}}
+\caption{Sadece Illumina platformu kullanılarak yapılan bir tüm genom birleştirmesi~\cite{Li2010b} sonucunda ortaya çıkan referanstaki {\it DUSP22} geninin onlarca parçaya ayrıldığı görülmüştür~\cite{Alkan2011c}.}
 \label{fig:shatter}
 \end{figure}
 
@@ -336,7 +334,26 @@ Bunlara rağmen her YND teknolojisinin diğerlerine göre bazı avantajları var
 \label{fig:strobe}
 \end{figure}
 
-% SHATLYK: Buraya hybrid assembly ve MHAP uzerine ozet gelebilir
+
+\noindent
+
+\clearpage
+\begin{center}
+{\bf \Large 2. LİTERATÜR ÖZETİ}
+\end{center}
+\addcontentsline{toc}{section}{2. LİTERATÜR ÖZETİ}
+
+
+
+
+\begin{center}
+{\bf \Large 3. GEREÇ VE YÖNTEM} 
+\end{center}
+\addcontentsline{toc}{section}{3. GEREÇ VE YÖNTEM}
+\noindent
+
+{\bf \large 3.1. Genel bakış ve özet}
+\addcontentsline{toc}{subsection}{3.1. Genel bakış ve özet}
 
 Bu projenin başvurusunda da kaba taslağını verdiğimiz aynı anda kısa ve uzun dizilerin kullanımına olanak sağlayacak birleştirme algoritmasının çalışmalarına başladık. Projenin bu aşamasında
  kısa diziler için Illumina ve uzun diziler için Pacific Biosciences (PacBio) verileri kullanacağız. Bu algoritmayı geliştirmek ve test etmek için 8 farklı BYK'den elde edilmiş 
@@ -360,7 +377,7 @@ Tek veri tipini kullanan genom birleştirme algoritmaları teorik olarak her ne 
 
 \end{enumerate}
 
-Proje başvurusunda, Illumina cihazının 0.01\% hata payıyla ürettiği 100 baz çifti uzunluğundaki dizileri kullanarak, PacBio cihazının 10\%-15\% hata payıyla ürettiği 4000-5000 baz çifti uzunluğundaki dizilerin hata oranını düşürmeyi önermiştik. Bu probleme çözüm olarak farklı bir yöntemi geliştirmeye başladık. Problemi tekrarlayalım: 
+Proje başvurusunda, Illumina cihazının \%0.01 hata payıyla ürettiği 100 baz çifti uzunluğundaki dizileri kullanarak, PacBio cihazının 10\%-15\% hata payıyla ürettiği 4000-5000 baz çifti uzunluğundaki dizilerin hata oranını düşürmeyi önermiştik. Bu probleme çözüm olarak farklı bir yöntemi geliştirmeye başladık. Problemi tekrarlayalım: 
 
 {\bf Problem:}
 
@@ -380,17 +397,9 @@ Anlattığımız yöntemin prototipini küçük veriler üzerinde deneyerek çal
 
 
 
-\clearpage
 
-
-\begin{center}
-{\bf \Large 3. GEREÇ VE YÖNTEM} 
-\end{center}
-\addcontentsline{toc}{section}{3. GEREÇ VE YÖNTEM}
-\noindent
-
-{\bf \large 3.1. Havuzlanmış klon dizileme ile genom iskeleleme}
-\addcontentsline{toc}{subsection}{3.1. Havuzlanmış klon dizileme ile genom iskeleleme}
+{\bf \large 3.2. Havuzlanmış klon dizileme ile genom iskeleleme}
+\addcontentsline{toc}{subsection}{3.2. Havuzlanmış klon dizileme ile genom iskeleleme}
 
 
 Günümüzde yeni nesil dizileme (YND) teknolojilerinin yaygınlaşması ve dolayısıyla verilerin düşük maliyetlerde elde edilebilmesi, de novo (referans genom olmadan) 
@@ -447,32 +456,32 @@ karakterleriyle doldurulması sonucu uzunluklarının artması beklenirken, dör
 Sonuç olarak, farklı iskeleleme programları, parametreleri, hizalama yöntemleri ve ürettikleri iskeleler test edilip farklılıklar tespit edilmiştir ve yeni tasarlanılacak iskeleleme programının geliştirilmesi için gereklilikler ve oluşabilecek hatalar not edilmiştir.
 
 \clearpage
-{\bf \large 3.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
-\addcontentsline{toc}{subsection}{3.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
+{\bf \large 3.3. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
+\addcontentsline{toc}{subsection}{3.3. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 
 \input{bac_pinar_methods.tex}
 
 \clearpage
 
-{\bf \large 3.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
-\addcontentsline{toc}{subsection}{3.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
+{\bf \large 3.4. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
+\addcontentsline{toc}{subsection}{3.4. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
 
 
-{\bf 3.3.1. Hızlı Illumina-PacBio hizalanması için filtreleme}
-\addcontentsline{toc}{subsubsection}{3.3.1. Hızlı Illumina-PacBio hizalanması için filtreleme}
+{\bf 3.4.1. Hızlı Illumina-PacBio hizalanması için filtreleme}
+\addcontentsline{toc}{subsubsection}{3.4.1. Hızlı Illumina-PacBio hizalanması için filtreleme}
 
 \input{canfirtina_methods.tex}
 
-{\bf 3.3.2. Hiperçizge tabanlı birleştirme algoritması}
-\addcontentsline{toc}{subsubsection}{3.3.2. Hiperçizge tabanlı birleştirme algoritması}
+{\bf 3.4.2. Hiperçizge tabanlı birleştirme algoritması}
+\addcontentsline{toc}{subsubsection}{3.4.2. Hiperçizge tabanlı birleştirme algoritması}
 
 \input{shatlyk_methods.tex}
 
 
 \clearpage
 
-{\bf \large 3.4. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
-\addcontentsline{toc}{subsection}{3.4. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
+{\bf \large 3.5. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
+\addcontentsline{toc}{subsection}{3.5. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
 
 DNA'nın sadece belirli bölgelerinde yaşanan dizi değişimlerine bakmak için tüm genom birleştirme yöntemini kullanmak yerine hedefleyici birleştirme yöntemini kullanmak daha etkin sonuçlar vermektedir. Hedefleyici birleştirme yönteminin alt sınıflarından birisi de yalnızca protein kodlayan bölgeleri hedefleyen ekzom birleştirme yöntemidir. Ancak ekzom birleştirme metodunu kullanabilmek için ekzon verilerindeki GC-içeriği ve ekzon yakalama etkinliği gibi bazı sapmaları düzeltmek gerekmektedir (Şekil~\ref{fig:exomedepth}). Bu sapmalardan GC-içeriğini düzeltmek için yapılmış birçok çalışma olmasına rağmen~\cite{Krumm2012,Fromer2012} ekzon yakalama etkinliğiyle alakalı bilinen bir çalışma bulunmamaktadır. Bu alandaki açığı kapatarak ekzom birleştirme yöntemini de kullanabilmek için bir çalışma yaptık. Prob yakalama etkinliğinde varolan sapmaları düzeltmek için yaptığımız bu çalışma sonucunda bu etkiyi büyük ölçüde düzelttik. 
 
@@ -487,8 +496,8 @@ DNA'nın sadece belirli bölgelerinde yaşanan dizi değişimlerine bakmak için
 
  Prob yakalama etkinliği, genomun her yerinde o bölgede kullanılan probun özelliklerine göre değişmektedir. Her bölgenin bu sapmadan ne kadar etkilendiğini görmek ve bu sapmaları düzeltebilmek için, dizileme teknolojileri kullanılarak elde edilen DNA parçacıklarını ekzon koordinatlarına göre eşleştirdik. Daha sonra her bir bölgeye ait prob sayısı ve dizi derinliğine bakılarak, yakalama etkinliklerini tespit ettik. 
 
-{\bf 3.4.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
-\addcontentsline{toc}{subsubsection}{3.4.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
+{\bf 3.5.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
+\addcontentsline{toc}{subsubsection}{3.5.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
 
 Ekzom dizilemesi verilerinin üzerinde çalışırken, örneklere ait verilerin okuma derinlikleriyle kopya sayısı varyantlarını kıyaslayabilmek için pencere büyüklüklerini (window size) eşitlememiz gerekmektedir. Bunu yapabilmek için her bir ekzona map edilmiş olan okuma sayısının ortalaması (exome mean read count)(EMRC) hesaplanmalıdır. EMRC aşağıdaki gibi formülize edilmiştir:
 
@@ -496,33 +505,33 @@ Ekzom dizilemesi verilerinin üzerinde çalışırken, örneklere ait verilerin 
 
 Burada $RC_E$ hedeflenen e genomik bölgesine eşleştirilen okuma sayısını, $L_e$ ise aynı genomik bölgenin büyüklüğünü ifade etmektedir. EMRC genomun edeflenen her bir bölgesi için hesaplanıp, belirli bölgelere eşleştirilen okuma yoğunluğunun bir ölçüsünü vermektedir. 
 
-{\bf 3.4.2. GC İçeriği Yanlılığı}
-\addcontentsline{toc}{subsubsection}{3.4.2. GC İçeriği Yanlılığı}
+{\bf 3.5.2. GC İçeriği Yanlılığı}
+\addcontentsline{toc}{subsubsection}{3.5.2. GC İçeriği Yanlılığı}
 
 GC içeriği yanlılığı, okuma kapsamı (read coverage) ile dizileme verisinde bulunan GC içeriğinin arasındaki ilişkiyi ifade etmektedir. Bu yanlılık, DNA dizilemesinde varolan kopya sayısı tahmininde de olabileceği gibi, genomdaki parça (fragment) bolluğunu ölçmeye odaklı analizlerdeki sinyalleri domine edebilmektedir. Ayrıca örnekler arasında tutarlılık gösteren bir yanlılık olmayıp, tek bir örnekteki yanlılığı ortadan kaldırabilecek en iyi yöntem diye bir şeyden de söz edilememektedir.
 
-{\bf 3.4.3. Batch Etkisi}
-\addcontentsline{toc}{subsubsection}{3.4.3. Batch Etkisi}
+{\bf 3.5.3. Batch Etkisi}
+\addcontentsline{toc}{subsubsection}{3.5.3. Batch Etkisi}
 
 Genetik varyantlar, gen ve protein ifadelerinde ve epigenetik modifikasyonlar için geniş ölçekte kullanılan  YND teknolojileri, gözden kaçırılabilecek batch etkisine sık sık maruz kalabilmektedir. Batch yanlılığı laboratuvar şartlarından ve personel değişimleri gibi durumlardan meydana gelebilmektedir. Bu etki,  verdiği doğru olmayan sonuçlara bağlı olarak çok önemli bir problem haline gelmiştir.
 
 
-{\bf 3.4.4. Temel İçerik Analizi (Principal Component Analysis)(PCA)}
-\addcontentsline{toc}{subsubsection}{3.4.4. Temel İçerik Analizi (Principal Component Analysis)(PCA)}
+{\bf 3.5.4. Temel İçerik Analizi (Principal Component Analysis)(PCA)}
+\addcontentsline{toc}{subsubsection}{3.5.4. Temel İçerik Analizi (Principal Component Analysis)(PCA)}
 
 Temel içerik analizi, modern veri analizinin dayanak  noktası haline gelmiştir. Bunun yanı sıra uygulamalı lineer cebirin en değerli sonucu olarak da kabul edilmektedir. PCA olarak da bilinen bu yöntem çok yaygın bir şekilde ancak çok iyi anlaşılmadan kullanılmaktadır. Bu da yanlış sonuçlar doğurmaktadır. Yürütmekte olduğumuz çalışmada PCA yönteminin olası yanlış kullanımlarını düzelterek, daha doğru veriler de elde etmeyi hedeflemekteyiz. Karmakarışık bir veri kümesinden, en alakalı kısmı alabilen parametrik olmayan bir metot olduğu için nöroloji biliminden bilgisayar grafiği alanına kadar geniş bir yelpazede kullanılmaktadır. Minimal düzeyde ek bir çaba ile PCA, kompleks bir veri kümesinden kümeyi ifade edebilen küçük bir data setini elde edebilmeyi, zaman zaman ise gizli kalmış altta yatan basit dinamiklerin ortaya çıkarılmasını sağlamaktadır. PCA'nın amacı,  pürüzlü (noisy) veri kümesini en anlamlı ve daha basit bir şekilde yeniden ifade edebilmeyi sağlamaktır.
 
-
-{\bf 3.4.5. Değişken Bayes Çıkarımı}
-\addcontentsline{toc}{subsubsection}{3.4.5. Değişken Bayes Çıkarımı}
+\clearpage
+{\bf 3.5.5. Değişken Bayes Çıkarımı}
+\addcontentsline{toc}{subsubsection}{3.5.5. Değişken Bayes Çıkarımı}
 
 
 Tekil değer ayrışımı (SVD), bir matrisin optimal bir şekilde düşük rank ayrımını (karesel hata anlamında), döndüren bir matris  ayrıştırma algoritmasıdır. SVD'nin; çıktısı, verinin kompakt ve bilgilendirici bir gösterimi olarak yorumlanabilecek makine öğrenimi uygulamalarında geniş bir kullanımı vardır. Maalesef bunun yanında, aşırı aralıklı matrisler için veriye gereğinden fazla uyumlu grafikler ortaya çıkararak, yeni verinin grafikte doğru bir şekilde yer bulmasını engelleyebilmektedir. Bu nedenle çok dikkatli bir şekilde ele alınmalıdır. Kopya sayısı varyantı tespiti algoritmalarında da  oldukça fazla kullanılmaktadır.
 
 Elimizde var olan (kopya sayısı) $\times$ (örnekler) matrisinin  ekzom datasına bağlı olarak gelişen aralıklı yapısından dolayı SVD bazen yeterli olamamaktadır. Burada oluşabilecek verinin fazla uyumlu grafikler ortaya çıkarabilmesi durumunu engelleyebilmek için her biri veri kümesinin yapısına uygun parametreler ve yapılar ortaya çıkaran değişken bayes çıkarımını kullanmayı planlamaktayız. Elimizdeki veri kümesine oldukça benzeyen daha önce internet sitelerinde yer alan sinema tavsiyeleri için makine öğrenmesi uygulamasında da kullanılmış ve buradaki sonuçları iyileştirmiştir.
 
-{\bf 3.4.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
-\addcontentsline{toc}{subsubsection}{3.4.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
+{\bf 3.5.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
+\addcontentsline{toc}{subsubsection}{3.5.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
 
 Elimizdeki veriyi matris benzeri bir yapı olarak düşünebiliriz. Bunlardan ilki; (okuma derinliği) $\times$ (örnek), ikincisi; (kopya sayısı varyantı) $\times$ (örnekler) matrisidir  diyebiliriz. Okuma derinliği verisini içeren ilk matrisimizde eksik veri bulunmamaktadır. Amacımız ilk matristeki verileri kullanarak, fazla sayıda eksik veri içeren ikinci matrisimizdeki kopya sayısı varyantlarını tespit edebilmektir. Elimizde varolan veriler tüm genom dizilemesi verileridir. Biz bu verileri daha önceden elde edilmiş insan ekzom verisiyle eşleştirdik(mapping). Böylece kopya sayısı varyantı tespitinde daha avantajlı DNA'nın sadece ekzom kısmıyla ilgilenebiliyoruz. Eşleştirdikten sonra matrislerin üzerinde işlem yapabilmemiz için farklı örneklerden  geliyor olmasından kaynaklanan pencere büyüklüğü sorununu çözebilmek için daha önce bahsetmiş olduğumuz ``Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması'' kısmındaki EMRC formülünü kullanarak uniform matrisler elde etmekteyiz.
 
@@ -541,12 +550,10 @@ Bu veri kümesinde GC ve yakalama prob sayıları ile dizileme derinliği arası
 \[R_{rd,pr,gc} = \frac{\sqrt{r_{rd,gc}^2 + r_{rd,pr}^2 - 2r_{rd,gc}r_{rd,pr}r_{gc_pr}}}{\sqrt{1-r_{gc,pr}^2}}\]
 
 Burada $r_{rd,gc}$ derilik ve GC arasında, $r_{rd,pr}$ derinlik ve prob sayısı arasında, $r_{gc,pr}$ de GC ve prob sayısı arasındaki ikili korelasyonu ifade eder.
-
+\vspace*{-0.2cm}
 \paragraph{Veri düzleştirme (LOESS).} 
 LOESS metodu yerel ağırlıklı lineer gerileme kullanarak verilerin düzleştirilmesini sağlar. Düzlük katsayısı dışında bir parametreye ihtiyaç duymaz. Verinin aşağıdaki gibi bir fonksiyon ile üretildiği varsayılır:
-
 \[y_i = g(x_i) + \epsilon_i\]
-
 Burada $g$, bağımsız değişkenler arasındaki düzlük katsayısını ifade eden bir fonksiyondur.
 
 %LOESS metodu ile veri düzeltme işlemi aşağıdaki gibidir:
@@ -581,8 +588,10 @@ yaptık (Tablo~\ref{tab:chr1h}, \ref{tab:chr20h}). Sonuç olarak
 tüm genom verileri için geliştirilen iskeleleme algoritmalarının, BYK ve fosmid verisi kullanıldığında genom birleştirme kalitesine bir fayda sağlamadığını gözlemledik.
 
 \begin{table}[htb]
+\caption{Kromozom 1 verileri üzerinde tüm BYK verilerini birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr1w}
 \begin{center}
-\begin{tabular}{|l|r|r|r|r|r|r|r}
+\begin{tabular}{|l|r|r|r|r|r|r|r|}
 \hline 
 {\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
 \hline
@@ -593,14 +602,14 @@ BESST  & 7,028	& 99,697,046	& 99,595,402	& 42.12 &	101,644 &	32,938 &	6,708 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Kromozom 1 verileri üzerinde tüm BYK verilerini birleştirerek yaptığımız iskeleleme sonuçları.}
-\label{tab:chr1w}
 \end{table}
 
 
 \begin{table}[htb]
+\caption{Kromozom 20 verileri üzerinde tüm BYK verilerini birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr20w}
 \begin{center}
-\begin{tabular}{|l|r|r|r|r|r|r|r}
+\begin{tabular}{|l|r|r|r|r|r|r|r|}
 \hline 
 {\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
 \hline
@@ -611,14 +620,14 @@ BESST  & 115	& 4,683,891	& 4,683,167	& 45.44	& 724	 & 48,117  	& 23,589 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Kromozom 20 verileri üzerinde tüm BYK verilerini birleştirerek yaptığımız iskeleleme sonuçları.}
-\label{tab:chr20w}
 \end{table}
 
 
 \begin{table}[htb]
+\caption{Kromozom 1 verileri üzerinde BYK havuzlarını sırayla birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr1h}
 \begin{center}
-\begin{tabular}{|l|r|r|r|r|r|r|r}
+\begin{tabular}{|l|r|r|r|r|r|r|r|}
 \hline 
 {\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
 \hline
@@ -629,14 +638,14 @@ BESST  & 513 & 1,564,335          & 1,564,334   & 50.66 & 1     & 4,520  & 1,319
 \hline
 \end{tabular}
 \end{center}
-\caption{Kromozom 1 verileri üzerinde BYK havuzlarını sırayla birleştirerek yaptığımız iskeleleme sonuçları.}
-\label{tab:chr1h}
 \end{table}
 
 
 \begin{table}[htb]
+\caption{Kromozom 20 verileri üzerinde BYK havuzlarını sırayla birleştirerek yaptığımız iskeleleme sonuçları.}
+\label{tab:chr20h}
 \begin{center}
-\begin{tabular}{|l|r|r|r|r|r|r|r}
+\begin{tabular}{|l|r|r|r|r|r|r|r|}
 \hline 
 {\bf Algoritma } & {\bf İskele} & {\bf Toplam bp} & {\bf ATCG} & {\bf GC\%} & {\bf N} & {\bf N50} & {\bf N90} \\
 \hline
@@ -646,18 +655,16 @@ OPERA  &  250	& 10,019,740	& 10,019,735	& 44.75	& 5	& 49,272	& 22,521 \\
 BESST  &  17    & 308,948 & 308,948  & 47.81 & 0  & 22,521 & 10,538 \\ \hline
 \end{tabular}
 \end{center}
-\caption{Kromozom 20 verileri üzerinde BYK havuzlarını sırayla birleştirerek yaptığımız iskeleleme sonuçları.}
-\label{tab:chr20h}
 \end{table}
 
-\clearpage
+%\clearpage
 
 {\bf \large 4.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 \addcontentsline{toc}{subsection}{4.2. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 
 \input{bac_pinar_sonuc.tex}
 
-\clearpage
+%\clearpage
 
 {\bf \large 4.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
 \addcontentsline{toc}{subsection}{4.3. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
@@ -692,6 +699,8 @@ BESST  &  17    & 308,948 & 308,948  & 47.81 & 0  & 22,521 & 10,538 \\ \hline
 \end{figure}
 
 \begin{table}[htb]
+\caption{1000 Genom Projesi'nden 7 örneğin dizileme derinliği (RD), prob sayısı (PR) ve GC içeriği (GC) ile korelasyonları.}
+\label{tab:correlation}
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline 
@@ -707,8 +716,8 @@ NA20766 & 0.6509 & 0.6768\\
 \hline
 \end{tabular}
 \end{center}
-\caption{1000 Genom Projesi'nden 7 örneğin dizileme derinliği (RD), prob sayısı (PR) ve GC içeriği (GC) ile korelasyonları. Görüldüğü üzere PR ve GC değerleri birlikte alınıp çoklu korelasyon hesaplandığında daha yüksek korelasyon katsayısı elde edilmektedir.}
-\label{tab:correlation}
+\vspace*{0.5cm}
+ Görüldüğü üzere PR ve GC değerleri birlikte alınıp çoklu korelasyon hesaplandığında daha yüksek korelasyon katsayısı elde edilmektedir.
 \end{table}
 
  Şekil \ref{fig:captureeff}'de de görüldüğü gibi gürültünün azaltılmasına rağmen prob kapsama etkinliği ve dizi derinliği arasında yeteri kadar güçlü bir ilişki bulunamamıştır. Daha sonra genom üzerinde bulunan her bir bazın kendisine yakın olan dizilimlerden etkilendiği düşüncesinden yola 
@@ -738,16 +747,29 @@ LOESS metoduyla düzeltilen data kullanılarak, ekzom birleştirme yöntemini da
 \clearpage
 
 \begin{center}
-{\bf \Large 5. TARTIŞMA/SONUÇ}
+{\bf \Large 5. SONUÇ}
 \end{center}
-\addcontentsline{toc}{section}{5. TARTIŞMA/SONUÇ}
+\addcontentsline{toc}{section}{5. SONUÇ}
 
 \noindent
-Yürürlükte olduğu üç sene boyunca, **** projesinin ele aldığı soruların bir kısmında kayda değer bir ilerleme kaydetmiştir. 
+Yeni nesil dizileme (YND) teknolojileri sayesinde bütün biyolojik bilimlerdeki çalışma yöntemleri radikal bir şekilde değişmiştir. Ayrıca YND tıpta da kullanılmaya başlanmış ve kişileştirilmiş tıp alanının doğmasına yol açmıştır. Bu teknolojiler üretilen verilerin özellikleri ve maliyetleri konusunda da çok çeşitlilik gösterir, ve hemen hemen her 3-4 ayda bir yeni bir teknoloji piyasaya çıkmakta, ya da var olan bir dizileme platformunun yeni versiyonları piyasaya sürülmektedir. 2007 yılında Roche/454 ile başlayan YND serüveni, Illumina, SOLiD, Complete Genomics, Ion Torrent gibi kısa dizileme teknolojileri ile devam etmiş, son 1-2 yılda da PacBio, Oxford Nanopore (ONP) gibi uzun, ancak çok hata paylı dizileme teknolojileri safhasına geçilmiştir. Çok daha yakın zamanda 10X Genomics, Dövetail Genomics, ve CPT-Seq~\cite{Adey2014,Amini2014} gibi kısa Illumina okumalarını oluştururken uzun müleküllerdeki devamlılığı da takip edebilen yeni kütüphane hazırlama teknolojileri de ortaya çıkmıştır. YND platformlarındaki bu çeşitlilik de dizileme ve analiz yöntemlerinin özellikler klinik ortamda kullanımının standartlara oturtulmasını amaçlayan Genome in a Bottle Projesi'nin~\cite{Zook2014} başlamasına sebep olmuştur.
+
+Yukarıda da belirttiğimiz üzere, her YND platformunun ürettiği veri dizi uzunluğu, hata profili ve maliyet gibi konularda birbirinden farklıdır. Ancak, bir teknoloji için dezavantaj olan bir özellik bir başka teknolojide avamtaja dönüşebilmektedir, ve bu artı-eksi farklılıkları birbirine paralel ilerler (çiftlilik prensibine [principle of dualıty] benzer şekilde). Örneğin, Illumina okumalarının kısa olmasına karşın PacBio ve ONP verileri uzundur, ancak buna karşılık Illumina'da hata payı binde 1'den az iken, PacBio'da \%15, ONP'de \%20 civarındadır. Bu nedenle, özellikle büyük genomların birleştirilmesi projelerinde aynı anda birden fazla YND platformunun verilerinden faydalanmak avantajlı olacaktır. Böylece genomdaki tekrarlar uzun PacBio ve ONP okumaları ile daha rahat çözümlenirken, hemen hemen hatasız Illumina verileri ile baz çifti düzeyindeki hatalar en aza indirgenecektir.
+
+112E135 projesinde aynı anda birden fazla YND verişi kullanılarak genom birleştirmelerdeki hataların en aza indirgenmesi üzerine çalıştık:
+
+\begin{itemize}
+\item Roche/454, Ion Torrent ve Illumina verilerini birlikte kullanarak geliştirdiğimiz BYK birleştirmelerindeki hata düzeltimi algorıtması ÇİBB konferansında sunulmuştur~\cite{Kavak2015a} ve dergide çıkacak versiyonu üzerinde çalışmalarımız sürmektedir.
+\item Illumina verilerini kullanarak PacBio okumalarındaki hataların düzeltilmesi için hızlı hizalama ve filtreleme algoritmamız küçük veri kümelerinde iyi çalışmaktadır. Ancak bu algoritmanın genom ölçeğinde de çalışabilmesi için implementasyonunda düzeltmeler gerekmektedir. Bu konuda Bilkent Üniversitesi'nde yüksek lisansına yeni başlayan Can Fırtına çalışacaktır.
+\item Illumina ve PacBio okumalarını hipercizge üzerinde entegre ederek genom birleştirmesi algoritmamızın prototipi BYK büyüklüğünde ve simülasyon ile elde edilmiş verilerle çalışmaktadır. Bu prototip algoritmamız Bertinoro Computational Biology Meeting'de sunulmuştur~\cite{Ashyralyyev2015}. Gerçek veriler üzerinde denemelerimiz sürmektedir, bu algoritmamızın son versiyonunu da RECOMB konferansında sunmayı ve Bioinformatics dergisinde yayınlamayı planlamaktayız.
+\end{itemize}
 
 \noindent
 {\bf \Large 5.1. Öneriler}
 \addcontentsline{toc}{section}{5.1. Öneriler}
+YND platformları arasındaki farklılıklardan dolayı, birden fazla YND teknolojisi ile elde edilmiş verilerin kullanılmasının genom birleştirmelerinin kalitesine pozitif bir etki sağladığı görülmüştür. Illumina'nın ucuz, PacBio ve ONP'nin ise görece pahalı teknolojiler olması nedeniyle, az maliyetli olduğu halde yüksek doğruluklu genom birleştirmelerini elde edebilmek için, çok yüksek derinlikte Illumina ($>$100X), ve düşük derinlikte PacBio/ONP ($>$5X) okumalarının entegre bir şekilde kullanılması uygun olacaktır. Bu verilere bütçe yeterliyse orta derinlikte Ion Torrent verilerinin ($\sim$8-9X) eklenmesinin de katkısı olabilir.
+
+Ayrıca, gene yukarıda belirtildiği üzere, yeni dizileme teknolojileri (ONP gibi), kütüphane hazırlama protokolleri (10X Genomics, Dovetail Genomics, CPT-Seq, havuzlanmış klon dizileme), ve nanoteknoloji temelli DNA görüntüleme teknolojileri (BioNano) halen geliştirilmeye devam etmektedir. Bu yeni veri tıplerinin de etkin bir şekilde kullanımı için yeni algorıtma dizaynlarına ihtiyaç vardır. Genome in a Bottle Projesi, amaçları nedeniyle, hemen hemen her teknolojiden elde edilen verileri üretmektedir. Bu projeye katılım ile hem alandaki yeniliklerden anında haber olmak, hem de en yeni veriye anında erişim mümkün olmaktadır.
 
 {\small 
 \bibliographystyle{plain}
