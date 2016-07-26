@@ -304,27 +304,28 @@ Birkaç yıl önce piyasaya çıkan yeni nesil dizileme (YND) platformları saye
 \end{figure}
 
 
-Şu anda kullanılmakta olan birçok farklı ikinci ve üçüncü nesil YND platformu vardır. Bunların başlıcaları olarak 454 Life Sciences şirketinin ürettiği GS FLX sistemi, Illumina şirketinin ürettiği HiSeq2000/HiSeq2500/HiSeq3000/HiSeq4000, Ion Torrent'in PGM ve Proton, Pacific Biosciences'in SMRT teknolojisi ve PacBio RS platformu, Applied Biosystems'in SOLiD cihazı olarak listelenebilir. Çok daha yeni olarak nanoteknoloji temelli ``dördüncü nesil'' platformları (örn. Oxford Nanopore) piyasaya çıkmaya başlamıştır~\cite{Metzker2010,Loman2015}. Her ne kadar dizileme maliyeti çok düşmüşse de YND teknolojilerinin ürettiği verilerin bazı eksik yönleri vardır. Okunan ortalama dizi parçacığı uzunluğu çok kısa (örn. Illumina için 150 baz çifti), kullanılan DNA molekülleri çok küçük (örn. Illumina için 200-700 baz çifti), ve baz okuma hata oranı çok yüksek ve değişkendir (Illumina için \%0.1, Pacific Biosciences için \%15).
+Şu anda kullanılmakta olan birçok farklı ikinci ve üçüncü nesil YND platformu vardır. Bunların başlıcaları olarak 454 Life Sciences şirketinin ürettiği GS FLX sistemi, Illumina şirketinin ürettiği HiSeq2000/HiSeq2500/HiSeq3000/HiSeq4000, Ion Torrent'in PGM ve Proton, Pacific Biosciences'in SMRT teknolojisi ve PacBio RS platformu, Applied Biosystems'in SOLiD cihazı olarak listelenebilir. Çok daha yeni olarak nanoteknoloji temelli ``dördüncü nesil'' platformları (örn. Oxford Nanopore [ONT]) piyasaya çıkmaya başlamıştır~\cite{Metzker2010,Loman2015}. Her ne kadar dizileme maliyeti çok düşmüşse de YND teknolojilerinin ürettiği verilerin bazı eksik yönleri vardır. Okunan ortalama dizi parçacığı uzunluğu çok kısa (örn. Illumina için 150 baz çifti), kullanılan DNA molekülleri çok küçük (örn. Illumina için 200-700 baz çifti), ve baz okuma hata oranı çok yüksek ve değişkendir (Illumina için \%0.1, Pacific Biosciences için \%15).
 
 
 YND teknolojilerindeki baş döndürücü ilerleme, bu verilerin işlenmesine olan ihtiyaç nedeniyle bilgisayar bilimleri alanında da artan bir faaliyete neden olmuştur~\cite{Pop2008}. Elde edilen verilerin referans genomuyla karşılaştırılması ile değişik bireyler arasındaki genomik farklılıkların bulunması önemli bir araştırma alanıdır~\cite{Alkan2011,DePristo2011}. Bu nedenle 2.500 insan genomunun ayrıntılı incelenmesini amaçlayan 1000 Genom Projesi halen devam etmektedir~\cite{1000GP,1000GP2012}. Normal farklılıkların dışında genetik hastalıkların nedenlerinin bulunması için de YND platformları eşsiz bir güç sunmaktadır~\cite{Bamshad2011}. Ayrıca YND yöntemleri hücrelerdeki tüm RNA moleküllerinin tamamı anlamına gelen transkriptom dizilenmesi~\cite{Wang2009} ve genlerin aktivasyonlarini ölçmek~\cite{Park2009} için de kullanılabilir. 
 
-Yukarıda belirtilenlerin dışında YND teknolojilerinin yoğunlukla uygulandığı bir alan da tüm genom dizileme birleştirmesi (de novo genome assembly) yoluyla farklı organizmaların referans genomlarının çıkarılmasıdır~\cite{Schatz2010}. Bugüne kadar geliştirilmiş olan genom birleştirme algoritmalarının hepsi çizge kuramı (graph theory) temellerine dayalı algoritmalardır. Başlıca iki tür genom birleştirme yöntemi vardır. Bunlardan ilki olan örtüşme çizgesi (overlap graph) yönteminde dizi parçaları çizgede uç olarak ifade edilir ve arasında başlangıç/sonuç ilişkisi olan dizi parçaları arasına kenar eklenir ve oluşan çizge üzerinde Hamilton turu (Hamiltonian path) aranır. Bu yöntemin örnekleri arasında eski nesil dizileme teknolojileri için kullanılan Celera Assembler~\cite{Myers2002}, Phusion~\cite{Mullikin2003} ve ARACHNE~\cite{Batzoglou2002} bulunur. İkinci ana yöntem genelde YND birleştirmelerinde kullanılan de Bruijn çizgesidir. Bu yöntemde YND dizi parçaları daha küçük ve aynı uzunlukta parçalara bölünür (k-mer), bu k-mer'ler çizgede uç olarak ifade edilip aynı dizi parçasından gelen k-mer'ler arasına kenar konulur. Bu şekilde oluşturulan çizgede Euler turu (Eulerian path) aranır. Bu yöntemi uygulayan başlıca birleştiriciler ise EULER~\cite{Chaisson2009}, ABySS~\cite{Simpson2009}, Velvet~\cite{Zerbino2008} ve SOAPdenovo'dur~\cite{Li2010b}. Yukarıda bahsedilen algoritmaların hepsi bir seferde sadece tek bir veri tipi kullanabilir, ve farklı verilerden ayrı ayrı oluşturulan farklı birleştirmeler daha sonra birbirlerine eklenir (iskeleleme/scaffolding).
+Yukarıda belirtilenlerin dışında YND teknolojilerinin yoğunlukla uygulandığı bir alan da tüm genom dizileme birleştirmesi ({\it de novo} genome assembly) yoluyla farklı organizmaların referans genomlarının çıkarılmasıdır~\cite{Schatz2010}. Bugüne kadar geliştirilmiş olan genom birleştirme algoritmalarının çoğu çizge kuramı (graph theory) temellerine dayalı algoritmalardır. Genel olarak dört farklı yaklaşım olsa da (Literatür Özeti), çizgelere dayalı özellikle  iki tür genom birleştirme yöntemi yaygın olarak kullanılmaktadır. Bunlardan ilki olan örtüşme çizgesi (overlap graph) yönteminde dizi parçaları çizgede uç olarak ifade edilir ve arasında başlangıç/sonuç ilişkisi olan dizi parçaları arasına kenar eklenir ve oluşan çizge üzerinde Hamilton turu (Hamiltonian path) aranır. Bu yöntemin örnekleri arasında eski nesil dizileme teknolojileri için kullanılan Celera Assembler~\cite{Myers2002}, Phusion~\cite{Mullikin2003} ve ARACHNE~\cite{Batzoglou2002} bulunur. İkinci ana yöntem genelde YND birleştirmelerinde kullanılan de Bruijn çizgesidir. Bu yöntemde YND dizi parçaları daha küçük ve aynı uzunlukta parçalara bölünür (k-mer), bu k-mer'ler çizgede uç olarak ifade edilip aynı dizi parçasından gelen k-mer'ler arasına kenar konulur. Bu şekilde oluşturulan çizgede Euler turu (Eulerian path) aranır. Bu yöntemi uygulayan başlıca birleştiriciler ise EULER~\cite{Chaisson2009}, ABySS~\cite{Simpson2009}, Velvet~\cite{Zerbino2008} ve SOAPdenovo'dur~\cite{Li2010b}. Yukarıda bahsedilen algoritmaların hepsi bir seferde sadece tek bir veri tipi kullanabilir, ve farklı verilerden ayrı ayrı oluşturulan farklı birleştirmeler daha sonra birbirlerine eklenir (iskeleleme/scaffolding).
 
-Her ne kadar dizilemedeki ucuzlama nedeni ile arka arkaya bir çok hayvan ve bitki için referans genomu çıkarılıyorsa da bu referansların tamamlılık oranı ve kalitesi İnsan Genom Projesi~\cite{IHGSC2001} ile oluşturulan referans genomunun kalitesinin çok gerisinde kalmıştır~\cite{Schatz2010,Alkan2011c}. Yakın zamanda sadece YND kullanılarak oluşturulan yeni insan genomu birleştirme projelerindeki~\cite{Li2010b,Gnerre2011} hatalar ve eksiklikler genom birleştirme yöntemlerinin önünde alınması gereken çok yol olduğunu ortaya koymuştur~\cite{Alkan2011c}. En önemli eksiklikler birleştirilen genomların devamlı parça (contig) sayısının çok yüksek oluşu, tekrarlı ve duplike bölgelerin yanlış ya da eksik birleştirilmiş oluşudur~\cite{Alkan2011c}. Bir genom birleştirme projesinin en büyük amacı gen dizilerinin belirlenmesi iken, yukarıda bahsedilen sorunlar nedeniyle, bilinen genlerin YND kullanılarak yapılan birleştirmelerde bir çok parçaya ayrıldığı görülmüştür (Şekil~\ref{fig:shatter}). Bu nedenlerden dolayı, güvenilir ve doğru yeni genom birleştirme algoritmalarına ihtiyaç vardır.
+Her ne kadar dizilemedeki ucuzlama nedeni ile arka arkaya bir çok hayvan ve bitki için referans genomu çıkarılıyorsa da bu referansların tamamlılık oranı ve kalitesi İnsan Genom Projesi~\cite{IHGSC2001} ile oluşturulan referans genomunun kalitesinin çok gerisinde kalmıştır~\cite{Schatz2010,Alkan2011b}. Yakın zamanda sadece YND kullanılarak oluşturulan yeni insan genomu birleştirme projelerindeki~\cite{Li2010b,Gnerre2011} hatalar ve eksiklikler genom birleştirme yöntemlerinin önünde alınması gereken çok yol olduğunu ortaya koymuştur~\cite{Alkan2011b}. En önemli eksiklikler birleştirilen genomların devamlı parça (contig) sayısının çok yüksek oluşu, tekrarlı ve duplike bölgelerin yanlış ya da eksik birleştirilmiş oluşudur~\cite{Alkan2011b}. Bir genom birleştirme projesinin en büyük amacı gen dizilerinin belirlenmesi iken, yukarıda bahsedilen sorunlar nedeniyle, bilinen genlerin YND kullanılarak yapılan birleştirmelerde bir çok parçaya ayrıldığı görülmüştür (Şekil~\ref{fig:shatter}). Bu nedenlerden dolayı, güvenilir ve doğru yeni genom birleştirme algoritmalarına ihtiyaç vardır.
 
 
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[scale=0.45]{shatter.png}
 \end{center}
-\caption{Sadece Illumina platformu kullanılarak yapılan bir tüm genom birleştirmesi~\cite{Li2010b} sonucunda ortaya çıkan referanstaki {\it DUSP22} geninin onlarca parçaya ayrıldığı görülmüştür~\cite{Alkan2011c}.}
+\caption{Sadece Illumina platformu kullanılarak yapılan bir tüm genom birleştirmesi~\cite{Li2010b} sonucunda ortaya çıkan referanstaki {\it DUSP22} geninin onlarca parçaya ayrıldığı görülmüştür~\cite{Alkan2011b}.}
 \label{fig:shatter}
 \end{figure}
 
 
 
 Bunlara rağmen her YND teknolojisinin diğerlerine göre bazı avantajları vardır. Örneğin Illumina platformu en çok veriyi en ucuza üretebilir (10 günde 600 milyar baz çiftinden fazla) ve baz okuma hata oranı en azdır (\%0.1). 454 cihazı diğerlerine göre daha büyük molekülleri eşli dizileyebilir (yaklaşık 20.000 baz çifti). Pacific Biosciences ise şu anki teknolojiler arasında ürettiği ortalama dizi uzunluğu en fazla olan platformdur (1.4 kb) ve ``grup dizileme'' (strobe sequencing) teknolojisi ile eşli dizilemeye (paired-end sequencing) göre bir molekülden daha fazla bilgi çıkarabilir (Şekil~\ref{fig:strobe}). Bu nedenledir ki, aynı anda birden fazla teknoloji ile elde edilmiş verileri kullanmak, her bir teknolojinin diğerlerine üstün yanlarından faydalanıp, sahip olduğu dezavantajları da diğer teknolojilerin avantajları ile gidermek en uygunu olacaktır. Örneğin Illumina'nın sağladığı yüksek kalitedeki baz okuma doğruluğu ile Pacific Biosciences'ın \%15'lik hata oranını düzelterek, aynı zamanda Pacific Biosciences'in gruplu ve uzun dizileme özelliği sayesinde Illumina'nin kısa dizilerinin birleştirilmesini geliştirip tekrarlı alanlardaki yapısal birleştirme hatalarını en aza indirgemek mümkün olacaktır.
+Ancak uzun dizileme verilerindeki okuma uzunluğunun artması ve gruplu dizilemedeki bazı teknik zorluklar nedeniyle artık PacBio cihazları ile gruplu dizileme yapılamamaktadır.
 
 \begin{figure}[htb]
 \begin{center}
@@ -342,6 +343,83 @@ Bunlara rağmen her YND teknolojisinin diğerlerine göre bazı avantajları var
 {\bf \Large 2. LİTERATÜR ÖZETİ}
 \end{center}
 \addcontentsline{toc}{section}{2. LİTERATÜR ÖZETİ}
+
+Genom birleştirme algoritmaları rastgele örneklenmiş DNA okumalarından başlayarak 
+bir organizmanın genom dizisini oluşturmaya çalışır. Çoğu omurgalı organizmanın genomu diploit (her kromozomdan 2 adet) olduğu için, en uygun (optimal) bir genom birleştirici her kromozom için iki uzun dizi üretmelidir. Ancak bu iki kopyanın da birbirine çok benzemesi nedeniyle bu algoritmalar sadece bir kopyayı oluşturmaya çalışır. Bu sorun poliplot (her kromozomun ikiden fazla kopyası olması)
+organizmalarda daha da belirgindir. 
+
+Hesaplama bakımından genom birleştirme algoritması en kısa ortak süperdizi 
+(shortest common superstring) problemine benzerlik göstermektedir 
+ve bu problem NP-zor bir problemdir~\cite{Raeihae1981}. En kısa ortak süperdizi probleminin karar versiyonu,
+verilen $n$ adet dizi $\{s_1,s_2,\ldots, s_n \}$ ve $L$ uzunluğu için bütün bu dizileri
+kapsayan ve en fazla $L$ uzunluğunda olan bir $S$ süperdizinin olup olmadığını sorar.
+Genom birleştirme probleminin en kısa ortak süperdizi probleminden farkları aşağıdaki gibidir:
+
+\begin{itemize}
+\item
+En kısa ortak süperdizi (EKOS) probleminin optimizasyon versiyonu süperdizinin
+uzunluğunu minimize etmeyi amaçlar. Buna karşın genom birleştirme problemi
+birleştirilecek genomun uzunluğunu ($L$) yakınsamaya çalışır ($|S|\cong L$).
+\item
+Memelilerde genomun hemen hemen yarısı tekrarlıdır ve bitki genolmarında tekrarlı .çerik çok daha fazladır. Bu nedenle iki farklı dizi ($s_i,s_j: ~s_i=s_j ~ve ~i\neq j$) içerikleri aynı olmasına rağmen birleştirilmiş genomun farklı yerlerine tekabül edebilir. EKOS ise bu iki diziyi birleştirir. 
+\item
+Dizileme hataları ve heterozigosite nedeniyle bir dizi ile elde edilen süperdizi karşılaştırıldığında
+değişim (substitution), ekleme (insertion) ve silinme (deletion) görülebilir.
+\item
+Başlangıçtaki dizilerin yaklaşık olarak  yarısı süperdizide ters ve komplemente edilmiş (reverse complement) olabilir.
+\item
+Eşli dizileme verilerinin varlığı durumunda eşli dizilerin birbirlerine göre süperdizideki yerleri ve oryantasyonları DNA dizileme ve kütüphane oluşturma protokollerine göre önceden tanımlanan şekle uygun olmalıdır.
+\end{itemize}
+
+Genom birleştirme problemininin en iyi çözümünün bilişimsel karmaşıklığı nedeniyle bir çok 
+sezgisel yaklaşım (heuristic) geliştirilmiş, ayrıca bu problem 
+yakınsama algoritmaları geliştirilmesine olanak sağlayacak şekilde tekrar tanımlanmıştır.
+Kısaca genom birleştirme için dört farklı yöntem vardır: 1) açgözlü (greedy) yöntemler, 2) örtüşme-düzenleme-oydaşma çizgeleri, 3) de Bruijn çizgeleri, ve 4) dizi çizgeleri. Bu yaklaşımların geniş özetleri ve karşılaştırmaları çok sayıda özet makalede sunulmuştur~\cite{Alkan2011b,Chaisson2015,Miller2010,Nagarajan2013,Zhang2011}. Ayrıca bazı algoritmaların listesini bu özette sunuyoruz (Tablo~\ref{tab:algs}).
+
+\begin{table}[]
+\caption{Bazı genom birleştirme algoritmaları.}
+\label{tab:algs}
+\begin{center}
+\begin{tabular}{l|l|l|l}
+\textbf{Algoritma tipi}                                                   & \textbf{Yaygın kullanımı}                                                           & \textbf{Algoritma ismi} & \textbf{Referans} \\
+\hline
+Açgözlü                                                                    & Az tekrarlı genomlar                                                                & TIGR                    & \cite{Sutton1995}                  \\
+                                                                           &                                                                                     & phrap                   &   \cite{phrap}                \\
+\hline
+\begin{tabular}[c]{@{}l@{}}Örtüşme-düzenleme-oydaşma \\ (ÖDO)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Az hatalı, orta uzunlukta\\ okumalar\end{tabular}        & Celera                  &  \cite{Venter2001}                 \\
+                                                                           &                                                                                     & PCAP                    &  \cite{Huang2003}                 \\
+                                                                           &                                                                                     & ARACHNE                 & \cite{Batzoglou2002}                  \\
+                                                                           &                                                                                     & Phusion                 &  \cite{Mullikin2003}                 \\
+\hline
+de Bruijn çizgeleri                                                        & Kısa okumalar                                                                       & EULER-SR                & \cite{Chaisson2004,Chaisson2008,Chaisson2009}                  \\
+                                                                           &                                                                                     & Velvet                  &   \cite{Zerbino2008}                \\
+                                                                           &                                                                                     & ALLPATHS-LG             &  \cite{Gnerre2011}                 \\
+                                                                           &                                                                                     & SOAPdenovo              &  \cite{Li2010b}                 \\
+                                                                           &                                                                                     & Cortex                  &  \cite{Iqbal2012}                 \\
+                                                                           &                                                                                     & SPAdes                  &  \cite{Bankevich2012}                \\
+                                                                           &                                                                                     & ABySS                   &  \cite{Simpson2009}                 \\
+                                                                           &                                                                                     & Meraculous              & \cite{Chapman2011}                  \\
+                                                                           &                                                                                     & HipMer                  & \cite{Georganas2015}                  \\
+\hline
+Dizi çizgesi                                                               & \begin{tabular}[c]{@{}l@{}}ÖDO ve de Bruijn \\ yöntemlerinin birleşimi\end{tabular} & SGA                     &   \cite{Simpson2012}                \\
+                                                                           &                                                                                     & Falcon                  &  $\ast$                 \\
+\hline
+Hibrit                                                                     & \begin{tabular}[c]{@{}l@{}}Farklı dizi türlerinin \\ kullanımı\end{tabular}         & Cerulean                &   \cite{Deshpande2013}                \\
+                                                                           &                                                                                     & Ray                     &   \cite{Boisvert2010}                \\
+                                                                           &                                                                                     & hybridSPAdes            &  \cite{Antipov2016}                \\
+\hline
+\end{tabular}
+\end{center}
+$^\ast$ \url{https://github.com/PacificBiosciences/falcon}
+\end{table}
+
+
+Hibrit veri kullanımı ile genom birleştirmesi yapan algoritmaları ise üç ana gruba ayırabiliriz. Birinci gruptakiler, yüksek miktarda dizileme hatalarını barındıran üçüncü nesil dizileme teknoloji (PacBio, ONT)
+ verilerindeki hataları kısa veri üreten ancak dizileme doğruluğu yüksek Illumina verileri ile on düzeltmesini yaparak, düzeltilmiş uzun okumalardan genom birleştiren algoritmalardır. Bu algoritmaların başlıcası olarak PacBioToCA~\cite{Koren2012} sayılabilir. Ikinci gruptakiler genom birleştirmesi için kullanılacak verileri hiyerarşik bir sırada ekleyerek kullanır, bunların başlıca örnekleri Ray~\cite{Boisvert2010}  algoritmasıdır. 
+Üçüncü gruptakiler ise bu verileri farklı veri yapılarında tutarak eşzamanlı olarak kullanan birleştirme algoritmalarıdır. Üçüncü grubun en önemli örnekleri olarak Cerulean~\cite{Deshpande2013} ve 
+hybridSPAdes~\cite{Antipov2016} 
+ algoritmaları sayılabilir. Ayrıca aynı ya da farklı veri türlerini yinelemeli olarak kullanarak genom birleştirmesini düzelten Quiver ve HGAP~\cite{Chin2013} ve Nanopolish~\cite{Loman2015} algoritmaları da yaygın olarak kullanılmaktadır. 
+
 
 
 
@@ -414,7 +492,7 @@ Bu BYK’ların uzunluğu yaklaşık 150.000 – 200.000 baz çiftidir. İlk ola
 kapsanması hedeflendi. Buradaki amaç rastgeleliği arttırarak, duplikasyonlardan kaynaklanan olası yanlış eşleşmelerin mümkün olduğu kadar önüne geçebilmektir. 
 Duplikasyonlar \%90 oranında benzeyen dizi parçalarıdır. 
 
-BYK’lar haricinde aynı insanın tüm genomundan elde edilmiş DNA dizileri (WGS) daha önce Broad Enstitüsü’ndeki araştırmacılar tarafından ALLPATHS~\cite{Gnerre2011} programı kullanılarak birleştirilmiş, ve bu birleştirme sonuçları tüm araştırmacıların kullanımına açılmıştır. Ancak bu projenin başvuru amaçlarında da belirtildiği üzere, bu birleştirme sonucunda edilen bitişiklerde gerek gen ve ekzonların temsili, gerekse tekrarlı DNA dizileri nedeniyle parçalanmalar ve yanlış birleştirmeler bulunmaktadır~\cite{Alkan2011c}. Gene projenin başvuru amaçlarında belirtildiği üzere, tüm genom dizileme ve birleştirme verilerini diğer şekillerde elde edilmiş veriler ile birlikte kullanmayı amaçladığımızdan bu veriyi de NCBI internet sayfasından indirdik.
+BYK’lar haricinde aynı insanın tüm genomundan elde edilmiş DNA dizileri (WGS) daha önce Broad Enstitüsü’ndeki araştırmacılar tarafından ALLPATHS~\cite{Gnerre2011} programı kullanılarak birleştirilmiş, ve bu birleştirme sonuçları tüm araştırmacıların kullanımına açılmıştır. Ancak bu projenin başvuru amaçlarında da belirtildiği üzere, bu birleştirme sonucunda edilen bitişiklerde gerek gen ve ekzonların temsili, gerekse tekrarlı DNA dizileri nedeniyle parçalanmalar ve yanlış birleştirmeler bulunmaktadır~\cite{Alkan2011b}. Gene projenin başvuru amaçlarında belirtildiği üzere, tüm genom dizileme ve birleştirme verilerini diğer şekillerde elde edilmiş veriler ile birlikte kullanmayı amaçladığımızdan bu veriyi de NCBI internet sayfasından indirdik.
 
 ABySS~\cite{Simpson2009}, ALLPATHS~\cite{Simpson2009}, ya da diğer genom birleştirme algoritmalarının oluşturduğu iskeleler tam olarak optimize edilmemiştir. Dahası, elimizdeki BYK tabanlı veriler de tüm genom dizilemeden farklı olduğu için, bu veriler doğrudan genom birleştirme araçlarına yüklenemez. Bundaki sebep, tüm genom dizilemelerinin tamamen rastgele olarak üretilmiş olması, havuzlanmış BYK verilerinin ise daha hiyerarşik bir yapıda oluşturulmuş olmasıdır. Bu nedenle ilk aşama olarak literatürde tanımlanmış iskeleleme algoritmalarının bir tetkikini yaptık. Buradaki amaçlarımız, bu araçların elimizdeki veriler ile uyumluluğunu test etmek, ve aynı zamanda eksikliklerini sınıflandırmaktır.
 
@@ -752,7 +830,7 @@ LOESS metoduyla düzeltilen data kullanılarak, ekzom birleştirme yöntemini da
 \addcontentsline{toc}{section}{5. SONUÇ}
 
 \noindent
-Yeni nesil dizileme (YND) teknolojileri sayesinde bütün biyolojik bilimlerdeki çalışma yöntemleri radikal bir şekilde değişmiştir. Ayrıca YND tıpta da kullanılmaya başlanmış ve kişileştirilmiş tıp alanının doğmasına yol açmıştır. Bu teknolojiler üretilen verilerin özellikleri ve maliyetleri konusunda da çok çeşitlilik gösterir, ve hemen hemen her 3-4 ayda bir yeni bir teknoloji piyasaya çıkmakta, ya da var olan bir dizileme platformunun yeni versiyonları piyasaya sürülmektedir. 2007 yılında Roche/454 ile başlayan YND serüveni, Illumina, SOLiD, Complete Genomics, Ion Torrent gibi kısa dizileme teknolojileri ile devam etmiş, son 1-2 yılda da PacBio, Oxford Nanopore (ONP) gibi uzun, ancak çok hata paylı dizileme teknolojileri safhasına geçilmiştir. Çok daha yakın zamanda 10X Genomics, Dövetail Genomics, ve CPT-Seq~\cite{Adey2014,Amini2014} gibi kısa Illumina okumalarını oluştururken uzun müleküllerdeki devamlılığı da takip edebilen yeni kütüphane hazırlama teknolojileri de ortaya çıkmıştır. YND platformlarındaki bu çeşitlilik de dizileme ve analiz yöntemlerinin özellikler klinik ortamda kullanımının standartlara oturtulmasını amaçlayan Genome in a Bottle Projesi'nin~\cite{Zook2014} başlamasına sebep olmuştur.
+Yeni nesil dizileme (YND) teknolojileri sayesinde bütün biyolojik bilimlerdeki çalışma yöntemleri radikal bir şekilde değişmiştir. Ayrıca YND tıpta da kullanılmaya başlanmış ve kişileştirilmiş tıp alanının doğmasına yol açmıştır. Bu teknolojiler üretilen verilerin özellikleri ve maliyetleri konusunda da çok çeşitlilik gösterir, ve hemen hemen her 3-4 ayda bir yeni bir teknoloji piyasaya çıkmakta, ya da var olan bir dizileme platformunun yeni versiyonları piyasaya sürülmektedir. 2007 yılında Roche/454 ile başlayan YND serüveni, Illumina, SOLiD, Complete Genomics, Ion Torrent gibi kısa dizileme teknolojileri ile devam etmiş, son 1-2 yılda da PacBio, Oxford Nanopore (ONT) gibi uzun, ancak çok hata paylı dizileme teknolojileri safhasına geçilmiştir. Çok daha yakın zamanda 10X Genomics, Dövetail Genomics, ve CPT-Seq~\cite{Adey2014,Amini2014} gibi kısa Illumina okumalarını oluştururken uzun müleküllerdeki devamlılığı da takip edebilen yeni kütüphane hazırlama teknolojileri de ortaya çıkmıştır. YND platformlarındaki bu çeşitlilik de dizileme ve analiz yöntemlerinin özellikler klinik ortamda kullanımının standartlara oturtulmasını amaçlayan Genome in a Bottle Projesi'nin~\cite{Zook2014} başlamasına sebep olmuştur.
 
 Yukarıda da belirttiğimiz üzere, her YND platformunun ürettiği veri dizi uzunluğu, hata profili ve maliyet gibi konularda birbirinden farklıdır. Ancak, bir teknoloji için dezavantaj olan bir özellik bir başka teknolojide avamtaja dönüşebilmektedir, ve bu artı-eksi farklılıkları birbirine paralel ilerler (çiftlilik prensibine [principle of dualıty] benzer şekilde). Örneğin, Illumina okumalarının kısa olmasına karşın PacBio ve ONP verileri uzundur, ancak buna karşılık Illumina'da hata payı binde 1'den az iken, PacBio'da \%15, ONP'de \%20 civarındadır. Bu nedenle, özellikle büyük genomların birleştirilmesi projelerinde aynı anda birden fazla YND platformunun verilerinden faydalanmak avantajlı olacaktır. Böylece genomdaki tekrarlar uzun PacBio ve ONP okumaları ile daha rahat çözümlenirken, hemen hemen hatasız Illumina verileri ile baz çifti düzeyindeki hatalar en aza indirgenecektir.
 
