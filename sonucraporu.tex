@@ -169,7 +169,7 @@ Can Fırtına: Bilkent Üniversitesi lisans öğrencisi (proje sırasında)
 
 
 \begin{center}
-{\Large NİSAN 2016
+{\Large TEMMUZ 2016
 
 \vspace{1mm}
 ANKARA}
@@ -220,7 +220,7 @@ yapmıştır.
 \bigskip
 \hfill Can Alkan
 
-\hfill Ankara, Nisan 2016
+\hfill Ankara, Temmuz 2016
 \newpage
 
 \setlength{\parskip}{1mm} 
@@ -323,8 +323,17 @@ Her ne kadar dizilemedeki ucuzlama nedeni ile arka arkaya bir çok hayvan ve bit
 \end{figure}
 
 
+\noindent
 
-Bunlara rağmen her YND teknolojisinin diğerlerine göre bazı avantajları vardır. Örneğin Illumina platformu en çok veriyi en ucuza üretebilir (10 günde 600 milyar baz çiftinden fazla) ve baz okuma hata oranı en azdır (\%0.1). 454 cihazı diğerlerine göre daha büyük molekülleri eşli dizileyebilir (yaklaşık 20.000 baz çifti). Pacific Biosciences ise şu anki teknolojiler arasında ürettiği ortalama dizi uzunluğu en fazla olan platformdur (1.4 kb) ve ``grup dizileme'' (strobe sequencing) teknolojisi ile eşli dizilemeye (paired-end sequencing) göre bir molekülden daha fazla bilgi çıkarabilir (Şekil~\ref{fig:strobe}). Bu nedenledir ki, aynı anda birden fazla teknoloji ile elde edilmiş verileri kullanmak, her bir teknolojinin diğerlerine üstün yanlarından faydalanıp, sahip olduğu dezavantajları da diğer teknolojilerin avantajları ile gidermek en uygunu olacaktır. Örneğin Illumina'nın sağladığı yüksek kalitedeki baz okuma doğruluğu ile Pacific Biosciences'ın \%15'lik hata oranını düzelterek, aynı zamanda Pacific Biosciences'in gruplu ve uzun dizileme özelliği sayesinde Illumina'nin kısa dizilerinin birleştirilmesini geliştirip tekrarlı alanlardaki yapısal birleştirme hatalarını en aza indirgemek mümkün olacaktır.
+\clearpage
+\begin{center}
+{\bf \Large 2. LİTERATÜR ÖZETİ}
+\end{center}
+\addcontentsline{toc}{section}{2. LİTERATÜR ÖZETİ}
+
+
+
+Her YND teknolojisinin diğerlerine göre bazı avantajları vardır. Örneğin Illumina platformu en çok veriyi en ucuza üretebilir (10 günde 600 milyar baz çiftinden fazla) ve baz okuma hata oranı en azdır (\%0.1). 454 cihazı diğerlerine göre daha büyük molekülleri eşli dizileyebilir (yaklaşık 20.000 baz çifti). Pacific Biosciences ise şu anki teknolojiler arasında ürettiği ortalama dizi uzunluğu en fazla olan platformdur (1.4 kb) ve ``grup dizileme'' (strobe sequencing) teknolojisi ile eşli dizilemeye (paired-end sequencing) göre bir molekülden daha fazla bilgi çıkarabilir (Şekil~\ref{fig:strobe}). Bu nedenledir ki, aynı anda birden fazla teknoloji ile elde edilmiş verileri kullanmak, her bir teknolojinin diğerlerine üstün yanlarından faydalanıp, sahip olduğu dezavantajları da diğer teknolojilerin avantajları ile gidermek en uygunu olacaktır. Örneğin Illumina'nın sağladığı yüksek kalitedeki baz okuma doğruluğu ile Pacific Biosciences'ın \%15'lik hata oranını düzelterek, aynı zamanda Pacific Biosciences'in gruplu ve uzun dizileme özelliği sayesinde Illumina'nin kısa dizilerinin birleştirilmesini geliştirip tekrarlı alanlardaki yapısal birleştirme hatalarını en aza indirgemek mümkün olacaktır.
 Ancak uzun dizileme verilerindeki okuma uzunluğunun artması ve gruplu dizilemedeki bazı teknik zorluklar nedeniyle artık PacBio cihazları ile gruplu dizileme yapılamamaktadır.
 
 \begin{figure}[htb]
@@ -336,13 +345,6 @@ Ancak uzun dizileme verilerindeki okuma uzunluğunun artması ve gruplu dizileme
 \end{figure}
 
 
-\noindent
-
-\clearpage
-\begin{center}
-{\bf \Large 2. LİTERATÜR ÖZETİ}
-\end{center}
-\addcontentsline{toc}{section}{2. LİTERATÜR ÖZETİ}
 
 Genom birleştirme algoritmaları rastgele örneklenmiş DNA okumalarından başlayarak 
 bir organizmanın genom dizisini oluşturmaya çalışır. Çoğu omurgalı organizmanın genomu diploit (her kromozomdan 2 adet) olduğu için, en uygun (optimal) bir genom birleştirici her kromozom için iki uzun dizi üretmelidir. Ancak bu iki kopyanın da birbirine çok benzemesi nedeniyle bu algoritmalar sadece bir kopyayı oluşturmaya çalışır. Bu sorun poliplot (her kromozomun ikiden fazla kopyası olması)
@@ -372,9 +374,9 @@ Eşli dizileme verilerinin varlığı durumunda eşli dizilerin birbirlerine gö
 \end{itemize}
 
 Genom birleştirme problemininin en iyi çözümünün bilişimsel karmaşıklığı nedeniyle bir çok 
-sezgisel yaklaşım (heuristic) geliştirilmiş, ayrıca bu problem 
+keşifsel (heuristic) geliştirilmiş, ayrıca bu problem 
 yakınsama algoritmaları geliştirilmesine olanak sağlayacak şekilde tekrar tanımlanmıştır.
-Kısaca genom birleştirme için dört farklı yöntem vardır: 1) açgözlü (greedy) yöntemler, 2) örtüşme-düzenleme-oydaşma çizgeleri, 3) de Bruijn çizgeleri, ve 4) dizi çizgeleri. Bu yaklaşımların geniş özetleri ve karşılaştırmaları çok sayıda özet makalede sunulmuştur~\cite{Alkan2011b,Chaisson2015,Miller2010,Nagarajan2013,Zhang2011}. Ayrıca bazı algoritmaların listesini bu özette sunuyoruz (Tablo~\ref{tab:algs}).
+Kısaca genom birleştirme için dört farklı yöntem vardır: 1) açgözlü (greedy) yöntemler, 2) örtüşme-düzenleme-oydaşma çizgeleri, 3) de Bruijn çizgeleri, ve 4) dizi çizgeleri. Bu yaklaşımların geniş özetleri ve karşılaştırmaları çok sayıda özet makalede sunulmuştur~\cite{Alkan2011b,Chaisson2015,Miller2010,Nagarajan2013,Zhang2011}. Ayrıca bazı algoritmaların listesini bu raporda sunuyoruz (Tablo~\ref{tab:algs}).
 
 \begin{table}[]
 \caption{Bazı genom birleştirme algoritmaları.}
@@ -533,13 +535,13 @@ karakterleriyle doldurulması sonucu uzunluklarının artması beklenirken, dör
 
 Sonuç olarak, farklı iskeleleme programları, parametreleri, hizalama yöntemleri ve ürettikleri iskeleler test edilip farklılıklar tespit edilmiştir ve yeni tasarlanılacak iskeleleme programının geliştirilmesi için gereklilikler ve oluşabilecek hatalar not edilmiştir.
 
-\clearpage
+
 {\bf \large 3.3. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 \addcontentsline{toc}{subsection}{3.3. Birden fazla platform verisi ile genom birleştirmelerde hata düzeltimi}
 
 \input{bac_pinar_methods.tex}
 
-\clearpage
+
 
 {\bf \large 3.4. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
 \addcontentsline{toc}{subsection}{3.4. Illumina ve PacBio verilerini kullanan hibrit birleştirme algoritması}
@@ -556,7 +558,7 @@ Sonuç olarak, farklı iskeleleme programları, parametreleri, hizalama yönteml
 \input{shatlyk_methods.tex}
 
 
-\clearpage
+
 
 {\bf \large 3.5. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
 \addcontentsline{toc}{subsection}{3.5. Ekzom Dizilemede GC ve Yakalama Verimi Hatalarının Düzeltilmesi}
@@ -574,6 +576,7 @@ DNA'nın sadece belirli bölgelerinde yaşanan dizi değişimlerine bakmak için
 
  Prob yakalama etkinliği, genomun her yerinde o bölgede kullanılan probun özelliklerine göre değişmektedir. Her bölgenin bu sapmadan ne kadar etkilendiğini görmek ve bu sapmaları düzeltebilmek için, dizileme teknolojileri kullanılarak elde edilen DNA parçacıklarını ekzon koordinatlarına göre eşleştirdik. Daha sonra her bir bölgeye ait prob sayısı ve dizi derinliğine bakılarak, yakalama etkinliklerini tespit ettik. 
 
+\newpage
 {\bf 3.5.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
 \addcontentsline{toc}{subsubsection}{3.5.1. Birden Fazla Örnek Üzerinde Çalışabilmek için Ekzom Dizileme Verilerinin Uyarlanması}
 
@@ -599,7 +602,7 @@ Genetik varyantlar, gen ve protein ifadelerinde ve epigenetik modifikasyonlar i�
 
 Temel içerik analizi, modern veri analizinin dayanak  noktası haline gelmiştir. Bunun yanı sıra uygulamalı lineer cebirin en değerli sonucu olarak da kabul edilmektedir. PCA olarak da bilinen bu yöntem çok yaygın bir şekilde ancak çok iyi anlaşılmadan kullanılmaktadır. Bu da yanlış sonuçlar doğurmaktadır. Yürütmekte olduğumuz çalışmada PCA yönteminin olası yanlış kullanımlarını düzelterek, daha doğru veriler de elde etmeyi hedeflemekteyiz. Karmakarışık bir veri kümesinden, en alakalı kısmı alabilen parametrik olmayan bir metot olduğu için nöroloji biliminden bilgisayar grafiği alanına kadar geniş bir yelpazede kullanılmaktadır. Minimal düzeyde ek bir çaba ile PCA, kompleks bir veri kümesinden kümeyi ifade edebilen küçük bir data setini elde edebilmeyi, zaman zaman ise gizli kalmış altta yatan basit dinamiklerin ortaya çıkarılmasını sağlamaktadır. PCA'nın amacı,  pürüzlü (noisy) veri kümesini en anlamlı ve daha basit bir şekilde yeniden ifade edebilmeyi sağlamaktır.
 
-\clearpage
+
 {\bf 3.5.5. Değişken Bayes Çıkarımı}
 \addcontentsline{toc}{subsubsection}{3.5.5. Değişken Bayes Çıkarımı}
 
@@ -608,6 +611,7 @@ Tekil değer ayrışımı (SVD), bir matrisin optimal bir şekilde düşük rank
 
 Elimizde var olan (kopya sayısı) $\times$ (örnekler) matrisinin  ekzom datasına bağlı olarak gelişen aralıklı yapısından dolayı SVD bazen yeterli olamamaktadır. Burada oluşabilecek verinin fazla uyumlu grafikler ortaya çıkarabilmesi durumunu engelleyebilmek için her biri veri kümesinin yapısına uygun parametreler ve yapılar ortaya çıkaran değişken bayes çıkarımını kullanmayı planlamaktayız. Elimizdeki veri kümesine oldukça benzeyen daha önce internet sitelerinde yer alan sinema tavsiyeleri için makine öğrenmesi uygulamasında da kullanılmış ve buradaki sonuçları iyileştirmiştir.
 
+\clearpage
 {\bf 3.5.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
 \addcontentsline{toc}{subsubsection}{3.5.6. GC ve yakalama etkinliğinden doğan farklılıkların düzeltilmesi}
 
@@ -752,6 +756,7 @@ BESST  &  17    & 308,948 & 308,948  & 47.81 & 0  & 22,521 & 10,538 \\ \hline
 
 \input{canfirtina_sonuc.tex}
 
+\clearpage
 {\bf 4.3.2. Hiperçizge tabanlı birleştirme algoritması}
 \addcontentsline{toc}{subsubsection}{4.3.2. Hiperçizge tabanlı birleştirme algoritması}
 

@@ -19,8 +19,10 @@ Bu bakımdan gelecek iş olarak, doğrulama algoritmamızı kısa eşli okumalar
 
 \begin{table}[htb]
 \begin{center}
+\caption{BAC verisi üzerinde birleştirme doğrulama yöntemine ait sonuçlar.}
+\label{tab:resultsTable}
 {\footnotesize
-\begin{tabular}{l|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
          İsim & Uzunluk & \# (Bitişik) & \thead{\# (Eşleşen \\ bitişik)} & \thead{\# (Kaps.\\ baz)} & Kapsam & \thead{Ort. \\özdeşlik} & \# (Boşluk) & \thead{Boşluk \\ boyutu} \\
 \hline
@@ -32,7 +34,7 @@ Bu bakımdan gelecek iş olarak, doğrulama algoritmamızı kısa eşli okumalar
          454 Celera & 908,008 & 735 & 735 & 172,563 & 0.97580 & 0.92599 & 18 & 4,280 \\
          Ion Celera & 39,347 & 27 & 27 & 47,638 & 0.26938 & 0.96932 & 47 & 129,205 \\
          \hline   
-         \textbf{Corrected Celera} & & & & & & & & \\
+         \textbf{Düzeltilmiş Celera} & & & & & & & & \\
          Ill-454 Celera & 4,945,785 & 895 & 270 & 176,368 & 0.99731 & 0.94370 & 5 & 475 \\
          Ill-454 Celera$^{2*}$ & 5,078,059 & 890 & 265 & 176,640 & 0.998852 & 0.944527 & 4 & 203 \\
          Ill-Ion Celera & 93,909 & 30 & 28 & 81,819 & 0.46267 & 0.96327 & 36 & 95,024 \\
@@ -42,7 +44,7 @@ Bu bakımdan gelecek iş olarak, doğrulama algoritmamızı kısa eşli okumalar
          454 SGA & 62,909,254 & 108,095 & 101,514 & 176,546 & 0.99832 & 0.97439 & 1 & 297 \\
          Ion SGA & 842,997 & 6,417 & 6,122 & 153,092 & 0.86569 & 0.99124 & 197 & 23.751 \\	
          \hline
-         \textbf{Corrected SGA} & & & & & & & & \\
+         \textbf{Düzeltilmiş SGA} & & & & & & & & \\
          Ill-454 SGA & 295,009 & 335 & 335 & 176,757 & 0.99951 & 0.96823 & 5 & 86 \\
          Ill-454 SGA$^2$ & 279,034 & 305 & 305 & 176,757 & 0.99951 & 0.96769 & 5 & 86 \\
          Ill-Ion SGA & 197,509 & 291 & 291 & 175,052 & 0.98987 & 0.97501 & 45 & 1,791 \\
@@ -51,7 +53,7 @@ Bu bakımdan gelecek iş olarak, doğrulama algoritmamızı kısa eşli okumalar
          454 SPADES & 12,307,761 & 49,824 & 49,691 & 176,843 & 1.0 & 0.98053 & 0 & 0 \\
          Ion SPADES & 176,561 & 110 & 107 & 167,890 & 0.94937 & 0.92909 & 9 & 8,953 \\	
          \hline
-         \textbf{Corrected SPADES} & & & & & & & & \\
+         \textbf{Düzeltilmiş SPADES} & & & & & & & & \\
          Ill-454 SPADES & 290,702 & 298 & 298 & 176,454 & 0.99780 & 0.96538 & 5 & 389 \\
          Ill-Ion SPADES & 198,665 & 52 & 52 & 171,977 & 0.97248 & 0.94215 & 4 & 4,866 \\
          Ill-Ion SPADES$^2$ & 200,307 & 52 & 52 & 172,101 & 0.97319 & 0.94230 & 2 & 4,742 \\
@@ -67,8 +69,6 @@ Bu bakımdan gelecek iş olarak, doğrulama algoritmamızı kısa eşli okumalar
 \end{center}
 {\footnotesize İsim: Birleştirmeyi oluşturan veri grubunun adı; Uzunluk: Toplam birleştirme uzunluğu \#(Bitişik): Sonuçta elde edilen birleşmeye ait bitişik sayısı; \#(Eşleşen bitişik): Başarılı bir şekilde referansa eşleşen bitişik sayısı; \#(Kaps. baz):  Birleştirme tarafından referans üzerinde kapsanan baz sayısı; Kapsam: Kapsanan referans yüzdesi; Ort. özdeşlik: Doğru bir şekilde tahmin edilmiş referans baz sayısı; \#(Boşluk): Referans genom üzerinde kapsanamamış boşluk sayısı; Boşluk boyutu: Boşluklar üzerindeki toplam baz sayısı.
   ``2'' ikinci doğrulama devrini temsil ediyor, ``3'' üçüncü devri temsil ediyor.}
-\caption{BAC verisi üzerinde birleştirme doğrulama yöntemine ait sonuçlar.}
-\label{tab:resultsTable}
 
 \end{table}
 

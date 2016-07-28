@@ -9,10 +9,12 @@ Bölme aralığını kısalttıkça filtrenin daha hassas sonuçlar vereceğini 
 \parbox{.50\linewidth}{
 \centering
 \scriptsize
+\caption{Birinci filtre sonuçları}
+\label{table:results1}
 \begin{tabular}{ |l|l|l|l|l|l| }
 \hline
 \multicolumn{6}{ |c|}{Birinci filtre parametreleri ve sonuçları} \\ \hline
-K1 & H & It. & DE (\%) & YE (\%) & T(sec)\\ \hline
+$k$ & H & It. & DE (\%) & YE (\%) & T(saniye)\\ \hline
 16 & 10 & 5 & 99.48 & 76.47 & 13.45 \\ \hline
 16 & 50 & 5 & 99.04 & 59.18 & 59.36 \\ \hline
 16 & 100 & 5 & 98.77 & 54.66 & 142.80 \\ \hline
@@ -49,17 +51,19 @@ K1 & H & It. & DE (\%) & YE (\%) & T(sec)\\ \hline
 10 & 512 & 38 & 60.95 & 2.89 & 203.35 \\ \hline
 10 & 780 & 38 & 60.76 & 2.80 & 311.15 \\ \hline
 \end{tabular}
-\caption{Birinci filtre sonuçları}
-\label{table:results1}
 }
+%$k$: k-mer uzunluğu, H: kullanılan sağlama (hash) fonksiyonu sayısı, It.: parçaların bölümlerini hangi aralıklarla yaratıldığı,
+%DE: doğru eleme, YE: yanlış eleme, T: hesaplama süresi.
 \hfill
 \parbox{.50\linewidth}{
 \centering
 \scriptsize
+\caption{İkinci filtre sonuçları}
+\label{table:results2}
 \begin{tabular}{ | c | c | c | c | c | c | c |}
 \hline
 \multicolumn{7}{ |c|}{İkinci filtre paramatreleri ve sonuçları} \\ \hline
-K2 & H & It. & T2 & DE (\%) & YE (\%) & T(sec) \\ \hline
+$k$ & H & It. & T2 & DE (\%) & YE (\%) & T(saniye) \\ \hline
 8 & 30 & 3 & 0.05 & 86.06 & 12.94 & 59.34 \\ \hline
 8 & 50 & 3 & 0.05 & 82.87 & 8.23 & 100.25 \\ \hline
 8 & 100 & 3 & 0.05 & 79.19 & 5.33 & 171.95 \\ \hline
@@ -101,7 +105,7 @@ K2 & H & It. & T2 & DE (\%) & YE (\%) & T(sec) \\ \hline
 3 & 100 & 38 & 0.75 & 81.39 & 7.42 & 52.39 \\ \hline
 3 & 512 & 38 & 0.75 & 75.45 & 4.97 & 202.36 \\ \hline
 \end{tabular}
-\caption{İkinci filtre sonuçları}
-\label{table:results2}
 }
+$k$: k-mer uzunluğu, H: kullanılan sağlama (hash) fonksiyonu sayısı, It.: parçaların bölümlerini hangi aralıklarla yaratıldığı,
+DE: doğru eleme, YE: yanlış eleme, T: hesaplama süresi, T2: eşik değeri.
 \end{table}
